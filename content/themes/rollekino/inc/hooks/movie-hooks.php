@@ -20,6 +20,9 @@ function save_post_function( $data, $id ) {
     return;
   }
 
+  // Save things in post meta
+  update_post_meta( $id['ID'], '_rollekino_rating', '4' );
+
   // Update the post's title.
   $data['post_title'] = 'Test';
   return $data;

@@ -23,6 +23,8 @@ get_header(); ?>
 
       <h1><?php the_title(); ?></h1>
 
+      <?php echo var_dump( get_post_meta( get_the_ID(), '_rollekino_rating', true ) ); ?>
+
       <?php the_content();
 
       // Required by WordPress Theme Check, feel free to remove as it's rarely used in starter themes
