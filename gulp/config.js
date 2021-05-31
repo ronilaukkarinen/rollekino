@@ -54,8 +54,8 @@ module.exports = {
       notify: true,
       // Generate with: mkdir -p /var/www/certs && cd /var/www/certs && mkcert localhost 192.168.x.xxx ::1
       https: {
-        key: "/var/www/certs/localhost-key.pem",
-        cert: "/var/www/certs/localhost.pem",
+        key: "C:\\Users\\Rolle\\Projects\\certs\\localhost-key.pem",
+        cert: "C:\\Users\\Rolle\\Projects\\certs\\localhost.pem",
       }
     },
   },
@@ -110,7 +110,7 @@ module.exports = {
   phpcs: {
     src: [themeDir + '**/*.php', '!' + themeDir + 'node_modules/**/*'],
     opts: {
-      bin: '/usr/local/bin/phpcs',
+      bin: 'C:\\wsl-tools\\phpcs.bat',
       standard: themeDir + 'phpcs.xml',
       warningSeverity: 0
     }
