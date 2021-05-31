@@ -57,3 +57,9 @@ add_action( 'acf/init', __NAMESPACE__ . '\acf_blocks_init' );
  */
 require get_theme_file_path( 'inc/hooks/forms.php' );
 add_action( 'gform_enqueue_scripts', __NAMESPACE__ . '\dequeue_gf_stylesheets', 999 );
+
+
+/**
+ * Movie hooks
+ */
+require get_theme_file_path( 'inc/hooks/movie-hooks.php' );

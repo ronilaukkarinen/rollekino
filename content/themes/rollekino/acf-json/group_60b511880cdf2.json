@@ -1,0 +1,40 @@
+{
+    "key": "group_60b511880cdf2",
+    "title": "Leffa",
+    "fields": [
+        {
+            "key": "field_60b5118d8f02f",
+            "label": "IMDb URL",
+            "name": "imdb_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/www.imdb.com\/title\/tt11083552\/"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1622479271
+}
