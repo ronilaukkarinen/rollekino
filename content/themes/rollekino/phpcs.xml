@@ -101,6 +101,9 @@
 
         <!-- Project based -->
         <exclude name="Squiz.PHP.CommentedOutCode.Found" />
+
+        <!-- Windows 10/WSL Specific -->
+        <exclude name="WordPress.Files" />
     </rule>
 
     <!-- Verify that the text_domain is set to the desired text-domain.
