@@ -42,6 +42,10 @@
     {
       "type": "composer",
       "url": "https://wp-languages.github.io"
+    },
+    {
+      "type": "composer",
+      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/wordpress-plugin/"
     }
   ],
   "require": {
@@ -60,7 +64,8 @@
     "wpackagist-plugin/sendgrid-email-delivery-simplified": "*",
     "wpackagist-plugin/worker": "*",
     "wpackagist-plugin/wordpress-seo": "*",
-    "wpackagist-plugin/so-clean-up-wp-seo": "*"
+    "wpackagist-plugin/so-clean-up-wp-seo": "*",
+    "advanced-custom-fields/advanced-custom-fields-pro": "*"
   },
   "require-dev": {
     "rarst/wps": "*",
