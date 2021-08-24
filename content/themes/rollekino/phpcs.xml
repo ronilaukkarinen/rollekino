@@ -101,6 +101,7 @@
 
         <!-- Project based -->
         <exclude name="Squiz.PHP.CommentedOutCode.Found" />
+        <exclude name="Squiz.Commenting" />
 
         <!-- Windows 10/WSL Specific -->
         <exclude name="WordPress.Files" />

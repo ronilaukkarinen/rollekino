@@ -1,7 +1,26 @@
 {
     "key": "group_60b511880cdf2",
-    "title": "Leffa",
+    "title": "Leffan perustiedot",
     "fields": [
+        {
+            "key": "field_61255647be1ea",
+            "label": "Lyhyt arvio",
+            "name": "short_review",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
         {
             "key": "field_60b5118d8f02f",
             "label": "IMDb URL",
@@ -17,6 +36,25 @@
             },
             "default_value": "",
             "placeholder": "https:\/\/www.imdb.com\/title\/tt11083552\/"
+        },
+        {
+            "key": "field_6125562fbe1e9",
+            "label": "IMDb ID",
+            "name": "imdb_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": 11083552,
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -29,12 +67,12 @@
         ]
     ],
     "menu_order": 0,
-    "position": "side",
+    "position": "acf_after_title",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1622479271
+    "modified": 1629837062
 }

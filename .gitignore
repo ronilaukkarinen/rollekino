@@ -1,3 +1,4 @@
+*.sql
 build
 # Dotfiles and directories
 .DS_Store
