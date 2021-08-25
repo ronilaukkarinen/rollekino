@@ -73,9 +73,7 @@
     "kevinruscoe/acf-star-rating-field": "dev-master"
   },
   "require-dev": {
-    "rarst/wps": "*",
-    "rarst/laps": "*",
-    "wpackagist-plugin/query-monitor": "*"
+    "rarst/wps": "*"
   },
   "extra": {
     "dropin-paths": {
