@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 00:08:16
+ * @Last Modified time: 2021-08-26 00:49:57
  *
  * @package rollekino
  */
@@ -14,6 +14,25 @@ namespace Air_Light;
  * Update movie title when saving article
  */
 add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 );
+add_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+
+function save_post_function_test( $post_id ) {
+
+  // Unhook this function so it doesn't loop infinitely
+  remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+
+  // Get post meta
+  $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
+
+  wp_update_post(
+    array(
+      'ID' => $post_id,
+    )
+  );
+
+  // Re-hook this function
+  add_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+}
 
 function save_post_function( $data, $id ) {
   if ( 'movie' === $data['post_type'] ) {
