@@ -46,6 +46,10 @@
     {
       "type": "composer",
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/wordpress-plugin/"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:kevinruscoe/acf-star-rating-field.git"
     }
   ],
   "require": {
@@ -58,14 +62,15 @@
     "vlucas/phpdotenv": "^5.3",
     "oscarotero/env": "^2.1",
     "roots/wp-config": "^1.0",
-    "johnpbloch/wordpress": "5.7.2",
+    "johnpbloch/wordpress": "5.8",
     "digitoimistodude/air-helper": "*",
     "wpackagist-plugin/simple-history": "*",
-    "wpackagist-plugin/sendgrid-email-delivery-simplified": "*",
+    "wpackagist-plugin/mailgun": "*",
     "wpackagist-plugin/worker": "*",
     "wpackagist-plugin/wordpress-seo": "*",
     "wpackagist-plugin/so-clean-up-wp-seo": "*",
-    "advanced-custom-fields/advanced-custom-fields-pro": "*"
+    "advanced-custom-fields/advanced-custom-fields-pro": "*",
+    "kevinruscoe/acf-star-rating-field": "dev-main"
   },
   "require-dev": {
     "rarst/wps": "*",
