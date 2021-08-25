@@ -43,7 +43,8 @@ $query = new \WP_Query( $args );
 
           <h2><?php the_title(); ?></h2>
 
-          <p><?php echo esc_html( $rating_imdb ); ?></p>
+          <p>IMDb: <?php echo esc_html( $rating_imdb ); ?></p>
+          <p>Omat pisteet: <?php echo esc_html( $rating ); ?></p>
         <?php endwhile; ?>
       </div>
 
