@@ -70,7 +70,7 @@
     "wpackagist-plugin/wordpress-seo": "*",
     "wpackagist-plugin/so-clean-up-wp-seo": "*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
-    "kevinruscoe/acf-star-rating-field": "dev-main"
+    "kevinruscoe/acf-star-rating-field": "dev-master"
   },
   "require-dev": {
     "rarst/wps": "*",
