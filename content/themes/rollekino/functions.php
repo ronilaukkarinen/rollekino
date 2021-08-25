@@ -75,23 +75,23 @@ add_action( 'after_setup_theme', function() {
      * Taxonomies
      *
      * See the instructions:
-     * https://github.com/digitoimistodude/rollekino#custom-taxonomies
+     * https://github.com/digitoimistodude/air-light#custom-taxonomies
      */
     'taxonomies' => [
-      // 'your-taxonomy' => [
-      //   'name' => 'Your_Taxonomy',
-      //   'post_types' => [ 'post', 'page' ],
-      // ],
+      'genre' => [
+         'name' => 'Genre',
+         'post_types' => [ 'movie' ],
+      ],
     ],
 
     /**
      * Post types
      *
      * See the instructions:
-     * https://github.com/digitoimistodude/rollekino#custom-post-types
+     * https://github.com/digitoimistodude/air-light#custom-post-types
      */
     'post_types' => [
-      // 'your-post-type' => 'Your_Post_Type',
+      'movie' => 'Movie',
     ],
 
     /**
