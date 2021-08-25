@@ -21,25 +21,6 @@
             "theme": "color"
         },
         {
-            "key": "field_61255647be1ea",
-            "label": "Lyhyt arvio",
-            "name": "short_review",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
-        },
-        {
             "key": "field_60b5118d8f02f",
             "label": "IMDb URL",
             "name": "imdb_url",
@@ -54,25 +35,6 @@
             },
             "default_value": "",
             "placeholder": "https:\/\/www.imdb.com\/title\/tt11083552\/"
-        },
-        {
-            "key": "field_6125562fbe1e9",
-            "label": "IMDb ID",
-            "name": "imdb_id",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": 11083552,
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -92,5 +54,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1629904329
+    "modified": 1629914084
 }

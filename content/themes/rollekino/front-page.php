@@ -42,6 +42,8 @@ $query = new \WP_Query( $args );
           ?>
 
           <h2><?php the_title(); ?></h2>
+
+          <p><?php echo esc_html( $rating_imdb ); ?></p>
         <?php endwhile; ?>
       </div>
 

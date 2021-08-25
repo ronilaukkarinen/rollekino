@@ -54,7 +54,7 @@
   ],
   "require": {
     "koodimonni/composer-dropin-installer": "dev-master",
-    "php": ">=7.2",
+    "php": "^7.3",
     "koodimonni-language/fi": "*",
     "koodimonni-language/en_gb": "*",
     "composer/installers": "^1.10.0",
@@ -70,7 +70,8 @@
     "wpackagist-plugin/wordpress-seo": "*",
     "wpackagist-plugin/so-clean-up-wp-seo": "*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
-    "kevinruscoe/acf-star-rating-field": "dev-master"
+    "kevinruscoe/acf-star-rating-field": "dev-master",
+    "rooxie/omdb": "^0.3.0"
   },
   "require-dev": {
     "rarst/wps": "*"
