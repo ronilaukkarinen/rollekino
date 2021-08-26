@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 08:31:32
+ * @Last Modified time: 2021-08-26 21:30:36
  *
  * @package rollekino
  */
@@ -30,6 +30,7 @@ function save_post_function_publish( $post_id ) {
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
 
+    // Update post
     wp_update_post(
       array(
         'ID' => $post_id,
@@ -43,12 +44,14 @@ function save_post_function_publish( $post_id ) {
 }
 
 function save_post_function( $data, $id ) {
+  $post_id = $id['ID'];
+
   if ( 'movie' === $data['post_type'] ) {
 
     // Need to define at least IMDb URL or IMDb ID
-    if ( ! metadata_exists( 'movie', $id['ID'], 'imdb_url' ) ) {
+    if ( ! metadata_exists( 'movie', $post_id, 'imdb_url' ) ) {
       $omdb = new \Rooxie\OMDb( getenv( 'OMDB_API_KEY' ) );
-      $imdb_url = get_post_meta( $id['ID'], 'imdb_url', true );
+      $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
       $imdb_id_match = preg_match_all( '/tt\\d{7,8}/', $imdb_url, $ids );
 
       if ( empty( $imdb_id_match ) ) {
@@ -63,27 +66,28 @@ function save_post_function( $data, $id ) {
       $imdb_year = $movie->getYear();
       $imdb_rating = $movie->getImdbRating();
       $imdb_release_date = $movie->getReleased();
+      $imdb_genres = $movie->getGenre();
       $metascore_rating = $movie->getMetascore();
 
       // Save things in post meta
-      if ( ! metadata_exists( 'movie', $id['ID'], '_imdb_year' ) ) {
+      if ( ! metadata_exists( 'movie', $post_id, '_imdb_year' ) ) {
         update_post_meta( $id['ID'], '_imdb_year', $imdb_year );
       }
 
-      if ( ! metadata_exists( 'movie', $id['ID'], '_imdb_rating' ) ) {
+      if ( ! metadata_exists( 'movie', $post_id, '_imdb_rating' ) ) {
         update_post_meta( $id['ID'], '_imdb_rating', $imdb_rating );
       }
 
-      if ( ! metadata_exists( 'movie', $id['ID'], '_imdb_release_date' ) ) {
+      if ( ! metadata_exists( 'movie', $post_id, '_imdb_release_date' ) ) {
         update_post_meta( $id['ID'], '_imdb_release_date', $imdb_release_date );
       }
 
-      if ( ! metadata_exists( 'movie', $id['ID'], '_metascore_rating' ) ) {
+      if ( ! metadata_exists( 'movie', $post_id, '_metascore_rating' ) ) {
         update_post_meta( $id['ID'], '_metascore_rating', $metascore_rating );
       }
 
       // Get genres
-      $imdb_genre_originals = array(
+      $imdb_genres_originals = array(
         '/,/',
         '/Action/',
         '/Crime/',
@@ -110,7 +114,7 @@ function save_post_function( $data, $id ) {
         '/Western/',
       );
 
-      $imdb_genre_finnish = array(
+      $imdb_genres_finnish = array(
         '',
         'Toiminta',
         'Rikos',
@@ -137,7 +141,11 @@ function save_post_function( $data, $id ) {
         'Länkkäri',
       );
 
-      // $genre = preg_replace( $imdb_genre_originals, $imdb_genre_finnish, $info['Genre'] );
+      // Get Finnish genres
+      $genres_finnish = preg_replace( $imdb_genres_originals, $imdb_genres_finnish, $imdb_genres );
+
+      // Set genres
+      wp_set_object_terms( $post_id, $genres_finnish, 'genre' );
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;
