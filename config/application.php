@@ -38,6 +38,28 @@ if ( file_exists( $root_dir . '/.env' ) ) {
 }
 
 /**
+ * The Movie Database
+ */
+// Specify the later introduced bearer token
+define( 'TMDB_BEARER_TOKEN', env( 'BEARER_TOKEN' ) );
+
+// Or specify the which I guess can now be considered "legacy api key".
+define( 'TMDB_API_KEY', env( 'TMDB_API_KEY' ) );
+
+// Globals
+define( 'TMDB_LANGUAGE', 'en-US' );
+define( 'TMDB_REGION', 'us' );
+
+// // Session based
+// define('TMDB_REQUEST_TOKEN', env( 'TMDB_REQUEST_TOKEN' ) ); // for accounts
+// define('TMDB_SESSION_TOKEN', env( 'TMDB_SESSION_TOKEN' ) ); // for accounts
+// define('TMDB_GUEST_SESSION_TOKEN', env( 'TMDB_GUEST_SESSION_TOKEN' ) ); // for guest sessions
+// define('TMDB_ACCOUNT_ID', env( 'TMDB_ACCOUNT_ID' ) ); // numeric id, fetch through account info
+
+// // Account based
+// define('TMDB_LIST_ID', env( 'TMDB_LIST_ID' ) );
+
+/**
  * Set up our global environment constant and load its config first
  * Default: production
  */
