@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 08:16:13
+ * @Last Modified time: 2021-08-26 08:31:32
  *
  * @package rollekino
  */
@@ -25,6 +25,10 @@ function save_post_function_publish( $post_id ) {
 
     // Get post meta
     $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
+    $imdb_year = get_post_meta( $post_id, '_imdb_year', true );
+    $imdb_rating = get_post_meta( $post_id, '_imdb_rating', true );
+    $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
+    $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
 
     wp_update_post(
       array(
@@ -77,6 +81,63 @@ function save_post_function( $data, $id ) {
       if ( ! metadata_exists( 'movie', $id['ID'], '_metascore_rating' ) ) {
         update_post_meta( $id['ID'], '_metascore_rating', $metascore_rating );
       }
+
+      // Get genres
+      $imdb_genre_originals = array(
+        '/,/',
+        '/Action/',
+        '/Crime/',
+        '/Drama/',
+        '/Sci-Fi/',
+        '/Documentary/',
+        '/Comedy/',
+        '/Biography/',
+        '/Sport/',
+        '/Fantasy/',
+        '/Mystery/',
+        '/Adventure/',
+        '/\b(Music)\b/i',
+        '/\b(Musical)\b/i',
+        '/Thriller/',
+        '/Horror/',
+        '/Family/',
+        '/Animation/',
+        '/News/',
+        '/Romance/',
+        '/War/',
+        '/History/',
+        '/Short/',
+        '/Western/',
+      );
+
+      $imdb_genre_finnish = array(
+        '',
+        'Toiminta',
+        'Rikos',
+        'Draama',
+        'Scifi',
+        'Dokumentti',
+        'Komedia',
+        'Elämänkerta',
+        'Urheilu',
+        'Fantasia',
+        'Mysteeri',
+        'Seikkailu',
+        'Musiikki',
+        'Musikaali',
+        'Jännitys',
+        'Kauhu',
+        'Perhe-elokuva',
+        'Animaatio',
+        'Uutiset',
+        'Romantiikka',
+        'Sota',
+        'Historia',
+        'Lyhytelokuva',
+        'Länkkäri',
+      );
+
+      // $genre = preg_replace( $imdb_genre_originals, $imdb_genre_finnish, $info['Genre'] );
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;

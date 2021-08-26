@@ -38,13 +38,19 @@ $query = new \WP_Query( $args );
 
           // Meta data
           $rating = get_post_meta( get_the_ID(), 'rating', true );
-          $rating_imdb = get_post_meta( get_the_ID(), '_imdb_rating', true );
+          $imdb_rating = get_post_meta( get_the_ID(), '_imdb_rating', true );
+          $imdb_year = get_post_meta( get_the_ID(), '_imdb_year', true );
+          $imdb_release_date = get_post_meta( get_the_ID(), '_imdb_release_date', true );
+          $metascore_rating = get_post_meta( get_the_ID(), '_metascore_rating', true );
           ?>
 
           <h2><?php the_title(); ?></h2>
 
-          <p>IMDb: <?php echo esc_html( $rating_imdb ); ?></p>
+          <p>IMDb: <?php echo esc_html( $imdb_rating ); ?></p>
           <p>Omat pisteet: <?php echo esc_html( $rating ); ?></p>
+          <p>Vuosi: <?php echo esc_html( $imdb_year ); ?></p>
+          <p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
+          <p>Metascore: <?php echo esc_html( $metascore_rating ); ?></p>
         <?php endwhile; ?>
       </div>
 
