@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 23:48:13
+ * @Last Modified time: 2021-08-27 00:05:01
  *
  * @package rollekino
  */
@@ -17,8 +17,14 @@ add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 
 add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
 function save_post_function_publish( $post_id ) {
+  global $imdb_title, $imdb_id, $config, $result, $media_file_path, $media_file_url, $media_file_id;
 
   if ( 'movie' === get_post_type( $post_id ) ) {
+
+    // If post exists, bail
+    if ( post_exists( $imdb_title ) ) {
+      return;
+    }
 
     // Unhook this function so it doesn't loop infinitely
     remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
@@ -30,8 +36,26 @@ function save_post_function_publish( $post_id ) {
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
 
-    // Set poster as media file
-    set_post_thumbnail( $post_id, $media_file_id );
+    // Construct poster URL
+    $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
+    $media_file_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
+    $media_file_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
+
+    if ( file_exists( $media_file_path ) ) {
+      $media_file_id = attachment_url_to_postid( $media_file_url );
+    }
+
+    // Upload image if not existing
+    if ( ! file_exists( $media_file_path ) ) {
+      $media_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+      $media_sideload_image = media_sideload_image( $tmdb_poster_url, $post_id, $media_description, 'id' );
+      set_post_thumbnail( $post_id, $media_sideload_image );
+    }
+
+    // Set featured image
+    if ( file_exists( $media_file_path ) ) {
+      set_post_thumbnail( $post_id, $media_file_id );
+    }
 
     // Update post
     wp_update_post(
@@ -47,6 +71,7 @@ function save_post_function_publish( $post_id ) {
 }
 
 function save_post_function( $data, $id ) {
+  global $imdb_title, $imdb_id, $config, $result, $media_file_path, $media_file_url, $media_file_id;
   $post_id = $id['ID'];
 
   if ( 'movie' === $data['post_type'] ) {
@@ -66,6 +91,12 @@ function save_post_function( $data, $id ) {
 
       // https://github.com/rooxie/omdb-php
       $imdb_title = $movie->getTitle();
+
+      // If post exists, bail
+      if ( post_exists( $imdb_title ) ) {
+        return;
+      }
+
       $imdb_year = $movie->getYear();
       $imdb_rating = $movie->getImdbRating();
       $imdb_release_date = $movie->getReleased();
@@ -173,17 +204,21 @@ function save_post_function( $data, $id ) {
       $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
       $media_file_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
       $media_file_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
-      $media_file_id = attachment_url_to_postid( $media_file_url );
 
-      // Debug
-      // var_dump( attachment_url_to_postid( $media_file_url ) ); // phpcs:ignore
-      // die(); // phpcs:disable
+      if ( file_exists( $media_file_path ) ) {
+        $media_file_id = attachment_url_to_postid( $media_file_url );
+      }
 
       // Upload image if not existing
       if ( ! file_exists( $media_file_path ) ) {
         $media_description = 'Leffajuliste elokuvalle ' . $imdb_title;
         $media_sideload_image = media_sideload_image( $tmdb_poster_url, $post_id, $media_description, 'id' );
         set_post_thumbnail( $post_id, $media_sideload_image );
+      }
+
+      // Set featured image
+      if ( file_exists( $media_file_path ) ) {
+        set_post_thumbnail( $post_id, $media_file_id );
       }
 
       // Update the post's title.
