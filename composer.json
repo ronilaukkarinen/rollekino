@@ -71,7 +71,12 @@
     "wpackagist-plugin/so-clean-up-wp-seo": "*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
     "kevinruscoe/acf-star-rating-field": "dev-master",
-    "rooxie/omdb": "^0.3.0"
+    "rooxie/omdb": "^0.3.0",
+    "php-http/cache-plugin": "^1.7",
+    "nyholm/psr7": "^1.4",
+    "symfony/event-dispatcher": "^5.3",
+    "guzzlehttp/guzzle": "^7.3",
+    "php-tmdb/api": "^4"
   },
   "require-dev": {
     "rarst/wps": "*"
