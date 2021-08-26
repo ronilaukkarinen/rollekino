@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 23:05:19
+ * @Last Modified time: 2021-08-26 23:48:13
  *
  * @package rollekino
  */
@@ -29,6 +29,9 @@ function save_post_function_publish( $post_id ) {
     $imdb_rating = get_post_meta( $post_id, '_imdb_rating', true );
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
+
+    // Set poster as media file
+    set_post_thumbnail( $post_id, $media_file_id );
 
     // Update post
     wp_update_post(
@@ -147,18 +150,41 @@ function save_post_function( $data, $id ) {
       // Set genres
       wp_set_object_terms( $post_id, $genres_finnish, 'genre' );
 
-      // TMDb: Initialize TMDb Wrapper
-      $tmdb = \VfacTmdb\Factory::create()->getTmdb( getenv( 'TMDB_API_KEY' ) );
+      // Old school way of using TMDb API
+      $ca = curl_init(); // phpcs:ignore
+      curl_setopt( $ca, CURLOPT_URL, 'http://api.themoviedb.org/3/configuration?api_key=' . getenv( 'TMDB_API_KEY' ) ); // phpcs:ignore
+      curl_setopt( $ca, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
+      curl_setopt( $ca, CURLOPT_HEADER, false ); // phpcs:ignore
+      curl_setopt( $ca, CURLOPT_HTTPHEADER, array( 'Accept: application/json' ) ); // phpcs:ignore
+      $response = curl_exec( $ca ); // phpcs:ignore
+      curl_close( $ca ); // phpcs:ignore
+      $config = json_decode( $response, true );
 
-      // TMDb: Get a movie based on IMDb ID
-      $find = new \VfacTmdb\Find( $tmdb );
-      $responses = $find->imdb( $imdb_id );
-      $movies = $responses->getMovies();
-      $media = new \VfacTmdb\Media( $tmdb );
-      // $title = $movies->current()->getTitle();
+      $ch = curl_init(); // phpcs:ignore
+      curl_setopt( $ch, CURLOPT_URL, 'http://api.themoviedb.org/3/find/' . $imdb_id . '?api_key=' . getenv( 'TMDB_API_KEY' ) . '&external_source=imdb_id' ); // phpcs:ignore
+      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
+      curl_setopt( $ch, CURLOPT_HEADER, FALSE ); // phpcs:ignore
+      curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Accept: application/json' ) ); // phpcs:ignore
+      $response = curl_exec( $ch ); // phpcs:ignore
+      curl_close( $ch ); // phpcs:ignore
+      $result = json_decode( $response, true );
 
-      // var_dump( $movies->current() ); // phpcs:ignore
+      // Construct poster URL
+      $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
+      $media_file_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
+      $media_file_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
+      $media_file_id = attachment_url_to_postid( $media_file_url );
+
+      // Debug
+      // var_dump( attachment_url_to_postid( $media_file_url ) ); // phpcs:ignore
       // die(); // phpcs:disable
+
+      // Upload image if not existing
+      if ( ! file_exists( $media_file_path ) ) {
+        $media_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+        $media_sideload_image = media_sideload_image( $tmdb_poster_url, $post_id, $media_description, 'id' );
+        set_post_thumbnail( $post_id, $media_sideload_image );
+      }
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;
