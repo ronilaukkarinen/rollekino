@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 21:30:36
+ * @Last Modified time: 2021-08-26 22:36:42
  *
  * @package rollekino
  */
@@ -146,6 +146,18 @@ function save_post_function( $data, $id ) {
 
       // Set genres
       wp_set_object_terms( $post_id, $genres_finnish, 'genre' );
+
+      // TMDb: Initialize TMDb Wrapper
+      $tmdb = \VfacTmdb\Factory::create()->getTmdb( getenv( 'TMDB_API_KEY' ) );
+
+      // TMDb: Get a movie based on IMDb ID
+      $find = new \VfacTmdb\Find( $tmdb );
+      $responses = $find->imdb( $imdb_id );
+      $movies = $responses->getMovies();
+      $title  = $movies->current()->getTitle();
+
+      var_dump( $title ); // phpcs:ignore
+      die(); // phpcs:disable
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;
