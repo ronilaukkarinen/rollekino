@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 00:49:57
+ * @Last Modified time: 2021-08-26 08:12:10
  *
  * @package rollekino
  */
@@ -14,24 +14,28 @@ namespace Air_Light;
  * Update movie title when saving article
  */
 add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 );
-add_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
-function save_post_function_test( $post_id ) {
+function save_post_function_publish( $post_id ) {
 
-  // Unhook this function so it doesn't loop infinitely
-  remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+  if ( 'movie' === get_post_type( $post_id ) ) {
 
-  // Get post meta
-  $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
+    // Unhook this function so it doesn't loop infinitely
+    remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
-  wp_update_post(
-    array(
-      'ID' => $post_id,
-    )
-  );
+    // Get post meta
+    $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
 
-  // Re-hook this function
-  add_action( 'save_post', __NAMESPACE__ . '\save_post_function_test' );
+    wp_update_post(
+      array(
+        'ID' => $post_id,
+      )
+    );
+
+    // Re-hook this function
+    add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
+  }
+
 }
 
 function save_post_function( $data, $id ) {
