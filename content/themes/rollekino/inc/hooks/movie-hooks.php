@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-26 22:36:42
+ * @Last Modified time: 2021-08-26 23:05:19
  *
  * @package rollekino
  */
@@ -154,10 +154,11 @@ function save_post_function( $data, $id ) {
       $find = new \VfacTmdb\Find( $tmdb );
       $responses = $find->imdb( $imdb_id );
       $movies = $responses->getMovies();
-      $title  = $movies->current()->getTitle();
+      $media = new \VfacTmdb\Media( $tmdb );
+      // $title = $movies->current()->getTitle();
 
-      var_dump( $title ); // phpcs:ignore
-      die(); // phpcs:disable
+      // var_dump( $movies->current() ); // phpcs:ignore
+      // die(); // phpcs:disable
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;
