@@ -82,6 +82,18 @@ add_action( 'after_setup_theme', function() {
          'name' => 'Genre',
          'post_types' => [ 'movie' ],
       ],
+      'actor' => [
+        'name' => 'Actor',
+        'post_types' => [ 'movie' ],
+     ],
+     'director' => [
+       'name' => 'Director',
+       'post_types' => [ 'movie' ],
+     ],
+     'writer' => [
+       'name' => 'Writer',
+       'post_types' => [ 'movie' ],
+     ],
     ],
 
     /**

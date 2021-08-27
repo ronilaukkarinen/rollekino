@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-27 20:30:46
+ * @Last Modified time: 2021-08-27 22:39:03
  *
  * @package rollekino
  */
@@ -189,16 +189,65 @@ function save_post_function( $data, $id ) {
       $response_cast = curl_exec( $cast ); // phpcs:ignore
       curl_close( $cast ); // phpcs:ignore
       $result_cast = json_decode( $response_cast, true );
+      $cast_array = $result_cast['cast'];
 
       // Cast image URL base
       // @link https://developers.themoviedb.org/3/getting-started/images
       $cast_image_url_base = 'https://image.tmdb.org/t/p/w400/';
+
+      // Get actor names
+      $actor_names = array_column( $cast_array, 'name' );
+      $actor_names_five = array_splice( $actor_names, 0, 5 );
+
+      // var_dump( $actor_names_five );
+      // die();
+
+      // Get actor profile photo path
+      $actor_profile_photo_path = array_column( $cast_array, 'profile_path' );
+
+      // Set cast in taxonomies
+      wp_set_object_terms( $post_id, $actor_names_five, 'actor' );
+
+      // Loop through actor names and get their taxonomy IDs to update their meta data like poster
+      foreach ( $actor_names_five as $actor_name ) {
+        $actor_taxonomy_id = get_term_by( 'name', $actor_name, 'actor' )->term_id;
+
+        foreach ( $actor_profile_photo_path as $actor_profile_photo_path_single ) {
+
+          // Actor profile photo TMDb URL
+          $tmdb_actor_profile_photo_url = $cast_image_url_base . $actor_profile_photo_path_single;
+
+          // Actor profile photo local path
+          $media_file_actor_profile_photo_path = wp_upload_dir()['path'] . $actor_profile_photo_path_single;
+
+          // Actor profile photo local URL
+          $media_file_actor_profile_photo_url = wp_upload_dir()['url'] . $actor_profile_photo_path_single;
+
+          // Upload image if not existing
+          if ( ! file_exists( $media_file_actor_profile_photo_path ) ) {
+            $media_sideload_image_actor_profile_photo = media_sideload_image( $tmdb_actor_profile_photo_url, 0, '', 'id' );
+          }
+
+          // Get profile photo ID from media library based on URL
+          if ( file_exists( $media_file_actor_profile_photo_path ) ) {
+            $media_file_actor_profile_photo_id = attachment_url_to_postid( $media_file_actor_profile_photo_url );
+
+            // var_dump( $actor_taxonomy_id );
+            // die();
+
+            // Set uploaded image to taxonomy image field
+            var_dump( update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id ) );
+            die();
+          }
+        }
+      }
 
       // Construct poster URL
       $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
       $media_file_poster_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
       $media_file_poster_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
 
+      // Get poster ID from media library based on URL
       if ( file_exists( $media_file_poster_path ) ) {
         $media_file_poster_id = attachment_url_to_postid( $media_file_poster_url );
       }
@@ -217,9 +266,7 @@ function save_post_function( $data, $id ) {
       $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
       $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
 
-      var_dump( $result_cast['cast'] );
-      die();
-
+      // Get backdrop ID from media library based on URL
       if ( file_exists( $media_file_backdrop_path ) ) {
         $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
       }
