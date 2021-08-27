@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-27 22:39:03
+ * @Last Modified time: 2021-08-28 00:04:36
  *
  * @package rollekino
  */
@@ -190,55 +190,66 @@ function save_post_function( $data, $id ) {
       curl_close( $cast ); // phpcs:ignore
       $result_cast = json_decode( $response_cast, true );
       $cast_array = $result_cast['cast'];
+      $crew_array = $result_cast['crew'];
 
       // Cast image URL base
       // @link https://developers.themoviedb.org/3/getting-started/images
       $cast_image_url_base = 'https://image.tmdb.org/t/p/w400/';
 
+      // Loop through crew to get directors and writers
+      foreach ( $crew_array as $crew ) {
+
+        // var_dump( $crew );
+        // die();
+
+      }
+
       // Get actor names
       $actor_names = array_column( $cast_array, 'name' );
       $actor_names_five = array_splice( $actor_names, 0, 5 );
 
-      // var_dump( $actor_names_five );
-      // die();
-
       // Get actor profile photo path
-      $actor_profile_photo_path = array_column( $cast_array, 'profile_path' );
+      $actor_profile_photo_path = array_splice( array_column( $cast_array, 'profile_path' ), 0, 5 );
 
       // Set cast in taxonomies
       wp_set_object_terms( $post_id, $actor_names_five, 'actor' );
 
+      // Merge names and photo paths together
+      $merged_profile_arrays = array_combine( $actor_names_five, $actor_profile_photo_path );
+
       // Loop through actor names and get their taxonomy IDs to update their meta data like poster
-      foreach ( $actor_names_five as $actor_name ) {
-        $actor_taxonomy_id = get_term_by( 'name', $actor_name, 'actor' )->term_id;
+      foreach ( $merged_profile_arrays as $merged_actor_name => $merged_actor_profile_path ) {
 
-        foreach ( $actor_profile_photo_path as $actor_profile_photo_path_single ) {
+        $actor_taxonomy_id = get_term_by( 'name', $merged_actor_name, 'actor' )->term_id;
 
-          // Actor profile photo TMDb URL
-          $tmdb_actor_profile_photo_url = $cast_image_url_base . $actor_profile_photo_path_single;
+        // Actor profile photo TMDb URL
+        $tmdb_actor_profile_photo_url = $cast_image_url_base . $merged_actor_profile_path;
 
-          // Actor profile photo local path
-          $media_file_actor_profile_photo_path = wp_upload_dir()['path'] . $actor_profile_photo_path_single;
+        // Actor profile photo local path
+        $media_file_actor_profile_photo_path = wp_upload_dir()['path'] . $merged_actor_profile_path;
 
-          // Actor profile photo local URL
-          $media_file_actor_profile_photo_url = wp_upload_dir()['url'] . $actor_profile_photo_path_single;
+        // Actor profile photo local URL
+        $media_file_actor_profile_photo_url = wp_upload_dir()['url'] . $merged_actor_profile_path;
 
-          // Upload image if not existing
-          if ( ! file_exists( $media_file_actor_profile_photo_path ) ) {
-            $media_sideload_image_actor_profile_photo = media_sideload_image( $tmdb_actor_profile_photo_url, 0, '', 'id' );
-          }
+        // Upload image if not existing
+        if ( ! file_exists( $media_file_actor_profile_photo_path ) ) {
+          $media_sideload_image_actor_profile_photo = media_sideload_image( $tmdb_actor_profile_photo_url, 0, $merged_actor_name, 'id' );
+        }
 
-          // Get profile photo ID from media library based on URL
-          if ( file_exists( $media_file_actor_profile_photo_path ) ) {
-            $media_file_actor_profile_photo_id = attachment_url_to_postid( $media_file_actor_profile_photo_url );
+        // Get profile photo ID from media library based on URL
+        if ( file_exists( $media_file_actor_profile_photo_path ) ) {
+          $media_file_actor_profile_photo_id = attachment_url_to_postid( $media_file_actor_profile_photo_url );
 
-            // var_dump( $actor_taxonomy_id );
-            // die();
+          // var_dump( get_field_object( 'avatar', 'actor_81' ) );
+          // die();
 
-            // Set uploaded image to taxonomy image field
-            var_dump( update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id ) );
-            die();
-          }
+          // Set uploaded image to taxonomy image field
+          // For some reason, doesn't work without die() right after...
+          // So let's figure out another way.
+          update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id );
+
+          // Let's add attachment ID as post meta to fetch it later
+          // add_term_meta( $actor_taxonomy_id, $actor_taxonomy_id . '_profile_photo', $media_file_actor_profile_photo_id, true );
         }
       }
 
@@ -273,7 +284,7 @@ function save_post_function( $data, $id ) {
 
       // Upload image if not existing
       if ( ! file_exists( $media_file_backdrop_path ) ) {
-        $media_backdrop_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+        $media_backdrop_description = 'Kuva elokuvasta ' . $imdb_title;
         $media_sideload_image_backdrop = media_sideload_image( $tmdb_backdrop_url, $post_id, $media_backdrop_description, 'id' );
 
         // Set uploaded image as featured image

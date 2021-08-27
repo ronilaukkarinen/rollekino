@@ -51,6 +51,21 @@ $query = new \WP_Query( $args );
           <p>Vuosi: <?php echo esc_html( $imdb_year ); ?></p>
           <p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
           <p>Metascore: <?php echo esc_html( $metascore_rating ); ?></p>
+
+          <?php
+          $terms = get_the_terms( $post->ID, 'actor' );
+          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+              echo '<ul>';
+              foreach ( $terms as $term ) {
+                  echo '<li>' . esc_html( $term->name ) . '';
+                  echo get_term_meta( $term->term_id, '_profile_photo', true );
+                  echo '</li>';
+              }
+              echo '</ul>';
+          }
+          ?>
+
+
         <?php endwhile; ?>
       </div>
 
