@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-27 18:17:19
+ * @Last Modified time: 2021-08-27 20:30:46
  *
  * @package rollekino
  */
@@ -156,6 +156,7 @@ function save_post_function( $data, $id ) {
       wp_set_object_terms( $post_id, $genres_finnish, 'genre' );
 
       // Old school way of using TMDb API
+      // Get poster and backdrop sizes
       $ca = curl_init(); // phpcs:ignore
       curl_setopt( $ca, CURLOPT_URL, 'http://api.themoviedb.org/3/configuration?api_key=' . getenv( 'TMDB_API_KEY' ) ); // phpcs:ignore
       curl_setopt( $ca, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
@@ -165,6 +166,7 @@ function save_post_function( $data, $id ) {
       curl_close( $ca ); // phpcs:ignore
       $config = json_decode( $response, true );
 
+      // Get poster and backdrop images
       $ch = curl_init(); // phpcs:ignore
       curl_setopt( $ch, CURLOPT_URL, 'http://api.themoviedb.org/3/find/' . $imdb_id . '?api_key=' . getenv( 'TMDB_API_KEY' ) . '&external_source=imdb_id' ); // phpcs:ignore
       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
@@ -173,6 +175,24 @@ function save_post_function( $data, $id ) {
       $response = curl_exec( $ch ); // phpcs:ignore
       curl_close( $ch ); // phpcs:ignore
       $result = json_decode( $response, true );
+
+      // Get movie ID
+      $tmdb_id = $result['movie_results'][0]['id'];
+
+      // Get movie cast
+      // @link https://developers.themoviedb.org/3/movies/get-movie-credits
+      $cast = curl_init(); // phpcs:ignore
+      curl_setopt( $cast, CURLOPT_URL, 'https://api.themoviedb.org/3/movie/' . $tmdb_id . '/credits?api_key=' . getenv( 'TMDB_API_KEY' ) . '&language=en-US' ); // phpcs:ignore
+      curl_setopt( $cast, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
+      curl_setopt( $cast, CURLOPT_HEADER, FALSE ); // phpcs:ignore
+      curl_setopt( $cast, CURLOPT_HTTPHEADER, array( 'Accept: application/json' ) ); // phpcs:ignore
+      $response_cast = curl_exec( $cast ); // phpcs:ignore
+      curl_close( $cast ); // phpcs:ignore
+      $result_cast = json_decode( $response_cast, true );
+
+      // Cast image URL base
+      // @link https://developers.themoviedb.org/3/getting-started/images
+      $cast_image_url_base = 'https://image.tmdb.org/t/p/w400/';
 
       // Construct poster URL
       $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
@@ -197,8 +217,8 @@ function save_post_function( $data, $id ) {
       $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
       $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
 
-      // var_dump( $result['movie_results'][0]['id'] );
-      // die();
+      var_dump( $result_cast['cast'] );
+      die();
 
       if ( file_exists( $media_file_backdrop_path ) ) {
         $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
