@@ -54,16 +54,18 @@ $query = new \WP_Query( $args );
 
           <?php
           $terms = get_the_terms( $post->ID, 'actor' );
-          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-              echo '<ul>';
-              foreach ( $terms as $term ) {
-                  echo '<li>' . esc_html( $term->name ) . '';
-                  echo get_term_meta( $term->term_id, '_profile_photo', true );
-                  echo '</li>';
-              }
-              echo '</ul>';
-          }
-          ?>
+
+          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+            <ul>
+              <?php foreach ( $terms as $term ) :
+                $avatar_url = get_field( 'avatar', 'actor_' . $term->term_id )['url'];
+                ?>
+                <li><?php echo esc_html( $term->name ); ?>
+                <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
 
 
         <?php endwhile; ?>

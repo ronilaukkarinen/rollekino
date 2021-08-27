@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 00:04:36
+ * @Last Modified time: 2021-08-28 00:13:24
  *
  * @package rollekino
  */
@@ -244,12 +244,7 @@ function save_post_function( $data, $id ) {
           // die();
 
           // Set uploaded image to taxonomy image field
-          // For some reason, doesn't work without die() right after...
-          // So let's figure out another way.
           update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id );
-
-          // Let's add attachment ID as post meta to fetch it later
-          // add_term_meta( $actor_taxonomy_id, $actor_taxonomy_id . '_profile_photo', $media_file_actor_profile_photo_id, true );
         }
       }
 
