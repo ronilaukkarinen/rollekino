@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-27 00:11:51
+ * @Last Modified time: 2021-08-27 18:17:19
  *
  * @package rollekino
  */
@@ -17,14 +17,9 @@ add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 
 add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
 function save_post_function_publish( $post_id ) {
-  global $imdb_title, $imdb_id, $config, $result, $media_file_path, $media_file_url, $media_file_id;
+  global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
 
   if ( 'movie' === get_post_type( $post_id ) ) {
-
-    // If post exists, bail
-    if ( post_exists( $imdb_title ) ) {
-      return;
-    }
 
     // Unhook this function so it doesn't loop infinitely
     remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
@@ -36,25 +31,9 @@ function save_post_function_publish( $post_id ) {
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
 
-    // Construct poster URL
-    $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
-    $media_file_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
-    $media_file_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
-
-    if ( file_exists( $media_file_path ) ) {
-      $media_file_id = attachment_url_to_postid( $media_file_url );
-    }
-
-    // Upload image if not existing
-    if ( ! file_exists( $media_file_path ) ) {
-      $media_description = 'Leffajuliste elokuvalle ' . $imdb_title;
-      $media_sideload_image = media_sideload_image( $tmdb_poster_url, $post_id, $media_description, 'id' );
-      set_post_thumbnail( $post_id, $media_sideload_image );
-    }
-
     // Set featured image
-    if ( file_exists( $media_file_path ) ) {
-      set_post_thumbnail( $post_id, $media_file_id );
+    if ( file_exists( $media_file_backdrop_path ) ) {
+      set_post_thumbnail( $post_id, $media_file_backdrop_id );
     }
 
     // Update post
@@ -71,7 +50,7 @@ function save_post_function_publish( $post_id ) {
 }
 
 function save_post_function( $data, $id ) {
-  global $imdb_title, $imdb_id, $config, $result, $media_file_path, $media_file_url, $media_file_id;
+  global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
   $post_id = $id['ID'];
 
   if ( 'movie' === $data['post_type'] ) {
@@ -91,11 +70,6 @@ function save_post_function( $data, $id ) {
 
       // https://github.com/rooxie/omdb-php
       $imdb_title = $movie->getTitle();
-
-      // If post exists, bail
-      if ( post_exists( $imdb_title ) ) {
-        return;
-      }
 
       $imdb_year = $movie->getYear();
       $imdb_rating = $movie->getImdbRating();
@@ -202,23 +176,46 @@ function save_post_function( $data, $id ) {
 
       // Construct poster URL
       $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
-      $media_file_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
-      $media_file_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
+      $media_file_poster_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
+      $media_file_poster_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
 
-      if ( file_exists( $media_file_path ) ) {
-        $media_file_id = attachment_url_to_postid( $media_file_url );
+      if ( file_exists( $media_file_poster_path ) ) {
+        $media_file_poster_id = attachment_url_to_postid( $media_file_poster_url );
       }
 
       // Upload image if not existing
-      if ( ! file_exists( $media_file_path ) ) {
-        $media_description = 'Leffajuliste elokuvalle ' . $imdb_title;
-        $media_sideload_image = media_sideload_image( $tmdb_poster_url, $post_id, $media_description, 'id' );
-        set_post_thumbnail( $post_id, $media_sideload_image );
+      if ( ! file_exists( $media_file_poster_path ) ) {
+        $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+        $media_sideload_image_poster = media_sideload_image( $tmdb_poster_url, $post_id, $media_poster_description, 'id' );
+
+        // Set uploaded image as featured image
+        // set_post_thumbnail( $post_id, $media_sideload_image_poster );
       }
 
-      // Set featured image
-      if ( file_exists( $media_file_path ) ) {
-        set_post_thumbnail( $post_id, $media_file_id );
+      // Construct backdrop URL
+      $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
+
+      // var_dump( $result['movie_results'][0]['id'] );
+      // die();
+
+      if ( file_exists( $media_file_backdrop_path ) ) {
+        $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+      }
+
+      // Upload image if not existing
+      if ( ! file_exists( $media_file_backdrop_path ) ) {
+        $media_backdrop_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+        $media_sideload_image_backdrop = media_sideload_image( $tmdb_backdrop_url, $post_id, $media_backdrop_description, 'id' );
+
+        // Set uploaded image as featured image
+        set_post_thumbnail( $post_id, $media_sideload_image_backdrop );
+      }
+
+      // Ensure featured image is set
+      if ( file_exists( $media_file_backdrop_path ) ) {
+        set_post_thumbnail( $post_id, $media_file_backdrop_id );
       }
 
       // Update the post's title.
@@ -229,5 +226,55 @@ function save_post_function( $data, $id ) {
 
   } else {
     return $data;
+  }
+}
+
+/**
+ * Add custom HTML to Featured Image box
+ */
+add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_featured_image', 10, 2 );
+function add_featured_image( $post_type, $post ) {
+  $post_types = get_post_types();
+  $post_id = $post->ID;
+
+  // Need to define at least IMDb URL or IMDb ID
+  if ( ! metadata_exists( 'movie', $post_id, 'imdb_url' ) ) {
+    foreach ( $post_types as $p ) {
+
+      // Remove original featured image metabox
+      remove_meta_box( 'postimagediv', $p, 'side' );
+
+      // Add our customized metabox
+      add_meta_box( 'postimagediv', 'Featured Image', function( $post ) {
+        $post_id = $post->ID;
+        $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
+
+        $omdb = new \Rooxie\OMDb( getenv( 'OMDB_API_KEY' ) );
+        $imdb_url = get_post_meta( $post_id, 'imdb_url', true );
+        $imdb_id_match = preg_match_all( '/tt\\d{7,8}/', $imdb_url, $ids );
+
+        // Get IMDb ID
+        $imdb_id = $ids[0][0];
+
+        // Connect to API
+        $ch = curl_init(); // phpcs:ignore
+        curl_setopt( $ch, CURLOPT_URL, 'http://api.themoviedb.org/3/find/' . $imdb_id . '?api_key=' . getenv( 'TMDB_API_KEY' ) . '&external_source=imdb_id' ); // phpcs:ignore
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
+        curl_setopt( $ch, CURLOPT_HEADER, FALSE ); // phpcs:ignore
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Accept: application/json' ) ); // phpcs:ignore
+        $response = curl_exec( $ch ); // phpcs:ignore
+        curl_close( $ch ); // phpcs:ignore
+        $result = json_decode( $response, true );
+
+        // Get movie ID
+        $tmdb_id = $result['movie_results'][0]['id'];
+
+        // Your HTML Goes here
+        echo '<p class="description"><strong><a href="https://www.themoviedb.org/movie/' . $tmdb_id . '/images/backdrops">More backdrops &rarr;</a></strong></p>'; // phpcs:ignore
+
+        // Your Image is printed here
+        echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID ); // phpcs:ignore
+      }, $p, 'side', 'low');
+    }
   }
 }
