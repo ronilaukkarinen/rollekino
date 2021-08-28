@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 15:17:09
+ * @Last Modified time: 2021-08-28 15:35:54
  *
  * @package rollekino
  */
@@ -183,6 +183,37 @@ function save_post_function( $data, $id ) {
 
       // Get movie ID
       $tmdb_id = $result['movie_results'][0]['id'];
+
+      // Get movie trailer
+      // @link https://www.themoviedb.org/talk/5451ec02c3a3680245005e3c
+      $trailer = curl_init(); // phpcs:ignore
+      curl_setopt( $trailer, CURLOPT_URL, 'https://api.themoviedb.org/3/movie/' . $tmdb_id . '/videos?api_key=' . getenv( 'TMDB_API_KEY' ) ); // phpcs:ignore
+      curl_setopt( $trailer, CURLOPT_RETURNTRANSFER, true ); // phpcs:ignore
+      curl_setopt( $trailer, CURLOPT_HEADER, FALSE ); // phpcs:ignore
+      curl_setopt( $trailer, CURLOPT_HTTPHEADER, array( 'Accept: application/json' ) ); // phpcs:ignore
+      $response_trailer = curl_exec( $trailer ); // phpcs:ignore
+      curl_close( $trailer ); // phpcs:ignore
+      $result_trailer = json_decode( $response_trailer, true );
+
+      // Loop through trailers to get the official trailer
+      foreach ( $result_trailer['results'] as $trailers ) {
+
+        if ( 'Official Trailer' === $trailers['name'] && 'YouTube' === $trailers['site'] ) {
+          // Store directors to their own array to be used outside the loop
+          $trailers_array[] = $trailers;
+        }
+
+      }
+
+      // Get the one official trailer
+      if ( ! empty( $trailers_array ) ) {
+        $official_trailer = array_splice( $trailers_array, 0, 1 );
+        $trailer_youtube_key = $official_trailer[0]['key'];
+
+        if ( ! metadata_exists( 'movie', $post_id, '_trailer_youtube_key' ) ) {
+          update_post_meta( $id['ID'], '_trailer_youtube_key', $trailer_youtube_key );
+        }
+      }
 
       // Get movie cast
       // @link https://developers.themoviedb.org/3/movies/get-movie-credits
@@ -417,6 +448,7 @@ function add_featured_image( $post_type, $post ) {
 
       // Add our customized metabox
       add_meta_box( 'postimagediv', 'Featured Image', function( $post ) {
+
         $post_id = $post->ID;
         $thumbnail_id = get_post_meta( $post->ID, '_thumbnail_id', true );
 

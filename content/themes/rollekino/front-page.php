@@ -43,6 +43,7 @@ $query = new \WP_Query( $args );
           $imdb_release_date = get_post_meta( get_the_ID(), '_imdb_release_date', true );
           $metascore_rating = get_post_meta( get_the_ID(), '_metascore_rating', true );
           $imdb_runtime_total_minutes = get_post_meta( get_the_ID(), '_idmb_runtime', true );
+          $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
           ?>
 
           <h2><?php the_title(); ?></h2>
@@ -61,6 +62,7 @@ $query = new \WP_Query( $args );
           ?>
 
           <p><?php echo esc_html( $runtime_human_readable ); ?></p>
+          <p>YouTube: <?php echo esc_html( $trailer_youtube_key ); ?></p>
 
           <h3>Pääosissa</h3>
 
