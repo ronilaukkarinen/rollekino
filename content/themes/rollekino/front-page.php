@@ -52,6 +52,8 @@ $query = new \WP_Query( $args );
           <p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
           <p>Metascore: <?php echo esc_html( $metascore_rating ); ?></p>
 
+          <h3>Pääosissa</h3>
+
           <?php
           $terms = get_the_terms( $post->ID, 'actor' );
 
@@ -67,6 +69,24 @@ $query = new \WP_Query( $args );
             </ul>
           <?php endif; ?>
 
+
+
+          <?php
+          $terms = get_the_terms( $post->ID, 'director' ); ?>
+
+          <h3>Ohjaaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?></h4>
+
+          <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+            <ul>
+              <?php foreach ( $terms as $term ) :
+                $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                ?>
+                <li><?php echo esc_html( $term->name ); ?>
+                <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
 
         <?php endwhile; ?>
       </div>
