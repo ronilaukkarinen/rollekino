@@ -2,7 +2,7 @@
 // The main layout for the website navigation, for a desktop devices only.
 
 // Settings
-$absolute-navigation: false;
+$absolute-navigation: true;
 $use-dropdown-bubble: true;
 $use-dropdown-toggle-animation: true;
 
@@ -35,7 +35,7 @@ $use-dropdown-toggle-animation: true;
   // Font styles
   --font-size-main-level: var(--font-size-16);
   --font-size-sub-menu: var(--font-size-16);
-  --font-weight-main-level: var(--font-weight-bold);
+  --font-weight-main-level: var(--font-weight-semibold);
   --font-weight-sub-menu: var(--font-weight-regular);
 }
 

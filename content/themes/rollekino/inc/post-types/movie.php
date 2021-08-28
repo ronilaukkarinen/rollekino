@@ -3,7 +3,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-18 15:06:45
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-25 18:25:48
+ * @Last Modified time: 2021-08-28 23:37:59
  *
  * @package rollekino
  **/
@@ -40,16 +40,15 @@ class Movie extends Post_Type {
     $args = [
       'labels'              => $generated_labels,
       'description'         => '',
-      'menu_icon'           => 'data:image/svg+xml;base64,' . base64_encode( '
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" height="24" preserveAspectRatio="xMinYMin" class="jam jam-movie" fill="currentColor"><path d="M6 15v3h8v-7H6v4zm-2-2v-2H2V9h2V7H2v6h2zm0 2H2v1a2 2 0 0 0 2 2v-3zm14-2V7h-2v2h2v2h-2v2h2zm0 2h-2v3a2 2 0 0 0 2-2v-1zm-4-8V2H6v7h8V7zm4-2V4a2 2 0 0 0-2-2v3h2zM4 5V2a2 2 0 0 0-2 2v1h2zm0-5h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>' ), // phpcs:ignore
-      'public'              => false,
-      'has_archive'         => false,
+      'menu_icon'           => 'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" height="24" preserveAspectRatio="xMinYMin" class="jam jam-movie" fill="currentColor"><path d="M6 15v3h8v-7H6v4zm-2-2v-2H2V9h2V7H2v6h2zm0 2H2v1a2 2 0 0 0 2 2v-3zm14-2V7h-2v2h2v2h-2v2h2zm0 2h-2v3a2 2 0 0 0 2-2v-1zm-4-8V2H6v7h8V7zm4-2V4a2 2 0 0 0-2-2v3h2zM4 5V2a2 2 0 0 0-2 2v1h2zm0-5h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>' ), // phpcs:ignore
+      'public'              => true,
+      'has_archive'         => true,
       'exclude_from_search' => false,
       'show_ui'             => true,
       'show_in_menu'        => true,
       'show_in_rest'        => false,
       'rewrite'             => [
-        'with_front'  => false,
+        'with_front'  => true,
         'slug'        => 'leffat',
       ],
       'supports'            => [ 'title', 'editor', 'thumbnail', 'revisions' ],

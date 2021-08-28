@@ -1,0 +1,28 @@
+.block-hero {
+  align-items: center;
+  display: flex;
+  height: 600px;
+  justify-content: center;
+
+  .container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  h1 {
+    color: var(--color-white);
+    margin: 0 auto;
+    text-align: center;
+    width: 60%;
+
+    @media (min-width: 1400px) {
+      max-width: 1400px;
+    }
+
+    @media (max-width: 700px) {
+      max-width: 600px;
+      width: 90%;
+    }
+  }
+}

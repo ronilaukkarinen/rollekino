@@ -4,6 +4,8 @@
 @include fontFace('Inter', '../../fonts/Inter-Regular', 400);
 @include fontFace('Inter', '../../fonts/Inter-Italic', 400, italic);
 @include fontFace('Inter', '../../fonts/Inter-Bold', 700);
-
 @include fontFace('Leffaotsikko', '../../fonts/leffaotsikko', 400);
 @include fontFace('Leffaotsikko', '../../fonts/leffaotsikko', 700);
+@include fontFace('Graphik', '../../fonts/Graphik-Regular', 400);
+@include fontFace('Graphik', '../../fonts/Graphik-Semibold', 600);
+@include fontFace('Graphik', '../../fonts/Graphik-Bold', 700);
