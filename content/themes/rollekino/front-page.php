@@ -42,6 +42,7 @@ $query = new \WP_Query( $args );
           $imdb_year = get_post_meta( get_the_ID(), '_imdb_year', true );
           $imdb_release_date = get_post_meta( get_the_ID(), '_imdb_release_date', true );
           $metascore_rating = get_post_meta( get_the_ID(), '_metascore_rating', true );
+          $imdb_runtime_total_minutes = get_post_meta( get_the_ID(), '_idmb_runtime', true );
           ?>
 
           <h2><?php the_title(); ?></h2>
@@ -51,6 +52,15 @@ $query = new \WP_Query( $args );
           <p>Vuosi: <?php echo esc_html( $imdb_year ); ?></p>
           <p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
           <p>Metascore: <?php echo esc_html( $metascore_rating ); ?></p>
+
+          <?php
+          // Get the number of whole hours
+          $idmb_runtime_hours = floor( $imdb_runtime_total_minutes / 60 );
+          $imdb_runtime_minutes = $imdb_runtime_total_minutes % 60;
+          $runtime_human_readable = $idmb_runtime_hours . ' tuntia, ' . $imdb_runtime_minutes . ' minuuttia';
+          ?>
+
+          <p><?php echo esc_html( $runtime_human_readable ); ?></p>
 
           <h3>Pääosissa</h3>
 

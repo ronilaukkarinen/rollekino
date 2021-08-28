@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 15:11:06
+ * @Last Modified time: 2021-08-28 15:17:09
  *
  * @package rollekino
  */
@@ -76,6 +76,7 @@ function save_post_function( $data, $id ) {
       $imdb_release_date = $movie->getReleased();
       $imdb_genres = $movie->getGenre();
       $metascore_rating = $movie->getMetascore();
+      $imdb_runtime_total_minutes = $movie->getRuntime();
 
       // Save things in post meta
       if ( ! metadata_exists( 'movie', $post_id, '_imdb_year' ) ) {
@@ -92,6 +93,10 @@ function save_post_function( $data, $id ) {
 
       if ( ! metadata_exists( 'movie', $post_id, '_metascore_rating' ) ) {
         update_post_meta( $id['ID'], '_metascore_rating', $metascore_rating );
+      }
+
+      if ( ! metadata_exists( 'movie', $post_id, '_idmb_runtime' ) ) {
+        update_post_meta( $id['ID'], '_idmb_runtime', $imdb_runtime_total_minutes );
       }
 
       // Get genres
@@ -198,7 +203,6 @@ function save_post_function( $data, $id ) {
 
       // Loop through crew to get directors and writers
       foreach ( $crew_array as $crew ) {
-
 
         if ( 'Director' === $crew['job'] ) {
           // Store directors to their own array to be used outside the loop
