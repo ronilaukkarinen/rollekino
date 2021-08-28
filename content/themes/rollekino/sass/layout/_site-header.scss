@@ -22,9 +22,45 @@
   line-height: 0;
   margin: 0;
 
+  svg {
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+  }
+
   a {
     align-items: center;
+    color: var(--color-white);
     display: flex;
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--color-white);
+  }
+
+  a > span {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Leffaotsikko', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+  }
+
+  a > span span {
+    color: var(--color-white);
+    display: block;
+    letter-spacing: -.003em;
+    line-height: 1.3;
+    width: 100%;
+  }
+
+  .bloginfo-name {
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .bloginfo-description {
+    font-size: var(--font-size-12);
+    opacity: .3;
   }
 }
 

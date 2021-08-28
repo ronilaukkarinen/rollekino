@@ -4,9 +4,14 @@
 // that apply everywhere throughout the website. Add more
 // always repeating elements right below.
 
+// Body
+body {
+  background-color: var(--color-background);
+}
+
 // Default structural element
 .block {
-  background-color: var(--color-white);
+  background-color: var(--color-background);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

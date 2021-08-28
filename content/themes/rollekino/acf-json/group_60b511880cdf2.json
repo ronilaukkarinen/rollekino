@@ -3,6 +3,22 @@
     "title": "Leffan perustiedot",
     "fields": [
         {
+            "key": "field_60b5118d8f02f",
+            "label": "IMDb URL",
+            "name": "imdb_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_612655bf7c9c2",
             "label": "Pisteytys",
             "name": "rating",
@@ -21,10 +37,10 @@
             "theme": "color"
         },
         {
-            "key": "field_60b5118d8f02f",
-            "label": "IMDb URL",
-            "name": "imdb_url",
-            "type": "url",
+            "key": "field_612a7a4cfc2eb",
+            "label": "Pisteytys (legacy)",
+            "name": "rating_legacy",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -34,7 +50,12 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "https:\/\/www.imdb.com\/title\/tt11083552\/"
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         }
     ],
     "location": [
@@ -54,5 +75,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1629914084
+    "modified": 1630174265
 }

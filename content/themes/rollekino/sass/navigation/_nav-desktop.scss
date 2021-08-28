@@ -11,7 +11,7 @@ $use-dropdown-toggle-animation: true;
 :root {
   // Dimensions, gaps and spacings
   --border-radius-sub-menu: 0;
-  --box-shadow-navigation-static: 0 0 10px rgba(84, 87, 115, .1);
+  --box-shadow-navigation-static: none;
   --dropdown-toggle-size: 12px;
   --gap-dropdown: 1rem;
   --gap-between-dropdown-toggle: 1.5rem;
@@ -22,15 +22,15 @@ $use-dropdown-toggle-animation: true;
   --width-sub-menu: 22rem;
 
   // Colors
-  --color-background-nav-desktop: var(--color-white);
-  --color-background-sub-menu: var(--color-white);
+  --color-background-nav-desktop: var(--color-ebony-clay);
+  --color-background-sub-menu: var(--color-ebony-clay);
   --color-border-sub-menu: rgba(41, 44, 61, .05);
-  --color-dropdown-toggle: var(--color-valhalla);
-  --color-sub-menu: var(--color-valhalla);
+  --color-dropdown-toggle: var(--color-white);
+  --color-sub-menu: var(--color-white);
   --color-hover-main-level: var(--color-white);
-  --color-hover-sub-menu: var(--color-valhalla);
+  --color-hover-sub-menu: var(--color-white);
   --color-main-level: var(--color-white);
-  --color-current: var(--color-main);
+  --color-current: var(--color-white);
 
   // Font styles
   --font-size-main-level: var(--font-size-16);
@@ -57,22 +57,6 @@ $use-dropdown-toggle-animation: true;
       background-color: transparent;
       position: absolute;
       width: 100%;
-    }
-  }
-
-  @media only screen and (max-width: $width-max-mobile) {
-    ul li:focus > ul,
-    ul li:hover > ul {
-      display: block;
-    }
-  }
-
-  // Disable animations on IE10 + IE11
-  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    // Enable hovers
-    ul li:focus > ul,
-    ul li:hover > ul {
-      display: block;
     }
   }
 
@@ -292,6 +276,29 @@ $use-dropdown-toggle-animation: true;
     transform: rotate(-90deg) rotateX(180deg);
   }
 
+  // Don't use gap filler in sub menu items
+  // Acceptable use of display: none here, for visual/technical purposes
+  /* stylelint-disable a11y/no-display-none */
+  .sub-menu .menu-item-has-children::after {
+    display: none;
+  }
+
+  @media only screen and (max-width: $width-max-mobile) {
+    ul li:focus > ul,
+    ul li:hover > ul {
+      display: block;
+    }
+  }
+
+  // Disable animations on IE10 + IE11
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    // Enable hovers
+    ul li:focus > ul,
+    ul li:hover > ul {
+      display: block;
+    }
+  }
+
   // Smooth animation
   @if $use-dropdown-toggle-animation == true {
     .menu-item.menu-item-has-children > .dropdown-toggle.toggled-on svg,
@@ -309,14 +316,6 @@ $use-dropdown-toggle-animation: true;
     }
     /* stylelint-enable */
   }
-
-  // Don't use gap filler in sub menu items
-  // Acceptable use of display: none here, for visual/technical purposes
-  /* stylelint-disable a11y/no-display-none */
-  .sub-menu .menu-item-has-children::after {
-    display: none;
-  }
-  /* stylelint-enable */
 
   // Dropdown bubble
   @if $use-dropdown-bubble == true {

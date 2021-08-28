@@ -20,6 +20,8 @@ get_header();
 $movies = [];
 $post_type = 'movie';
 $args = [
+  'orderby' => 'date',
+  'order' => 'DESC',
   'post_type' => $post_type,
   'posts_per_page' => 10,
 ];
