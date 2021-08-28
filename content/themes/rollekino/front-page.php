@@ -69,8 +69,6 @@ $query = new \WP_Query( $args );
             </ul>
           <?php endif; ?>
 
-
-
           <?php
           $terms = get_the_terms( $post->ID, 'director' ); ?>
 
