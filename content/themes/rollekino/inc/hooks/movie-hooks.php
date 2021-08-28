@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 00:13:24
+ * @Last Modified time: 2021-08-28 14:44:58
  *
  * @package rollekino
  */
@@ -199,9 +199,54 @@ function save_post_function( $data, $id ) {
       // Loop through crew to get directors and writers
       foreach ( $crew_array as $crew ) {
 
-        // var_dump( $crew );
-        // die();
+        if ( 'Director' === $crew['job'] ) {
+          // Store directors to their own array to be used outside the loop
+          $directors_array[] = $crew;
+        }
 
+      }
+
+      // Get director names
+      $director_names = array_column( $directors_array, 'name' );
+
+      // Get director profile photo path
+      $director_profile_photo_path = array_splice( array_column( $directors_array, 'profile_path' ), 0, 5 );
+
+      // Set directors in taxonomies
+      wp_set_object_terms( $post_id, $director_names, 'director' );
+
+      // Merge director names and photo paths together
+      $merged_director_profile_arrays = array_combine( $director_names, $director_profile_photo_path );
+
+      // Loop through director names and get their taxonomy IDs to update their meta data like poster
+      foreach ( $merged_director_profile_arrays as $merged_director_name => $merged_director_profile_path ) {
+
+        $director_taxonomy_id = get_term_by( 'name', $merged_director_name, 'director' )->term_id;
+
+        // Director profile photo TMDb URL
+        $tmdb_director_profile_photo_url = $cast_image_url_base . $merged_director_profile_path;
+
+        // Director profile photo local path
+        $media_file_director_profile_photo_path = wp_upload_dir()['path'] . $merged_director_profile_path;
+
+        // Director profile photo local URL
+        $media_file_director_profile_photo_url = wp_upload_dir()['url'] . $merged_director_profile_path;
+
+        // Upload image if not existing
+        if ( ! file_exists( $media_file_director_profile_photo_path ) ) {
+          $media_sideload_image_director_profile_photo = media_sideload_image( $tmdb_director_profile_photo_url, 0, $merged_director_name, 'id' );
+        }
+
+        // Get profile photo ID from media library based on URL
+        if ( file_exists( $media_file_director_profile_photo_path ) ) {
+          $media_file_director_profile_photo_id = attachment_url_to_postid( $media_file_director_profile_photo_url );
+
+          // var_dump( get_field_object( 'avatar', 'director_81' ) );
+          // die();
+
+          // Set uploaded image to taxonomy image field
+          update_field( 'avatar', $media_file_director_profile_photo_id, 'director_' . $director_taxonomy_id );
+        }
       }
 
       // Get actor names
