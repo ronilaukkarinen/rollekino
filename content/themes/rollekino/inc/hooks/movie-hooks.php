@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 15:35:54
+ * @Last Modified time: 2021-08-28 22:44:25
  *
  * @package rollekino
  */
@@ -198,15 +198,31 @@ function save_post_function( $data, $id ) {
       // Loop through trailers to get the official trailer
       foreach ( $result_trailer['results'] as $trailers ) {
 
-        if ( 'Official Trailer' === $trailers['name'] && 'YouTube' === $trailers['site'] ) {
+        if ( 'Trailer' === $trailers['type'] && 'YouTube' === $trailers['site'] ) {
           // Store directors to their own array to be used outside the loop
           $trailers_array[] = $trailers;
         }
 
       }
 
+      // Getting array keys amount, the number of trailers
+      $trailers_amount = array_keys( $trailers_array );
+
+      // Checking if there's more than one trailer
+      if ( count( $trailers_amount ) > 1 ) {
+
+        // There's more than one trailer, selecting the correct one (last one in iteration)
+        $last_trailer_key = $trailers_amount[ count( $trailers_amount ) - 1 ];
+        $selected_trailer_array = $trailers_array[ $last_trailer_key ];
+
+      } else {
+
+        // There's only one trailer, selecting the only one
+        $selected_trailer_array = $trailers_array;
+      }
+
       // Get the one official trailer
-      if ( ! empty( $trailers_array ) ) {
+      if ( ! empty( $selected_trailer_array ) ) {
         $official_trailer = array_splice( $trailers_array, 0, 1 );
         $trailer_youtube_key = $official_trailer[0]['key'];
 
