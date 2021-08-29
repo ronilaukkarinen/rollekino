@@ -31,7 +31,7 @@ $query = new \WP_Query( $args );
 
 <main class="site-main">
 
-  <section class="block block-hero">
+  <section class="block block-hero" style="display: none;">
     <div class="container">
       <h1>Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h1>
     </div>

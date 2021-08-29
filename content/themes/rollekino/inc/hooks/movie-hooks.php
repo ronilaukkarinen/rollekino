@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-28 22:44:25
+ * @Last Modified time: 2021-08-29 15:15:54
  *
  * @package rollekino
  */
@@ -298,9 +298,6 @@ function save_post_function( $data, $id ) {
         if ( file_exists( $media_file_writer_profile_photo_path ) ) {
           $media_file_writer_profile_photo_id = attachment_url_to_postid( $media_file_writer_profile_photo_url );
 
-          // var_dump( get_field_object( 'avatar', 'writer_81' ) );
-          // die();
-
           // Set uploaded image to taxonomy image field
           update_field( 'avatar', $media_file_writer_profile_photo_id, 'writer_' . $writer_taxonomy_id );
         }
@@ -340,9 +337,6 @@ function save_post_function( $data, $id ) {
         // Get profile photo ID from media library based on URL
         if ( file_exists( $media_file_director_profile_photo_path ) ) {
           $media_file_director_profile_photo_id = attachment_url_to_postid( $media_file_director_profile_photo_url );
-
-          // var_dump( get_field_object( 'avatar', 'director_81' ) );
-          // die();
 
           // Set uploaded image to taxonomy image field
           update_field( 'avatar', $media_file_director_profile_photo_id, 'director_' . $director_taxonomy_id );
@@ -385,9 +379,6 @@ function save_post_function( $data, $id ) {
         if ( file_exists( $media_file_actor_profile_photo_path ) ) {
           $media_file_actor_profile_photo_id = attachment_url_to_postid( $media_file_actor_profile_photo_url );
 
-          // var_dump( get_field_object( 'avatar', 'actor_81' ) );
-          // die();
-
           // Set uploaded image to taxonomy image field
           update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id );
         }
@@ -401,6 +392,9 @@ function save_post_function( $data, $id ) {
       // Get poster ID from media library based on URL
       if ( file_exists( $media_file_poster_path ) ) {
         $media_file_poster_id = attachment_url_to_postid( $media_file_poster_url );
+
+        // Set uploaded image to taxonomy image field
+        update_field( 'poster', $media_file_poster_id, $post_id );
       }
 
       // Upload image if not existing
@@ -408,8 +402,8 @@ function save_post_function( $data, $id ) {
         $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
         $media_sideload_image_poster = media_sideload_image( $tmdb_poster_url, $post_id, $media_poster_description, 'id' );
 
-        // Set uploaded image as featured image
-        // set_post_thumbnail( $post_id, $media_sideload_image_poster );
+        // Set uploaded image as acf field image
+        update_field( 'poster', $media_sideload_image_poster, $post_id );
       }
 
       // Construct backdrop URL
