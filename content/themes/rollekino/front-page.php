@@ -23,7 +23,7 @@ $args = [
   'orderby' => 'date',
   'order' => 'DESC',
   'post_type' => $post_type,
-  'posts_per_page' => 10,
+  'posts_per_page' => 1,
 ];
 
 $query = new \WP_Query( $args );
@@ -45,6 +45,8 @@ $query = new \WP_Query( $args );
           $query->the_post();
 
           // Meta data
+          $poster_id = get_post_meta( get_the_ID(), 'poster', true );
+          $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
           $rating = get_post_meta( get_the_ID(), 'rating', true );
           $imdb_rating = get_post_meta( get_the_ID(), '_imdb_rating', true );
           $imdb_year = get_post_meta( get_the_ID(), '_imdb_year', true );
@@ -53,6 +55,8 @@ $query = new \WP_Query( $args );
           $imdb_runtime_total_minutes = get_post_meta( get_the_ID(), '_idmb_runtime', true );
           $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
           ?>
+
+          <img src="<?php echo esc_url( $poster_url ); ?>" alt="" />
 
           <h2><?php the_title(); ?></h2>
 
