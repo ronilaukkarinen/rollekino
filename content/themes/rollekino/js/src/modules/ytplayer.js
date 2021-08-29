@@ -80,11 +80,13 @@ const onPlayerReady = (event, target) => {
 
 // Play the video
 const playYTVideo = (player, target) => {
+  player.target.mute();
   player.target.playVideo();
   target.parentNode.classList.add('playing');
 };
 
 const toggleYTVideo = (player, target) => {
+  player.target.mute();
 
   if ( target.parentNode.classList.contains('playing') ) {
     player.target.pauseVideo();
