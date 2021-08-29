@@ -16,17 +16,6 @@
 namespace Air_Light;
 
 get_header();
-
-$movies = [];
-$post_type = 'movie';
-$args = [
-  'orderby' => 'date',
-  'order' => 'DESC',
-  'post_type' => $post_type,
-  'posts_per_page' => 1,
-];
-
-$query = new \WP_Query( $args );
 ?>
 
 <main class="site-main">
@@ -37,10 +26,63 @@ $query = new \WP_Query( $args );
     </div>
   </section>
 
-  <?php if ( ! empty( $query->posts ) ) : ?>
-    <section class="block block-movies">
+  <?php
+  $movies = [];
+  $post_type = 'movie';
+  $args = [
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_type' => $post_type,
+    'posts_per_page' => 81,
+  ];
 
-      <div class="container">
+  $query = new \WP_Query( $args );
+  if ( ! empty( $query->posts ) ) : ?>
+  <section class="block block-movies-latest">
+    <div class="container">
+      <h2>Viimeksi katsotut elokuvat</h2>
+
+      <div class="movie-grid">
+        <?php while ( $query->have_posts() ) :
+          $query->the_post();
+
+          // Metadata
+          $poster_id = get_post_meta( get_the_ID(), 'poster', true );
+          $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
+          ?>
+
+          <?php if ( ! empty( $poster_id ) ) : ?>
+            <div class="movie-poster-wrapper movie-poster-wrapper-small">
+              <div class="movie-poster">
+                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
+                <div class="frame" aria-hidden="true"></div>
+              </div>
+            </div>
+          <?php endif; ?>
+
+        <?php endwhile; ?>
+      </div>
+
+    </div>
+  </section>
+  <?php endif; ?>
+
+  <?php
+  wp_reset_postdata();
+  $movies = [];
+  $post_type = 'movie';
+  $args = [
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_type' => $post_type,
+    'posts_per_page' => 1,
+  ];
+
+  $query = new \WP_Query( $args );
+
+  if ( ! empty( $query->posts ) ) : ?>
+    <section class="block block-movies" style="display: none;">
+
         <?php while ( $query->have_posts() ) :
           $query->the_post();
 
@@ -68,10 +110,7 @@ $query = new \WP_Query( $args );
                 data-play-button="play-<?php echo esc_html( $trailer_youtube_key ); ?>">
               </div>
 
-              <div class="video-preview lazy" data-bg="<?php echo esc_url( $backdrop_url ); ?>">
-                <div class="shade"></div>
-              </div>
-
+              <div aria-hidden="true" class="video-preview lazy" data-bg="<?php echo esc_url( $backdrop_url ); ?>"></div>
               <button
                 aria-label="Toista traileri"
                 class="play"
@@ -82,6 +121,9 @@ $query = new \WP_Query( $args );
             </div>
 
           </div>
+
+
+          <div class="container">
 
           <img src="<?php echo esc_url( $poster_url ); ?>" alt="" />
 
@@ -136,9 +178,9 @@ $query = new \WP_Query( $args );
               <?php endforeach; ?>
             </ul>
           <?php endif; ?>
+          </div>
 
         <?php endwhile; ?>
-      </div>
 
     </section>
   <?php endif; ?>

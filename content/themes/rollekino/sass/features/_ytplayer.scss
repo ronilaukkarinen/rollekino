@@ -1,15 +1,15 @@
 .backdrop {
   .video {
-    height: calc(100% + 150px);
+    height: calc(100% + 200px);
     left: 0;
     position: absolute;
-    top: -150px;
+    top: -200px;
     width: 100%;
   }
 
   .youtube-player {
     padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
+    padding-top: 0;
     position: relative;
   }
 
