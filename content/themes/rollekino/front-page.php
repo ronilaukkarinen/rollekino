@@ -68,7 +68,7 @@ $query = new \WP_Query( $args );
                 data-play-button="play-<?php echo esc_html( $trailer_youtube_key ); ?>">
               </div>
 
-              <div class="video-preview lazy" data-bg="https://img.youtube.com/vi/<?php echo esc_html( $trailer_youtube_key ); ?>/hqdefault.jpg">
+              <div class="video-preview lazy" data-bg="<?php echo esc_url( $backdrop_url ); ?>">
                 <div class="shade"></div>
               </div>
 

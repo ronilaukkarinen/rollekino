@@ -1,9 +1,9 @@
 .backdrop {
   .video {
-    height: 100%;
+    height: calc(100% + 150px);
     left: 0;
     position: absolute;
-    top: 0;
+    top: -150px;
     width: 100%;
   }
 
@@ -22,7 +22,12 @@
   }
 
   .video-preview {
-    @include cubic-bezier();
+    @include cubic-bezier($property: opacity);
+    opacity: 1;
+    transition-duration: 1s;
+  }
+
+  .video.playing .video-preview {
     opacity: 0;
   }
 

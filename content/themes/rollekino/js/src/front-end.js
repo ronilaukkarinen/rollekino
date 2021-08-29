@@ -47,16 +47,18 @@ players.forEach((player) => {
     width: player.dataset.width ? player.dataset.width : 854,
     autoplay: player.dataset.autoplay ? player.dataset.autoplay : false,
     videoId: player.dataset.videoId ? player.dataset.videoId : false,
-    modestbranding: 1,
-    autohide: 1,
-    mute: 1,
-    loop: 1,
-    rel: 0,
-    showinfo: 0,
-    controls: 0,
-    disablekb: 1,
-    enablejsapi: 1,
-    iv_load_policy: 3,
+    playerVars: {
+      modestbranding: 1,
+      autohide: 1,
+      mute: 1,
+      loop: 1,
+      controls: 0,
+      showinfo: 0,
+      rel: 0,
+      disablekb: 1,
+      enablejsapi: 1,
+      iv_load_policy: 3,
+    },
   });
 });
 
