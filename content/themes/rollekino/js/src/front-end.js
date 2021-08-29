@@ -9,8 +9,7 @@ import reframe from 'reframe.js';
 import getLocalization from './modules/localization';
 import styleExternalLinks from './modules/external-link';
 import { setFigureWidths, setLazyLoadedFigureWidth } from './modules/gutenberg-helpers';
-// import './modules/sticky-nav.js'
-// import slick from 'slick-carousel';
+import ytPlayer from "./modules/ytplayer.js";
 import 'what-input';
 
 // Navigation
@@ -38,6 +37,28 @@ var rollekino_LazyLoad = new LazyLoad({
 
 // After your content has changed...
 rollekino_LazyLoad.update();
+
+// Find players from DOM and load if found
+const players = document.querySelectorAll(".youtube-player");
+
+players.forEach((player) => {
+  new ytPlayer(player, {
+    height: player.dataset.height ? player.dataset.height : 480,
+    width: player.dataset.width ? player.dataset.width : 854,
+    autoplay: player.dataset.autoplay ? player.dataset.autoplay : false,
+    videoId: player.dataset.videoId ? player.dataset.videoId : false,
+    modestbranding: 1,
+    autohide: 1,
+    mute: 1,
+    loop: 1,
+    rel: 0,
+    showinfo: 0,
+    controls: 0,
+    disablekb: 1,
+    enablejsapi: 1,
+    iv_load_policy: 3,
+  });
+});
 
 // jQuery start
 (function ($) {

@@ -45,6 +45,7 @@ $query = new \WP_Query( $args );
           $query->the_post();
 
           // Meta data
+          $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
           $poster_id = get_post_meta( get_the_ID(), 'poster', true );
           $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
           $rating = get_post_meta( get_the_ID(), 'rating', true );
@@ -55,6 +56,32 @@ $query = new \WP_Query( $args );
           $imdb_runtime_total_minutes = get_post_meta( get_the_ID(), '_idmb_runtime', true );
           $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
           ?>
+
+          <div class="backdrop">
+            <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+            <?php // vanilla_lazyload_div( get_post_thumbnail_id() ); ?>
+
+            <div class="video js-video">
+              <div
+                class="youtube-player"
+                data-video-id="<?php echo esc_html( $trailer_youtube_key ); ?>"
+                data-play-button="play-<?php echo esc_html( $trailer_youtube_key ); ?>">
+              </div>
+
+              <div class="video-preview lazy" data-bg="https://img.youtube.com/vi/<?php echo esc_html( $trailer_youtube_key ); ?>/hqdefault.jpg">
+                <div class="shade"></div>
+              </div>
+
+              <button
+                aria-label="Toista traileri"
+                class="play"
+                id="play-<?php echo esc_html( $trailer_youtube_key ); ?>"
+                type="button">
+                <?php include get_theme_file_path( '/svg/play.svg' ); ?>
+              </button>
+            </div>
+
+          </div>
 
           <img src="<?php echo esc_url( $poster_url ); ?>" alt="" />
 
