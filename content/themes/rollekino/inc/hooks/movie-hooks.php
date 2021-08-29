@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-29 15:18:47
+ * @Last Modified time: 2021-08-29 15:22:39
  *
  * @package rollekino
  */
@@ -97,6 +97,12 @@ function save_post_function( $data, $id ) {
 
       if ( ! metadata_exists( 'movie', $post_id, '_idmb_runtime' ) ) {
         update_post_meta( $id['ID'], '_idmb_runtime', $imdb_runtime_total_minutes );
+      }
+
+      // If using legacy own rating field (because of WP All Import doesn't support rating field) update real field based on that legacy field value
+      $rating_legacy = get_post_meta( $post_id, 'rating_legacy', true );
+      if ( ! empty( $rating_legacy ) ) {
+        update_field( 'rating', $rating_legacy, $post_id );
       }
 
       // Get genres
