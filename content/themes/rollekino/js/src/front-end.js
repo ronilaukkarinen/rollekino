@@ -59,7 +59,7 @@ players.forEach((player) => {
       disablekb: 1,
       enablejsapi: 1,
       iv_load_policy: 3,
-      start: 10,
+      start: 15,
       // end: 60,
       playlist: player.dataset.videoId,
     },

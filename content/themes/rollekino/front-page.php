@@ -98,8 +98,8 @@ get_header();
             <div class="movie-meta-data-content">
               <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
               <ul class="movie-meta-data-list">
-                <li></li>
-                <li><?php echo esc_html( $rating ); ?></li>
+                <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                <li><?php rating_stars(); ?></li>
               </ul>
             </div>
 
