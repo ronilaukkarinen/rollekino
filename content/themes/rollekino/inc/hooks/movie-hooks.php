@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-29 15:15:54
+ * @Last Modified time: 2021-08-29 15:18:47
  *
  * @package rollekino
  */
@@ -483,7 +483,7 @@ function add_featured_image( $post_type, $post ) {
         $tmdb_id = $result['movie_results'][0]['id'];
 
         // Your HTML Goes here
-        echo '<p class="description"><strong><a href="https://www.themoviedb.org/movie/' . $tmdb_id . '/images/backdrops">More backdrops &rarr;</a></strong></p>'; // phpcs:ignore
+        echo '<p class="description"><strong><a href="https://www.themoviedb.org/movie/' . $tmdb_id . '/images/backdrops">Jos kuva ei miellytä, täällä lisää &rarr;</a></strong></p>'; // phpcs:ignore
 
         // Your Image is printed here
         echo _wp_post_thumbnail_html( $thumbnail_id, $post->ID ); // phpcs:ignore
