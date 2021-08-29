@@ -118,14 +118,15 @@ get_header();
     'orderby' => 'date',
     'order' => 'DESC',
     'post_type' => $post_type,
-    'posts_per_page' => 79,
+    'posts_per_page' => 32,
   ];
 
   $query = new \WP_Query( $args );
   if ( ! empty( $query->posts ) ) : ?>
   <section class="block block-movies-latest">
     <div class="container">
-      <h2>Viimeksi katsotut elokuvat</h2>
+      <h2 class="block-title-secondary">Viimeksi katsotut elokuvat</h2>
+      <p class="read-more"><a href="#">Katso kaikki <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?></a></a>
 
       <div class="movie-grid">
         <?php while ( $query->have_posts() ) :

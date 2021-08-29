@@ -130,7 +130,7 @@ body::before {
 }
 
 .movie-grid {
-  @include grid(6, $gutter_x: 2rem, $gutter_y: 2rem);
+  @include grid(8, $gutter_x: 2rem, $gutter_y: 2rem);
 }
 
 .movie-poster {
@@ -203,6 +203,38 @@ body::before {
       left: 0;
       position: absolute;
       z-index: 0;
+    }
+  }
+}
+
+.block-title-secondary {
+  color: var(--color-white);
+  font-size: var(--font-size-h3);
+  margin: 0 0 1rem;
+}
+
+.read-more {
+  margin: 0 0 2.7rem;
+
+  svg {
+    @include cubic-bezier($property: all);
+    margin-left: 8px;
+    transform: translateX(0);
+  }
+
+  a {
+    color: var(--color-white);
+    font-size: var(--font-size-16);
+    opacity: .6;
+  }
+
+  a:focus,
+  a:hover {
+    color: var(--color-white);
+    opacity: 1;
+
+    svg {
+      transform: translateX(5px);
     }
   }
 }

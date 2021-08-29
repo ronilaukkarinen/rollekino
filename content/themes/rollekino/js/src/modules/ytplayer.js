@@ -86,7 +86,7 @@ const playYTVideo = (player, target) => {
   // Delay adding class so we will not see the loading animation
   setTimeout(function() {
     target.parentNode.classList.add('playing');
-  }, 1500);
+  }, 1000);
 };
 
 const toggleYTVideo = (player, target) => {
