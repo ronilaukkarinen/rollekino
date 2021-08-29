@@ -15,7 +15,10 @@
   --color-valhalla: #2a2d3e;
   --color-white: #fff;
   --color-ebony-clay: #2c2731;
-  --color-background: #141a20;
+  --bg-r: 20;
+  --bg-g: 26;
+  --bg-b: 35;
+  --color-background: rgba(var(--bg-r), var(--bg-g), var(--bg-b), 1);
 
   // Main element colors
   --color-heading: var(--color-main);

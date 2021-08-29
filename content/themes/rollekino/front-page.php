@@ -20,59 +20,12 @@ get_header();
 
 <main class="site-main">
 
-  <section class="block block-hero" style="display: none;">
-    <div class="container">
-      <h1>Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h1>
-    </div>
-  </section>
-
-  <?php
-  $movies = [];
-  $post_type = 'movie';
-  $args = [
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'post_type' => $post_type,
-    'posts_per_page' => 81,
-  ];
-
-  $query = new \WP_Query( $args );
-  if ( ! empty( $query->posts ) ) : ?>
-  <section class="block block-movies-latest">
-    <div class="container">
-      <h2>Viimeksi katsotut elokuvat</h2>
-
-      <div class="movie-grid">
-        <?php while ( $query->have_posts() ) :
-          $query->the_post();
-
-          // Metadata
-          $poster_id = get_post_meta( get_the_ID(), 'poster', true );
-          $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
-          ?>
-
-          <?php if ( ! empty( $poster_id ) ) : ?>
-            <div class="movie-poster-wrapper movie-poster-wrapper-small">
-              <div class="movie-poster">
-                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
-                <div class="frame" aria-hidden="true"></div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-        <?php endwhile; ?>
-      </div>
-
-    </div>
-  </section>
-  <?php endif; ?>
-
   <?php
   wp_reset_postdata();
   $movies = [];
   $post_type = 'movie';
   $args = [
-    'orderby' => 'date',
+    'orderby' => 'rand',
     'order' => 'DESC',
     'post_type' => $post_type,
     'posts_per_page' => 1,
@@ -81,7 +34,19 @@ get_header();
   $query = new \WP_Query( $args );
 
   if ( ! empty( $query->posts ) ) : ?>
-    <section class="block block-movies" style="display: none;">
+    <section class="block block-hero-movies">
+      <div class="shade" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="content">
+          <h2 class="block-title">Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h2>
+
+          <form role="search" method="get" class="search-form" action="<?php echo esc_url( get_home_url() ); ?>">
+				    <label for="search">Hae elokuvaa</label>
+					  <input id="search" type="search" class="search-field" value="" name="s">
+				    <input type="submit" class="search-submit" value="Hae">
+			    </form>
+        </div>
 
         <?php while ( $query->have_posts() ) :
           $query->the_post();
@@ -119,70 +84,72 @@ get_header();
                 <?php include get_theme_file_path( '/svg/play.svg' ); ?>
               </button>
             </div>
-
           </div>
 
+          <div class="movie-meta-data">
 
-          <div class="container">
+            <div class="movie-poster-wrapper movie-poster-wrapper-small">
+              <div class="movie-poster">
+                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
+                <div class="frame" aria-hidden="true"></div>
+              </div>
+            </div>
 
-          <img src="<?php echo esc_url( $poster_url ); ?>" alt="" />
+            <div class="movie-meta-data-content">
+              <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
+              <ul class="movie-meta-data-list">
+                <li></li>
+                <li><?php echo esc_html( $rating ); ?></li>
+              </ul>
+            </div>
 
-          <h2><?php the_title(); ?></h2>
-
-          <p>IMDb: <?php echo esc_html( $imdb_rating ); ?></p>
-          <p>Omat pisteet: <?php echo esc_html( $rating ); ?></p>
-          <p>Vuosi: <?php echo esc_html( $imdb_year ); ?></p>
-          <p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
-          <p>Metascore: <?php echo esc_html( $metascore_rating ); ?></p>
-
-          <?php
-          // Get the number of whole hours
-          $idmb_runtime_hours = floor( $imdb_runtime_total_minutes / 60 );
-          $imdb_runtime_minutes = $imdb_runtime_total_minutes % 60;
-          $runtime_human_readable = $idmb_runtime_hours . ' tuntia, ' . $imdb_runtime_minutes . ' minuuttia';
-          ?>
-
-          <p><?php echo esc_html( $runtime_human_readable ); ?></p>
-          <p>YouTube: <?php echo esc_html( $trailer_youtube_key ); ?></p>
-
-          <h3>Pääosissa</h3>
-
-          <?php
-          $terms = get_the_terms( $post->ID, 'actor' );
-
-          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-            <ul>
-              <?php foreach ( $terms as $term ) :
-                $avatar_url = get_field( 'avatar', 'actor_' . $term->term_id )['url'];
-                ?>
-                <li><?php echo esc_html( $term->name ); ?>
-                <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          <?php endif; ?>
-
-          <?php
-          $terms = get_the_terms( $post->ID, 'director' ); ?>
-
-          <h3>Ohjaaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?></h4>
-
-          <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-            <ul>
-              <?php foreach ( $terms as $term ) :
-                $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
-                ?>
-                <li><?php echo esc_html( $term->name ); ?>
-                <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          <?php endif; ?>
           </div>
 
         <?php endwhile; ?>
 
     </section>
+  <?php endif; ?>
+
+  <?php
+  wp_reset_postdata();
+  $movies = [];
+  $post_type = 'movie';
+  $args = [
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'post_type' => $post_type,
+    'posts_per_page' => 79,
+  ];
+
+  $query = new \WP_Query( $args );
+  if ( ! empty( $query->posts ) ) : ?>
+  <section class="block block-movies-latest">
+    <div class="container">
+      <h2>Viimeksi katsotut elokuvat</h2>
+
+      <div class="movie-grid">
+        <?php while ( $query->have_posts() ) :
+          $query->the_post();
+
+          // Metadata
+          $poster_id = get_post_meta( get_the_ID(), 'poster', true );
+          $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
+          ?>
+
+          <?php if ( ! empty( $poster_id ) ) : ?>
+            <div class="movie-poster-wrapper movie-poster-wrapper-small">
+              <div class="movie-poster">
+                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
+                <div class="frame" aria-hidden="true"></div>
+              </div>
+            </div>
+          <?php endif; ?>
+
+        <?php endwhile; ?>
+      </div>
+
+    </div>
+  </section>
   <?php endif; ?>
 </main>
 

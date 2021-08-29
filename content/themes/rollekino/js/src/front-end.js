@@ -48,6 +48,7 @@ players.forEach((player) => {
     autoplay: player.dataset.autoplay ? player.dataset.autoplay : false,
     videoId: player.dataset.videoId ? player.dataset.videoId : false,
     playerVars: {
+      autoplay: 1,
       modestbranding: 1,
       autohide: 1,
       mute: 1,
@@ -58,6 +59,9 @@ players.forEach((player) => {
       disablekb: 1,
       enablejsapi: 1,
       iv_load_policy: 3,
+      start: 10,
+      // end: 60,
+      playlist: player.dataset.videoId,
     },
   });
 });

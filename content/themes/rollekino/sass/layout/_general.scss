@@ -22,14 +22,14 @@ body {
 
 // Default shade on top of blocks
 .shade {
-  background-color: var(--color-background-shade);
+  background-color: var(--color-background);
   height: 100%;
   left: 0;
-  opacity: .35;
+  opacity: .4;
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 0;
+  z-index: 2;
 }
 
 // Global link helper

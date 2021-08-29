@@ -1,21 +1,123 @@
-.block-movies {
+body::before {
+  background-image: linear-gradient(to bottom, rgba(35, 42, 43, .9) 0, rgba(35, 42, 43, 0) 100%);
+  content: "";
+  height: 200px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.block-hero-movies {
+  height: 710px;
+
+  .shade {
+    opacity: .7;
+  }
+
+  .content {
+    align-self: flex-end;
+    margin-top: 8rem;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+
+    .block-title {
+      color: var(--color-white);
+      font-size: 42px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 65%;
+    }
+  }
+
   .container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 710px;
+    padding-bottom: 0;
     padding-top: 0;
+  }
+
+  .movie-meta-data {
+    align-self: flex-end;
+    color: var(--color-white);
+    display: flex;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    margin-left: auto;
+    max-width: 400px;
+    position: relative;
+    z-index: 5;
+
+    .movie-poster-wrapper {
+      margin-right: 2rem;
+    }
+
+    .movie-meta-data-content {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+
+      > * {
+        width: 100%;
+      }
+    }
+
+    .movie-meta-data-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .movie-meta-data-list li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .movie-meta-data-title {
+      font-size: var(--font-size-18);
+      margin: 0 0 .5rem;
+
+      .release-year {
+        font-family: var(--font-paragraph);
+        font-size: var(--font-size-14);
+        font-weight: var(--font-weight-regular);
+        margin-left: 8px;
+        opacity: .5;
+      }
+    }
+
+    * {
+      color: var(--color-white);
+    }
+  }
+
+  .movie-poster-wrapper.movie-poster-wrapper-small {
+    height: auto;
+    width: 80px;
   }
 }
 
 .backdrop {
-  height: 670px;
+  height: 100%;
+  left: 0;
+  max-height: 710px;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   &::before {
     /* stylelint-disable-next-line */
-    background-image: linear-gradient(90deg, var(--color-background) 0, rgba(20, 26, 32, .986) .97%, rgba(20, 26, 32, .945) 2.07833333%, rgba(20, 26, 32, .883) 3.29666667%, rgba(20, 26, 32, .803) 4.60166667%, rgba(20, 26, 32, .711) 5.96666667%, rgba(20, 26, 32, .61) 7.365%, rgba(20, 26, 32, .504) 8.77166667%, rgba(20, 26, 32, .398) 10.16%, rgba(20, 26, 32, .296) 11.505%, rgba(20, 26, 32, .203) 12.78%, rgba(20, 26, 32, .122) 13.95833333%, rgba(20, 26, 32, .059) 15.01666667%, rgba(20, 26, 32, .016) 15.92833333%, rgba(20, 26, 32, 0) 16.66666667%, rgba(20, 26, 32, 0) 83.33333333%, rgba(20, 26, 32, .016) 84.07166667%, rgba(20, 26, 32, .059) 84.98333333%, rgba(20, 26, 32, .122) 86.04166667%, rgba(20, 26, 32, .203) 87.22%, rgba(20, 26, 32, .296) 88.495%, rgba(20, 26, 32, .398) 89.84%, rgba(20, 26, 32, .504) 91.22833333%, rgba(20, 26, 32, .61) 92.635%, rgba(20, 26, 32, .711) 94.03333333%, rgba(20, 26, 32, .803) 95.39833333%, rgba(20, 26, 32, .883) 96.70333333%, rgba(20, 26, 32, .945) 97.92166667%, rgba(20, 26, 32, .986) 99.03%, var(--color-background)), linear-gradient(0deg, var(--color-background) 0, var(--color-background) 21.48148148%, rgba(20, 26, 32, .986) 23.63703704%, rgba(20, 26, 32, .945) 26.1%, rgba(20, 26, 32, .883) 28.80740741%, rgba(20, 26, 32, .803) 31.70740741%, rgba(20, 26, 32, .711) 34.74074074%, rgba(20, 26, 32, .61) 37.84814815%, rgba(20, 26, 32, .504) 40.97407407%, rgba(20, 26, 32, .398) 44.05925926%, rgba(20, 26, 32, .296) 47.04814815%, rgba(20, 26, 32, .203) 49.88148148%, rgba(20, 26, 32, .122) 52.5%, rgba(20, 26, 32, .059) 54.85185185%, rgba(20, 26, 32, .016) 56.87777778%, rgba(20, 26, 32, 0) 58.51851852%);
+    background-image: linear-gradient(90deg, var(--color-background) 0, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .986) .97%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .945) 2.07833333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .883) 3.29666667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .803) 4.60166667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .711) 5.96666667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .61) 7.365%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .504) 8.77166667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .398) 10.16%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .296) 11.505%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .203) 12.78%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .122) 13.95833333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .059) 15.01666667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .016) 15.92833333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 0) 16.66666667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 0) 83.33333333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .016) 84.07166667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .059) 84.98333333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .122) 86.04166667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .203) 87.22%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .296) 88.495%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .398) 89.84%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .504) 91.22833333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .61) 92.635%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .711) 94.03333333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .803) 95.39833333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .883) 96.70333333%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .945) 97.92166667%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .986) 99.03%, var(--color-background)), linear-gradient(0deg, var(--color-background) 0, var(--color-background) 21.48148148%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .986) 23.63703704%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .945) 26.1%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .883) 28.80740741%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .803) 31.70740741%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .711) 34.74074074%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .61) 37.84814815%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .504) 40.97407407%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .398) 44.05925926%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .296) 47.04814815%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .203) 49.88148148%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .122) 52.5%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .059) 54.85185185%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .016) 56.87777778%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 0) 58.51851852%);
     background-repeat: no-repeat;
     content: "";
     display: block;
-    height: 670px;
+    height: 870px;
     left: 50%;
     pointer-events: none;
     position: absolute;
@@ -27,7 +129,7 @@
 }
 
 .movie-grid {
-  @include grid(8, $gutter_x: 2rem, $gutter_y: 2rem);
+  @include grid(6, $gutter_x: 2rem, $gutter_y: 2rem);
 }
 
 .movie-poster {
@@ -53,12 +155,7 @@
   background-repeat: no-repeat;
   background-size: 100% 1px;
   border-radius: 4px;
-  box-shadow: inset 0 0 0 1px rgba(221, 238, 255, .35);
   box-shadow: 0 0 2px #def inset;
-  font-family: inherit;
-  font-size: 100%;
-  font-style: inherit;
-  font-weight: inherit;
   height: 100%;
   left: 0;
   margin: 0;

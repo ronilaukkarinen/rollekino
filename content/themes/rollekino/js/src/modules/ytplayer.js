@@ -82,7 +82,11 @@ const onPlayerReady = (event, target) => {
 const playYTVideo = (player, target) => {
   player.target.mute();
   player.target.playVideo();
-  target.parentNode.classList.add('playing');
+
+  // Delay adding class so we will not see the loading animation
+  setTimeout(function() {
+    target.parentNode.classList.add('playing');
+  }, 1000);
 };
 
 const toggleYTVideo = (player, target) => {
