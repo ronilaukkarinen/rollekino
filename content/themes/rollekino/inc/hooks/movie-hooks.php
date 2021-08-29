@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-29 15:22:39
+ * @Last Modified time: 2021-08-29 15:25:51
  *
  * @package rollekino
  */
@@ -496,4 +496,16 @@ function add_featured_image( $post_type, $post ) {
       }, $p, 'side', 'low');
     }
   }
+}
+
+/**
+ * Custom admin CSS: Hiding legacy ACF field used only for WP All Import
+ */
+add_action( 'admin_head', __NAMESPACE__ . '\custom_admin_head' );
+function custom_admin_head() {
+  echo '<style type="text/css">
+  .acf-field-612a7a4cfc2eb {
+    display: none !important;
+  }
+  </style>';
 }
