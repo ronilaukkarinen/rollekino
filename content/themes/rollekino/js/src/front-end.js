@@ -38,6 +38,9 @@ var rollekino_LazyLoad = new LazyLoad({
 // After your content has changed...
 rollekino_LazyLoad.update();
 
+//Dynamic Form Label
+const input = document.querySelectorAll('.custom-input');
+
 // Find players from DOM and load if found
 const players = document.querySelectorAll(".youtube-player");
 
@@ -142,7 +145,39 @@ players.forEach((player) => {
   });
 })(jQuery);
 
+// Dynamic form label
+var textfield = document.getElementById('search');
+textfield.addEventListener('input', function () {
+
+  if ( this.value == "" ) {
+    this.parentNode.classList.remove('filled');
+    this.parentNode.classList.remove('focused');
+  } else {
+    this.parentNode.classList.add('filled');
+  }
+
+});
+
 document.addEventListener('DOMContentLoaded', function () {
+
+  // Dynamic form label
+  textfield.addEventListener('focus', function() {
+    this.parentNode.classList.add('focused');
+  });
+
+  textfield.addEventListener('blur', function() {
+    if ( this.value == "" ) {
+      this.parentNodeclassList.remove('filled');
+      this.parentNode.classList.remove('focused');
+    } else {
+      this.parentNodeclassList.add('filled');
+    }
+  })
+
+  function RemoveClass(elem, newClass) {
+      elem.className = elem.className.replace(/(?:^|\s)newClass(?!\S)/g, '')
+  }
+
   const easeFunctions = {
     easeInQuad: function (t, b, c, d) {
       t /= d;

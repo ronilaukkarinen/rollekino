@@ -50,6 +50,18 @@
     {
       "type": "vcs",
       "url": "git@github.com:kevinruscoe/acf-star-rating-field.git"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "relevanssi/relevanssi-premium",
+        "version": "2.15.3",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+          "url": "https://www.relevanssi.com/update/get_version.php?api_key=11879452&version=2.15.3"
+        }
+      }
     }
   ],
   "require": {
@@ -73,7 +85,8 @@
     "kevinruscoe/acf-star-rating-field": "dev-master",
     "rooxie/omdb": "^0.3.0",
     "guzzlehttp/guzzle": "^7.3",
-    "vfalies/tmdb": "^1.12"
+    "vfalies/tmdb": "^1.12",
+    "relevanssi/relevanssi-premium": "*"
   },
   "require-dev": {
     "rarst/wps": "*"

@@ -9,6 +9,95 @@ body::before {
   z-index: 10;
 }
 
+.search-form {
+  display: inline-flex;
+  margin: 1rem auto;
+  position: relative;
+  width: auto;
+
+  .search-form-label {
+    @include cubic-bezier($property: all, $duration: .5s);
+    color: var(--color-white);
+    display: inline-block;
+    font-size: 26px;
+    font-weight: var(--font-weight-regular);
+    left: 84px;
+    opacity: .8;
+    position: absolute;
+    top: 16px;
+    z-index: 0;
+  }
+
+  .search-form-field {
+    @include cubic-bezier($property: all, $duration: 1s);
+    /* stylelint-disable-next-line */
+    background-color: rgba(255, 255, 255, .1);
+    border: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    color: var(--color-white);
+    font-size: var(--font-size-24);
+    order: 2;
+    position: relative;
+    width: 210px;
+    z-index: 1;
+
+    &::-webkit-search-cancel-button {
+      /* stylelint-disable-next-line */
+      -webkit-appearance: none;
+      background-image: url('../../svg/search-cancel.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 22px 22px;
+      height: 22px;
+      width: 22px;
+    }
+
+    /* stylelint-disable-next-line */
+    &:focus,
+    &:hover {
+      /* stylelint-disable-next-line */
+      background-color: rgba(255, 255, 255, .1);
+      cursor: text;
+      /* stylelint-disable-next-line */
+      outline: 0;
+    }
+  }
+
+  .search-submit {
+    /* stylelint-disable-next-line */
+    background-color: rgba(255, 255, 255, .1);
+    border: 0;
+    border-bottom-right-radius: 0;
+    /* stylelint-disable-next-line */
+    border-color: rgba(255, 255, 255, .1);
+    border-top-right-radius: 0;
+    order: 1;
+
+    svg {
+      margin-left: 8px;
+      opacity: .8;
+    }
+  }
+
+  &.focused .search-form-label {
+    opacity: .2;
+  }
+
+  &.focused .search-form-field {
+    /* stylelint-disable-next-line */
+    background-color: rgba(255, 255, 255, .1);
+  }
+
+  &.filled .search-form-label {
+    opacity: 0;
+  }
+
+  &.filled .search-form-field {
+    width: 400px;
+  }
+}
+
 .block-hero-movies {
   height: 710px;
 
@@ -18,7 +107,7 @@ body::before {
 
   .content {
     align-self: flex-end;
-    margin-top: 8rem;
+    margin-top: 10rem;
     position: relative;
     text-align: center;
     width: 100%;
