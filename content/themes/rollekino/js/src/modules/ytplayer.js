@@ -55,6 +55,9 @@ const loadPlayer = (target, args) => {
  * @param {*} target Video target element
  */
 const onPlayerReady = (event, target) => {
+
+
+
   // Set a class so the play button is visible when video has loaded successfully
   target.parentNode.classList.add('loaded');
 
@@ -70,8 +73,12 @@ const onPlayerReady = (event, target) => {
   // Return the callback function
   // eslint-disable-next-line no-shadow
   return (event) => {
-    // Play YouTube video instantly
-    playYTVideo(event, target);
+    // Play YouTube video instantly if it is found
+    if (event.target.getDuration() <= 0) {
+      // console.log('Trailer is likely to be removed...');
+    } else {
+      playYTVideo(event, target);
+    }
 
     // Add event listener
     playButton.addEventListener('click', () => toggleYTVideo(event, target));
@@ -84,9 +91,9 @@ const playYTVideo = (player, target) => {
   player.target.playVideo();
 
   // Delay adding class so we will not see the loading animation
-  setTimeout(function() {
+  // setTimeout(function() {
     target.parentNode.classList.add('playing');
-  }, 1000);
+  // }, 1000);
 };
 
 const toggleYTVideo = (player, target) => {
