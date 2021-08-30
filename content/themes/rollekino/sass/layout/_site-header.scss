@@ -54,8 +54,10 @@
   }
 
   .bloginfo-name {
-    font-size: var(--font-size-18);
+    font-family: 'Whyte', var(--font-heading);
+    font-size: 26px;
     font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
   }
 
   .bloginfo-description {

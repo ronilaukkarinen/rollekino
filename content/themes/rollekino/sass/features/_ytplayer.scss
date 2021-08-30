@@ -24,7 +24,7 @@
   .video-preview {
     @include cubic-bezier($property: opacity);
     opacity: 1;
-    transition-duration: 1s;
+    transition-duration: 4s;
   }
 
   .video.playing .video-preview {

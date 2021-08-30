@@ -56,8 +56,6 @@ const loadPlayer = (target, args) => {
  */
 const onPlayerReady = (event, target) => {
 
-
-
   // Set a class so the play button is visible when video has loaded successfully
   target.parentNode.classList.add('loaded');
 
@@ -91,9 +89,9 @@ const playYTVideo = (player, target) => {
   player.target.playVideo();
 
   // Delay adding class so we will not see the loading animation
-  // setTimeout(function() {
+  setTimeout(function() {
     target.parentNode.classList.add('playing');
-  // }, 1000);
+  }, 700);
 };
 
 const toggleYTVideo = (player, target) => {
