@@ -30,11 +30,69 @@
   .video.playing .video-preview {
     opacity: 0;
   }
+}
 
-  button {
-    bottom: 100px;
-    position: absolute;
-    right: 0;
-    z-index: 10;
+button.play-button {
+  @include cubic-bezier($property: all, $duration: 4s);
+  align-items: center;
+  align-self: flex-end;
+  background-color: transparent;
+  border: 0;
+  display: inline-flex;
+  font-size: var(--font-size-15);
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+  opacity: .5;
+  overflow: visible;
+  padding: 0;
+  transition-duration: 4s;
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  svg {
+    @include cubic-bezier($property: all);
+    margin-right: 4px;
+    position: relative;
+
+    &.play-icon {
+      top: -1px;
+    }
+
+    &.pause-icon {
+      top: -2px;
+    }
+  }
+
+  &:focus {
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    opacity: .5;
+    padding: 0;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    opacity: 1;
+    padding: 0;
+
+    svg {
+      transform: scale(1.2);
+    }
+  }
+
+  span {
+    @include cubic-bezier($property: all, $duration: 4s);
+    transition-duration: 4s;
+  }
+
+  /* stylelint-disable-next-line */
+  .hidden {
+    display: none;
+    opacity: 0;
   }
 }

@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   textfield.addEventListener('blur', function() {
     if ( this.value == "" ) {
-      this.parentNodeclassList.remove('filled');
+      this.parentNode.classList.remove('filled');
       this.parentNode.classList.remove('focused');
     } else {
-      this.parentNodeclassList.add('filled');
+      this.parentNode.classList.add('filled');
     }
   })
 

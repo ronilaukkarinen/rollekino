@@ -100,6 +100,7 @@ body::before {
 
 .block-hero-movies {
   height: 710px;
+  overflow: visible;
 
   .shade {
     opacity: .7;
@@ -127,19 +128,27 @@ body::before {
     display: flex;
     flex-wrap: wrap;
     height: 710px;
+    overflow: visible;
     padding-bottom: 0;
     padding-top: 0;
   }
 
-  .movie-meta-data {
+  .movie-metadata-box {
     align-self: flex-end;
-    color: var(--color-white);
     display: flex;
     justify-content: flex-end;
     justify-self: flex-end;
     margin-left: auto;
     max-width: 360px;
+  }
+
+  .movie-meta-data {
+    color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
     position: relative;
+    transform: translateY(30px);
+    width: 100%;
     z-index: 5;
 
     .movie-poster-wrapper {

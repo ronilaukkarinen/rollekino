@@ -76,31 +76,38 @@ get_header();
               </div>
 
               <div aria-hidden="true" class="video-preview lazy" data-bg="<?php echo esc_url( $backdrop_url ); ?>"></div>
-              <button
-                aria-label="Toista traileri"
-                class="play"
-                id="play-<?php echo esc_html( $trailer_youtube_key ); ?>"
-                type="button">
-                <?php include get_theme_file_path( '/svg/play.svg' ); ?>
-              </button>
             </div>
           </div>
 
           <div class="movie-meta-data">
 
-            <div class="movie-poster-wrapper movie-poster-wrapper-small">
-              <div class="movie-poster">
-                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
-                <div class="frame" aria-hidden="true"></div>
-              </div>
-            </div>
+            <button
+              class="play play-button hidden"
+              id="play-<?php echo esc_html( $trailer_youtube_key ); ?>"
+              type="button">
+              <span class="play-label hidden">
+                <?php include get_theme_file_path( '/svg/play.svg' ); ?> Jatka trailerin pyörittämistä sittenkin
+              </span>
+              <span class="pause-label hidden">
+                <?php include get_theme_file_path( '/svg/pause.svg' ); ?> Älä spoilaa, pysäytä taustavideo
+              </span>
+            </button>
 
-            <div class="movie-meta-data-content">
-              <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
-              <ul class="movie-meta-data-list">
-                <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
-                <li><?php rating_stars(); ?></li>
-              </ul>
+            <div class="movie-metadata-box">
+              <div class="movie-poster-wrapper movie-poster-wrapper-small">
+                <div class="movie-poster">
+                  <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
+                  <div class="frame" aria-hidden="true"></div>
+                </div>
+              </div>
+
+              <div class="movie-meta-data-content">
+                <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
+                <ul class="movie-meta-data-list">
+                  <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                  <li><?php rating_stars(); ?></li>
+                </ul>
+              </div>
             </div>
 
           </div>

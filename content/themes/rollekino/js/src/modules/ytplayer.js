@@ -88,21 +88,47 @@ const playYTVideo = (player, target) => {
   player.target.mute();
   player.target.playVideo();
 
+  // Find the play button
+  const playButton = target.dataset.playButton
+    ? document.getElementById(target.dataset.playButton)
+    : null;
+
+  if ( ! playButton ) {
+    return false;
+  }
+
   // Delay adding class so we will not see the loading animation
   setTimeout(function() {
     target.parentNode.classList.add('playing');
+    playButton.classList.remove('hidden');
+    playButton.querySelector('.pause-label').classList.remove('hidden');
+    playButton.querySelector('.play-label').classList.add('hidden');
   }, 700);
 };
 
 const toggleYTVideo = (player, target) => {
   player.target.mute();
 
+  // Find the play button
+  const playButton = target.dataset.playButton
+  ? document.getElementById(target.dataset.playButton)
+  : null;
+
+  if ( ! playButton ) {
+    return false;
+  }
+
+
   if ( target.parentNode.classList.contains('playing') ) {
     player.target.pauseVideo();
     target.parentNode.classList.remove('playing');
+    playButton.querySelector('.play-label').classList.remove('hidden');
+    playButton.querySelector('.pause-label').classList.add('hidden');
   } else {
     player.target.playVideo();
     target.parentNode.classList.add('playing');
+    playButton.querySelector('.pause-label').classList.remove('hidden');
+    playButton.querySelector('.play-label').classList.add('hidden');
   }
 };
 
