@@ -8,8 +8,9 @@
   --font-graphic: 'Graphik', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
   --font-tiemposheadline: 'TiemposHeadline', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
   --font-neuehaasdisplay: 'NeueHaasDisplay', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+  --font-garnett: 'Garnett', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
 
   // Fonts in use for content
   --font-paragraph: var(--font-graphic);
-  --font-heading: var(--font-neuehaasdisplay);
+  --font-heading: var(--font-garnett);
 }

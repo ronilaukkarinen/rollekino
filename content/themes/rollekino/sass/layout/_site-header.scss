@@ -23,7 +23,7 @@
   margin: 0;
 
   svg {
-    margin-right: 5px;
+    margin-right: 7px;
     position: relative;
     top: 3px;
   }
@@ -54,13 +54,13 @@
   }
 
   .bloginfo-name {
-    font-family: 'Whyte', var(--font-heading);
-    font-size: 26px;
+    font-family: 'Garnett', var(--font-heading);
+    font-size: 28px;
     font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
   }
 
   .bloginfo-description {
+    display: none;
     font-size: var(--font-size-12);
     opacity: .3;
   }
