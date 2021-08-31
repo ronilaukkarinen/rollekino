@@ -1,0 +1,109 @@
+.movie-grid {
+  @include grid(8, $gutter_x: 2rem, $gutter_y: 2rem);
+}
+
+.movie-poster {
+  background-clip: padding-box;
+  background-image: url('https://www.rollemaa.fi/content/themes/minimalistmadness/images/posters.png');
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+
+  img {
+    border-radius: 4px;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.frame {
+  background-clip: padding-box;
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .5) 50%, hsla(0, 0%, 100%, 0));
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #def inset;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  outline: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  text-indent: -999em;
+  top: 0;
+  vertical-align: baseline;
+  width: 100%;
+}
+
+.star-rating {
+  position: relative;
+
+  .half {
+    height: 18px;
+    position: relative;
+    width: 18px;
+  }
+
+  svg {
+    margin-right: -3px;
+
+    &.star-half,
+    &.star {
+      fill: rgb(245, 197, 24);
+    }
+
+    &.star-bg,
+    &.star-empty {
+      color: var(--color-white);
+      opacity: .2;
+    }
+
+    &.star-half {
+      left: -4px;
+      position: relative;
+    }
+
+    &.star-bg {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      z-index: 0;
+    }
+  }
+}
+
+.block-title-secondary {
+  color: var(--color-white);
+  font-size: var(--font-size-h3);
+  margin: 0 0 1rem;
+}
+
+.read-more {
+  margin: 0 0 2.7rem;
+
+  svg {
+    @include cubic-bezier($property: all);
+    margin-left: 8px;
+    transform: translateX(0);
+  }
+
+  a {
+    color: var(--color-white);
+    font-size: var(--font-size-16);
+    opacity: .6;
+  }
+
+  a:focus,
+  a:hover {
+    color: var(--color-white);
+    opacity: 1;
+
+    svg {
+      transform: translateX(5px);
+    }
+  }
+}
