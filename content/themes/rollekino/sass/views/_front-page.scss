@@ -30,8 +30,7 @@ body::before {
 
   .search-form-field {
     @include cubic-bezier($property: all, $duration: 1s);
-    /* stylelint-disable-next-line */
-    background-color: rgba(255, 255, 255, .1);
+    background-color: var(--color-background-search);
     border: 0;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
@@ -53,26 +52,29 @@ body::before {
       width: 22px;
     }
 
-    /* stylelint-disable-next-line */
     &:focus,
     &:hover {
-      /* stylelint-disable-next-line */
-      background-color: rgba(255, 255, 255, .1);
+      background-color: var(--color-background-search);
       cursor: text;
+
       /* stylelint-disable-next-line */
       outline: 0;
     }
   }
 
   .search-submit {
-    /* stylelint-disable-next-line */
-    background-color: rgba(255, 255, 255, .1);
+    background-color: var(--color-background-search);
     border: 0;
     border-bottom-right-radius: 0;
-    /* stylelint-disable-next-line */
-    border-color: rgba(255, 255, 255, .1);
+    border-color: var(--color-background-search);
     border-top-right-radius: 0;
     order: 1;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-background-search);
+      border: 0;
+    }
 
     svg {
       margin-left: 8px;
@@ -86,7 +88,7 @@ body::before {
 
   &.focused .search-form-field {
     /* stylelint-disable-next-line */
-    background-color: rgba(255, 255, 255, .1);
+    background-color: var(--color-background-search);
   }
 
   &.filled .search-form-label {

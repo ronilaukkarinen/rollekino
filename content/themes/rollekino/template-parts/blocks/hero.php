@@ -29,7 +29,7 @@ if ( ! empty( $query->posts ) ) : ?>
 
         <form id="search-form" role="search" method="get" class="search-form" action="<?php echo esc_url( get_home_url() ); ?>">
 				  <label for="search" class="search-form-label">Hae elokuvaa</label>
-					<input id="search" type="search" class="search-form-field" value="" name="s">
+					<input id="search" type="search" class="search-form-field" value="" name="s" autocomplete="off">
 				  <button type="submit" class="search-submit" aria-label="Hae"><?php include get_theme_file_path( '/svg/search.svg' ); ?></button>
 			  </form>
       </div>
