@@ -1,0 +1,5 @@
+.block-best-movies {
+  .cols {
+    @include grid(3);
+  }
+}

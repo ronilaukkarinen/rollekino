@@ -1,6 +1,6 @@
 <?php
 /**
- * Hero
+ * Block
  *
  * @package rollekino
  */
