@@ -56,7 +56,7 @@ namespace Air_Light;
           $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
           ?>
 
-          <li>
+          <li class="movie-meta-data">
             <div class="movie-meta-data-box">
               <?php if ( ! empty( $poster_id ) ) : ?>
                 <div class="movie-poster-wrapper movie-poster-wrapper-small">

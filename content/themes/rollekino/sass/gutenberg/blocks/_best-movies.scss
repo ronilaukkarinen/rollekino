@@ -19,25 +19,22 @@
   ol > li {
     counter-increment: toplist-numbers;
     display: flex;
+    margin-bottom: 2rem;
     position: relative;
   }
 
   ol > li::before {
-    --size: 32px;
-    background: black;
-    border-radius: 50%;
-    box-shadow: 1px 1px 0 #999;
-    color: #fcd000;
+    align-self: center;
+    color: rgba(255, 255, 255, .1);
     content: counter(toplist-numbers);
-    font-size: 1.5rem;
-    font-weight: bold;
-    height: var(--size);
-    left: calc(-1 * var(--size) - 10px);
-    line-height: var(--size);
-    position: absolute;
-    text-align: center;
-    top: 0;
-    transform: rotate(-10deg);
-    width: var(--size);
+    font-size: 62px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    order: 5;
+    position: relative;
+    right: 0;
   }
 }
