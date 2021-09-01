@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-29 22:31:11
+ * @Last Modified time: 2021-09-01 21:14:41
  *
  * @package rollekino
  */
@@ -399,12 +399,27 @@ function save_post_function( $data, $id ) {
       if ( file_exists( $media_file_poster_path ) ) {
         $media_file_poster_id = attachment_url_to_postid( $media_file_poster_url );
 
+        // If for some obscure reason file is found from uploads dir but not on media library
+        if ( empty( $media_file_poster_id ) ) {
+
+          // First delete the file that is not linked to media library
+          unlink( $media_file_poster_path );
+
+          // Then reupload it
+          $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+          $media_sideload_image_poster = media_sideload_image( $tmdb_poster_url, $post_id, $media_poster_description, 'id' );
+
+          // Set uploaded image as acf field image
+          update_field( 'poster', $media_sideload_image_poster, $post_id );
+        }
+
         // Set uploaded image to taxonomy image field
         update_field( 'poster', $media_file_poster_id, $post_id );
       }
 
       // Upload image if not existing
       if ( ! file_exists( $media_file_poster_path ) ) {
+
         $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
         $media_sideload_image_poster = media_sideload_image( $tmdb_poster_url, $post_id, $media_poster_description, 'id' );
 
