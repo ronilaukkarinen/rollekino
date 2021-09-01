@@ -20,7 +20,7 @@ namespace Air_Light;
         $best_movies = [];
         $best_post_type = 'movie';
         $best_args = [
-          'orderby' => 'meta_key',
+          'orderby' => 'meta_value_num',
           'meta_key' => 'rating',
           'order' => 'DESC',
           'post_type' => $best_post_type,
@@ -40,7 +40,7 @@ namespace Air_Light;
           <h2 class="block-title-secondary">Parhaat tänä vuonna julkaistut elokuvat</h2>
 
           <?php while ( $best_query->have_posts() ) :
-          $query->the_post();
+          $best_query->the_post();
 
           // Meta data
           $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );

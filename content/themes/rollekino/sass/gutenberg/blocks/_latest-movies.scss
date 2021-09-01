@@ -2,6 +2,10 @@
   @include grid(8, $gutter_x: 2rem, $gutter_y: 2rem);
 }
 
+.movie-poster-wrapper {
+  position: relative;
+}
+
 .movie-poster {
   background-clip: padding-box;
   background-image: url('https://www.rollemaa.fi/content/themes/minimalistmadness/images/posters.png');
