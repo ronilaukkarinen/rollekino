@@ -10,7 +10,11 @@ $transition-duration: .22s;
 .has-link {
   @include cubic-bezier($property: all);
   position: relative;
-  z-index: 6;
+  z-index: 12;
+
+  .global-link {
+    z-index: 18;
+  }
 }
 
 .has-link:focus .movie-poster-wrapper,
