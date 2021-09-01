@@ -6,14 +6,16 @@ $transition-duration: .22s;
   transition: $property $transition-duration cubic-bezier(.19, 1, .22, 1);
 }
 
-.movie-poster-has-link {
+.movie-poster-wrapper,
+.has-link {
   @include cubic-bezier($property: all);
   position: relative;
-  z-index: 2;
+  z-index: 6;
 }
 
-.movie-poster-has-link:hover,
-.movie-poster-has-link:focus {
+.has-link:focus .movie-poster-wrapper,
+.has-link:hover .movie-poster-wrapper,
+.has-link.movie-poster-wrapper:hover,
+.has-link.movie-poster-wrapper:focus {
   transform: scale(1.1);
-  z-index: 3;
 }

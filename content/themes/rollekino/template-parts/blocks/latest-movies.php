@@ -18,7 +18,12 @@ if ( ! empty( $query_latest->posts ) ) : ?>
   <section class="block block-movies-latest">
     <div class="container">
       <h2 class="block-title-secondary">Viimeksi katsotut elokuvat</h2>
-      <p class="read-more"><a href="#">Katso kaikki <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?></a></a>
+      <p class="read-more">
+        <a href="#">
+          Katso kaikki
+          <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
+        </a>
+      </p>
 
       <div class="movie-grid">
         <?php while ( $query_latest->have_posts() ) :
@@ -30,7 +35,7 @@ if ( ! empty( $query_latest->posts ) ) : ?>
           ?>
 
           <?php //if ( ! empty( $poster_id ) ) : ?>
-            <div class="movie-poster-wrapper movie-poster-wrapper-small movie-poster-has-link">
+            <div class="movie-poster-wrapper movie-poster-wrapper-small has-link">
               <a aria-label="Elokuvan <?php the_title(); ?> arvioon" class="global-link" href="<?php echo esc_url( get_the_permalink() ); ?>"></a>
               <div class="movie-poster">
                 <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />

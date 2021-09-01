@@ -79,7 +79,8 @@ if ( ! empty( $query->posts ) ) : ?>
             </span>
           </button>
 
-          <div class="movie-meta-data-box">
+          <div class="movie-meta-data-box has-link">
+            <a aria-label="Elokuvan <?php the_title(); ?> arvioon" class="global-link" href="<?php echo esc_url( get_the_permalink() ); ?>"></a>
             <div class="movie-poster-wrapper movie-poster-wrapper-small">
               <div class="movie-poster">
                 <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
