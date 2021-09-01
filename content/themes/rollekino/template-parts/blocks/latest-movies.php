@@ -29,15 +29,15 @@ if ( ! empty( $query_latest->posts ) ) : ?>
           $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
           ?>
 
-          <?php if ( ! empty( $poster_id ) ) : ?>
-            <div class="movie-poster-wrapper movie-poster-wrapper-small">
+          <?php //if ( ! empty( $poster_id ) ) : ?>
+            <div class="movie-poster-wrapper movie-poster-wrapper-small movie-poster-has-link">
               <a aria-label="Elokuvan <?php the_title(); ?> arvioon" class="global-link" href="<?php echo esc_url( get_the_permalink() ); ?>"></a>
               <div class="movie-poster">
                 <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
                 <div class="frame" aria-hidden="true"></div>
               </div>
             </div>
-          <?php endif; ?>
+          <?php //endif; ?>
 
         <?php endwhile; ?>
       </div>
