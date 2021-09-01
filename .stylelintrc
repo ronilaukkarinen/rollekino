@@ -89,7 +89,7 @@
     "at-rule-name-space-after": "always",
     "at-rule-name-case": "lower",
     "function-url-quotes": "always",
-    "no-descending-specificity": [true, { "severity": "warning" }],
+    "no-descending-specificity": null,
     "unit-no-unknown": true,
     "property-no-unknown": true,
     "no-duplicate-selectors": true,

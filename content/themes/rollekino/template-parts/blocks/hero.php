@@ -79,7 +79,7 @@ if ( ! empty( $query->posts ) ) : ?>
             </span>
           </button>
 
-          <div class="movie-metadata-box">
+          <div class="movie-meta-data-box">
             <div class="movie-poster-wrapper movie-poster-wrapper-small">
               <div class="movie-poster">
                 <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />

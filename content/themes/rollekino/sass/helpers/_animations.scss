@@ -6,26 +6,14 @@ $transition-duration: .22s;
   transition: $property $transition-duration cubic-bezier(.19, 1, .22, 1);
 }
 
-@keyframes floating {
-  from {
-    transform: translate(0, 0) translate3d(0, 0, 0);
-  }
-
-  65% {
-    transform: translate(0, -10px) translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate(0, -0) translate3d(0, 0, 0);
-  }
+.movie-poster-has-link {
+  @include cubic-bezier($property: all);
+  position: relative;
+  z-index: 2;
 }
 
-.movie-poster-has-link:hover .movie-poster,
-.movie-poster-has-link:focus .movie-poster {
-  animation-duration: .8s;
-  animation-iteration-count: infinite;
-  animation-name: floating;
-  animation-timing-function: ease-in-out;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, .15), 0 5px 10px rgba(0, 0, 0, .15);
-  transform: translate3d(0, 0, 0);
+.movie-poster-has-link:hover,
+.movie-poster-has-link:focus {
+  transform: scale(1.1);
+  z-index: 3;
 }

@@ -39,6 +39,7 @@ namespace Air_Light;
 
           <h2 class="block-title-secondary">Parhaat tänä vuonna julkaistut elokuvat</h2>
 
+          <ol>
           <?php while ( $best_query->have_posts() ) :
           $best_query->the_post();
 
@@ -55,24 +56,29 @@ namespace Air_Light;
           $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
           ?>
 
-          <?php if ( ! empty( $poster_id ) ) : ?>
-            <div class="movie-poster-wrapper movie-poster-wrapper-small">
-              <div class="movie-poster">
-                <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
-                <div class="frame" aria-hidden="true"></div>
+          <li>
+            <div class="movie-meta-data-box">
+              <?php if ( ! empty( $poster_id ) ) : ?>
+                <div class="movie-poster-wrapper movie-poster-wrapper-small">
+                  <div class="movie-poster">
+                    <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
+                    <div class="frame" aria-hidden="true"></div>
+                  </div>
+                </div>
+              <?php endif; ?>
+
+              <div class="movie-meta-data-content">
+                <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
+                <ul class="movie-meta-data-list">
+                  <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                  <li><?php rating_stars(); ?></li>
+                </ul>
               </div>
             </div>
-          <?php endif; ?>
-
-            <div class="movie-meta-data-content">
-              <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
-              <ul class="movie-meta-data-list">
-                <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
-                <li><?php rating_stars(); ?></li>
-              </ul>
-            </div>
+          </li>
 
           <?php endwhile; ?>
+        </ol>
         <?php endif; ?>
 
       </div>

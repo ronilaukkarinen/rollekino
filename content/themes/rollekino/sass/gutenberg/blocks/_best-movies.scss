@@ -1,5 +1,43 @@
 .block-best-movies {
+  overflow: visible;
+
+  .container {
+    overflow: visible;
+  }
+
   .cols {
     @include grid(3);
+  }
+
+  ol {
+    counter-reset: toplist-numbers;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ol > li {
+    counter-increment: toplist-numbers;
+    display: flex;
+    position: relative;
+  }
+
+  ol > li::before {
+    --size: 32px;
+    background: black;
+    border-radius: 50%;
+    box-shadow: 1px 1px 0 #999;
+    color: #fcd000;
+    content: counter(toplist-numbers);
+    font-size: 1.5rem;
+    font-weight: bold;
+    height: var(--size);
+    left: calc(-1 * var(--size) - 10px);
+    line-height: var(--size);
+    position: absolute;
+    text-align: center;
+    top: 0;
+    transform: rotate(-10deg);
+    width: var(--size);
   }
 }
