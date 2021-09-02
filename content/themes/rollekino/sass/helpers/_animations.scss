@@ -6,6 +6,8 @@ $transition-duration: .22s;
   transition: $property $transition-duration cubic-bezier(.19, 1, .22, 1);
 }
 
+.genre-link,
+.col.has-link,
 .movie-poster-wrapper,
 .has-link {
   @include cubic-bezier($property: all);
@@ -22,4 +24,19 @@ $transition-duration: .22s;
 .has-link.movie-poster-wrapper:hover,
 .has-link.movie-poster-wrapper:focus {
   transform: scale(1.1);
+  z-index: 22;
+
+  .genre-link {
+    background-color: rgba(var(--bg-r), var(--bg-g), var(--bg-b), .4);
+  }
+}
+
+.col.has-link:focus,
+.col.has-link:hover {
+  transform: scale(1.05);
+  z-index: 22;
+
+  .genre-link {
+    background-color: rgba(var(--bg-r), var(--bg-g), var(--bg-b), .4);
+  }
 }
