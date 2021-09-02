@@ -11,19 +11,21 @@ namespace Air_Light;
 
 <section class="block block-genres">
   <div class="container">
-    <div class="cols">
+    <ul class="cols">
 
       <?php
       $terms = get_terms(
         array(
           'taxonomy' => 'genre',
+          // Exclude musicals, short films, reality and news
+          'exclude' => [ 11996, 10560, 3790, 2305 ],
         )
       );
 
       if ( ! empty( $terms ) && is_array( $terms ) ) : ?>
 
         <?php foreach ( $terms as $term ) : ?>
-        <div class="col">
+        <li class="col">
 
           <?php
           $genre_backdrops = [];
@@ -31,10 +33,19 @@ namespace Air_Light;
             'orderby' => 'rand',
             'post_type' => 'movie',
             'posts_per_page' => 1,
+
+            // Featured image must exist (backdrop)
+            'meta_query' => array(
+              array(
+                'key' => '_thumbnail_id',
+              ),
+            ),
+
+            // Filter by current genre
             'tax_query' => array(
               array(
                 'taxonomy' => 'genre',
-                'terms' => $term->slug,
+                'terms' => $term->term_id,
               ),
             ),
           ];
@@ -49,13 +60,13 @@ namespace Air_Light;
               <?php endwhile; ?>
             <?php endif; ?>
 
-              <a href="<?php echo esc_url( get_term_link( $term ) ) ?>">
+              <a href="<?php echo esc_url( get_term_link( $term ) ) ?>" class="global-link genre-link">
                 <?php echo esc_html( $term->name ); ?>
               </a>
 
-          </div>
+          </li>
         <?php endforeach; ?>
       <?php endif; ?>
 
-    </div>
+    </ul>
   </section>

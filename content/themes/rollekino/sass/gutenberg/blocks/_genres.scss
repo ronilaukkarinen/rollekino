@@ -1,5 +1,43 @@
 .block-genres {
   .cols {
-    @include grid(6, $gutter_x: 2rem, $gutter_y: 2rem);
+    @include grid(4, $gutter_x: 2rem, $gutter_y: 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .col {
+    @include aspect-ratio(16, 9);
+    border-radius: 4px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+  }
+
+  .backdrop-genre {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .genre-link {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: rgba(var(--bg-r), var(--bg-g), var(--bg-b), .7);
+    background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .5) 50%, hsla(0, 0%, 100%, 0));
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #def inset;
+    color: var(--color-white);
+    display: flex;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-24);
+    justify-content: center;
   }
 }
