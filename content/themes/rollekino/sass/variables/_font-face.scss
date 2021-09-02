@@ -9,8 +9,10 @@
 @include fontFace('Graphik', '../../fonts/Graphik-Regular', 400);
 @include fontFace('Graphik', '../../fonts/Graphik-Semibold', 600);
 @include fontFace('Graphik', '../../fonts/Graphik-Bold', 700);
-@include fontFace('TiemposHeadline', '../../fonts/TiemposHeadline-Bold', 700);
-@include fontFace('NeueHaasDisplay', '../../fonts/NeueHaasDisplay-Bold', 700);
+// @include fontFace('TiemposHeadline', '../../fonts/TiemposHeadline-Bold', 700);
+// @include fontFace('NeueHaasDisplay', '../../fonts/NeueHaasDisplay-Bold', 700);
 @include fontFace('Garnett', '../../fonts/GHGuardianHeadlineSemibold', 600);
 @include fontFace('Garnett', '../../fonts/GHGuardianHeadline-Bold', 700);
-@include fontFace('BasementGrotesque', '../../fonts/BasementGrotesque-Black', 800);
+@include fontFace('BasementGrotesque', '../../fonts/BasementGrotesque-Black', 700);
+@include fontFace('AvenirNext', '../../fonts/AvenirNextW05-Bold', 700);
+@include fontFace('CeraPro', '../../fonts/CeraPro-Bold', 700);
