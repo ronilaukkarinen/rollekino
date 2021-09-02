@@ -24,7 +24,7 @@ if ( ! empty( $query->posts ) ) : ?>
 
     <div class="container">
       <div class="content">
-        <h2 class="block-title">Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h2>
+        <h1 class="block-title">Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h1>
 
         <form id="search-form" role="search" method="get" class="search-form" action="<?php echo esc_url( get_home_url() ); ?>">
 				  <label for="search" class="search-form-label">Hae elokuvaa</label>
