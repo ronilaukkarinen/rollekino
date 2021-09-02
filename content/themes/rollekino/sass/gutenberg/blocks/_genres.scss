@@ -1,0 +1,5 @@
+.block-genres {
+  .cols {
+    @include grid(6, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+}

@@ -12,7 +12,6 @@ $movies = [];
 $post_type = 'movie';
 $args = [
   'orderby' => 'rand',
-  'order' => 'DESC',
   'post_type' => $post_type,
   'posts_per_page' => 1,
 ];

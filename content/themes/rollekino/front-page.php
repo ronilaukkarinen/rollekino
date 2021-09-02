@@ -23,6 +23,7 @@ get_header();
   <?php
     include get_theme_file_path( 'template-parts/blocks/hero.php' );
     include get_theme_file_path( 'template-parts/blocks/latest-movies.php' );
+    include get_theme_file_path( 'template-parts/blocks/genres.php' );
     include get_theme_file_path( 'template-parts/blocks/best-movies.php' );
   ?>
 
