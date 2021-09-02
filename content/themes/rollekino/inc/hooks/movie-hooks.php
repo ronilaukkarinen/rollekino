@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-01 21:14:41
+ * @Last Modified time: 2021-09-02 20:33:33
  *
  * @package rollekino
  */
@@ -131,6 +131,7 @@ function save_post_function( $data, $id ) {
         '/History/',
         '/Short/',
         '/Western/',
+        '/Reality-TV/',
       );
 
       $imdb_genres_finnish = array(
@@ -158,6 +159,7 @@ function save_post_function( $data, $id ) {
         'Historia',
         'Lyhytelokuva',
         'Länkkäri',
+        'Tosi-TV',
       );
 
       // Get Finnish genres
