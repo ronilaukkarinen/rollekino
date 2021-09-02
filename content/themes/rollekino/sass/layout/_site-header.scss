@@ -54,13 +54,13 @@
   }
 
   .bloginfo-name {
-    font-family: 'Garnett', var(--font-heading);
+    font-family: 'BasementGrotesque', var(--font-heading);
     font-size: 28px;
-    font-weight: var(--font-weight-bold);
+    font-weight: 800;
   }
 
+  /* stylelint-disable-next-line */
   .bloginfo-description {
-    /* stylelint-disable-next-line */
     display: none;
     font-size: var(--font-size-12);
     opacity: .3;
