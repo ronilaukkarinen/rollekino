@@ -56,6 +56,10 @@
   width: 100%;
   z-index: 5;
 
+  .global-link {
+    z-index: 99;
+  }
+
   .movie-poster-wrapper {
     margin-right: 2rem;
   }
