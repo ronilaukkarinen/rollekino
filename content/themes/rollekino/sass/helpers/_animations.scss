@@ -23,7 +23,7 @@ $transition-duration: .22s;
 .has-link:hover .movie-poster-wrapper,
 .has-link.movie-poster-wrapper:hover,
 .has-link.movie-poster-wrapper:focus {
-  transform: scale(1.1);
+  opacity: .5;
   z-index: 22;
 
   .genre-link {
