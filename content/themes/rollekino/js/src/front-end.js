@@ -7,7 +7,7 @@ import MoveTo from 'moveto';
 import LazyLoad from 'vanilla-lazyload';
 import reframe from 'reframe.js';
 import getLocalization from './modules/localization';
-import styleExternalLinks from './modules/external-link';
+import { styleExternalLinks, getChildAltText } from './modules/external-link';
 import { setFigureWidths, setLazyLoadedFigureWidth } from './modules/gutenberg-helpers';
 import ytPlayer from "./modules/ytplayer.js";
 import 'what-input';
@@ -24,6 +24,10 @@ reframe('.wp-has-aspect-ratio iframe');
 
 // Style external links
 styleExternalLinks();
+
+// Set non-lazyloaded figures width so captions in aligned images will be same width as image
+const figures = document.querySelectorAll('figure');
+setFigureWidths(figures);
 
 // Init lazyload
 // Usage example on template side when air-helper enabled:

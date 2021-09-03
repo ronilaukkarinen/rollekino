@@ -1,0 +1,37 @@
+.site-footer {
+  /* stylelint-disable-next-line */
+  background-color: rgba(10, 12, 15, .2);
+  /* stylelint-disable-next-line */
+  border-top: 1px solid rgba(255, 255, 255, .04);
+  margin-top: 8rem;
+  text-align: center;
+
+  .container {
+    max-width: 1000px;
+    padding-bottom: 9rem;
+    padding-top: 9rem;
+    width: 80%;
+  }
+
+  h2 {
+    color: var(--color-white);
+    font-weight: 600;
+
+    span {
+      font-family: 'Playfair Display', serif;
+    }
+  }
+
+  p {
+    color: rgba(204, 206, 240, .52);
+    font-size: var(--font-size-20);
+  }
+
+  a {
+    color: rgba(255, 255, 255, .8);
+  }
+
+  a.is-external-link::after {
+    background-image: url('../../svg/external-link-white.svg');
+  }
+}

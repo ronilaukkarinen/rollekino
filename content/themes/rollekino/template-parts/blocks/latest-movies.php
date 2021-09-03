@@ -15,7 +15,7 @@ $args_latest = [
 
 $query_latest = new \WP_Query( $args_latest );
 if ( ! empty( $query_latest->posts ) ) : ?>
-  <section class="block block-movies-latest">
+  <section class="block block-movies-latest has-dark-bg">
     <div class="container">
       <h2 class="block-title-secondary">Viimeksi katsotut elokuvat</h2>
       <p class="read-more">

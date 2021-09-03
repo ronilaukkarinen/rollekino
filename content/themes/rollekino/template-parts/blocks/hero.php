@@ -19,7 +19,7 @@ $args = [
 $query = new \WP_Query( $args );
 
 if ( ! empty( $query->posts ) ) : ?>
-  <section class="block block-hero-movies">
+  <section class="block block-hero-movies has-dark-bg">
     <div class="shade" aria-hidden="true"></div>
 
     <div class="container">

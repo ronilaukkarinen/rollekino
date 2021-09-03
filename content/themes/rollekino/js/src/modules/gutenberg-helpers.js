@@ -3,11 +3,11 @@ const setFigureWidth = (figure) => {
   if (!img || typeof img !== 'object' || !('clientWidth' in img)) {
     return;
   }
-  figure.style.setProperty('--child-img-width', `${img.clientWidth}px`);
+  figure.style.setProperty('--width-child-img', `${img.clientWidth}px`);
 };
 
 const setFigureWidths = (figures) => {
-  // Gutengerg magic for alignright and alignleft images
+  // Gutenberg magic for alignright and alignleft images
   figures.forEach((figure) => {
     setFigureWidth(figure);
   });

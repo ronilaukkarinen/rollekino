@@ -9,7 +9,7 @@ namespace Air_Light;
 
 ?>
 
-<section class="block block-best-movies">
+<section class="block block-best-movies has-dark-bg">
   <div class="container">
     <div class="cols">
 

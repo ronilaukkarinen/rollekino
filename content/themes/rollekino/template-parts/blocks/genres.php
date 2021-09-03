@@ -9,7 +9,7 @@ namespace Air_Light;
 
 ?>
 
-<section class="block block-genres">
+<section class="block block-genres has-dark-bg">
   <div class="container">
     <ul class="cols">
 
