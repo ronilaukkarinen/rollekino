@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:33:49
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-03 21:12:07
+ * @Last Modified time: 2021-09-03 23:53:04
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  * @package rollekino
@@ -23,7 +23,7 @@ namespace Air_Light;
 
   <div class="container">
     <h2>Seuraa <span>&</span> keskustele</h2>
-    <p>Rollen leffaprofiilit löytyvät lähes jokaisesta netin leffapalvelusta. Saat ensimmäisenä tiedon uusista arvioista kun pistät seurantaan esimerkiksi <a href="<?php echo esc_url( bloginfo( 'rss_url' ) ); ?> ); ?>">RSS-syötteen</a> tai Twitterin <a href="https://twitter.com/search?q=from%3Arolle%20%23leffat&src=typed_query&f=live">#leffat</a> -hashtagin. Alla olevista palveluista löydät kätevästi leffasuosituksia.</p>
+    <p>Rollen leffaprofiilit löytyvät lähes jokaisesta netin leffapalvelusta. Saat ensimmäisenä tiedon uusista arvioista kun pistät seurantaan esimerkiksi <a href="<?php echo esc_url( bloginfo( 'rss2_url' ) ); ?>">RSS-syötteen</a> tai Twitterin <a href="https://twitter.com/search?q=from%3Arolle%20%23leffat&src=typed_query&f=live">#leffat</a> -hashtagin. Alla olevista palveluista löydät kätevästi leffasuosituksia.</p>
 
     <ul>
       <li class="imdb">
@@ -87,6 +87,8 @@ namespace Air_Light;
         </a>
       </li>
     </ul>
+
+    <!-- <p class="copy">Niin ja sivuston on suunnitellut ja toteuttanut <a href="https://github.com/ronilaukkarinen" class="no-external-link-indicator">Rolle</a> omin pikku kätösin. Datan tarjoilee <a class="no-external-link-indicator" href="https://developers.themoviedb.org/">TMDB</a> ja <a class="no-external-link-indicator" href="https://www.omdbapi.com/">OMDb</a>.</p> -->
   </div>
 
   <p class="back-to-top"><a href="#page" class="js-trigger top no-text-link no-external-link-indicator" data-mt-duration="300"><span class="screen-reader-text"><?php echo esc_html( get_default_localization( 'Back to top' ) ); ?></span><?php include get_theme_file_path( '/svg/chevron-up.svg' ); ?></a></p>
