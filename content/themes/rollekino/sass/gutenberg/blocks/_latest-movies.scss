@@ -1,5 +1,29 @@
 .movie-grid {
   @include grid(8, $gutter_x: 2rem, $gutter_y: 2rem);
+
+  @media (max-width: 970px) {
+    @include grid(6, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+
+  @media (max-width: 770px) {
+    @include grid(5, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+
+  @media (max-width: 650px) {
+    @include grid(4, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+
+  @media (max-width: 535px) {
+    @include grid(3, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+
+  @media (max-width: 460px) {
+    @include grid(2, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
+
+  @media (max-width: 430px) {
+    @include grid(1, $gutter_x: 2rem, $gutter_y: 2rem);
+  }
 }
 
 .movie-poster-wrapper {

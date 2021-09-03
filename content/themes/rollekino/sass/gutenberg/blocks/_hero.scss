@@ -28,6 +28,20 @@
       margin-left: auto;
       margin-right: auto;
       width: 65%;
+
+      @media (max-width: 1248px) {
+        font-size: 32px;
+        line-height: 1.55;
+      }
+
+      @media (max-width: 700px) {
+        font-size: 26px;
+      }
+
+      @media (max-width: 600px) {
+        font-size: 24px;
+        width: 85%;
+      }
     }
   }
 
@@ -39,6 +53,20 @@
     overflow: visible;
     padding-bottom: 0;
     padding-top: 0;
+  }
+
+  @media (max-width: 889px) {
+    .movie-meta-data-box .movie-poster-wrapper.movie-poster-wrapper-small {
+      height: auto;
+      max-width: 60px;
+      min-width: 60px;
+      width: 60px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    height: auto;
+    max-height: 710px;
   }
 }
 
@@ -101,6 +129,16 @@
 
   * {
     color: var(--color-white);
+  }
+
+  @media (max-width: 640px) {
+    display: block;
+
+    .movie-meta-data-box {
+      justify-content: flex-start;
+      justify-self: flex-start;
+      margin: 4rem 0 0;
+    }
   }
 }
 

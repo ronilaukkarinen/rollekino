@@ -7,6 +7,23 @@
 
   .cols {
     @include grid(3);
+
+    @media (max-width: 1100px) {
+      @include grid(2);
+
+      .col {
+        margin-bottom: 5rem;
+      }
+
+      .col:last-child {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 740px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   ol {
@@ -25,6 +42,7 @@
 
   ol > li::before {
     align-self: center;
+    /* stylelint-disable-next-line */
     color: rgba(255, 255, 255, .1);
     content: counter(toplist-numbers);
     font-size: 62px;
@@ -36,5 +54,9 @@
     order: 5;
     position: relative;
     right: 0;
+
+    @media (max-width: 1100px) {
+      font-size: 42px;
+    }
   }
 }

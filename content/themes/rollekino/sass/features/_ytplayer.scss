@@ -1,10 +1,14 @@
 .backdrop {
   .video {
-    height: calc(100% + 200px);
+    height: 100%;
     left: 0;
     position: absolute;
-    top: -200px;
     width: 100%;
+
+    @media (min-width: 1400px) {
+      height: calc(100% + 200px);
+      top: -200px;
+    }
   }
 
   .youtube-player {
@@ -14,11 +18,27 @@
   }
 
   .youtube-player iframe {
-    height: 100%;
+    height: 100vh;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
+
+    @media (max-width: 1400px) {
+      height: 200vw;
+      left: 50%;
+      min-height: 70vh;
+      min-width: 177.77vh;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+    }
+
+    @media (max-width: 800px) {
+      height: 300vw;
+      min-height: 177.77vh;
+      min-width: 377.77vh;
+    }
   }
 
   .video-preview {
