@@ -19,7 +19,7 @@ if ( ! empty( $query_latest->posts ) ) : ?>
     <div class="container">
       <h2 class="block-title-secondary">Viimeksi katsotut elokuvat</h2>
       <p class="read-more">
-        <a href="#">
+        <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
           Katso kaikki
           <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
         </a>

@@ -102,10 +102,11 @@ body {
   width: 100%;
 
   a {
-    background-color: var(--color-white);
-    border: 2px dashed var(--color-link-edit-border);
+    background-color: transparent;
+    border: 2px dashed rgba(255, 255, 255, .1);
     clear: both;
-    color: var(--color-link-edit-text);
+    /* stylelint-disable-next-line */
+    color: rgba(255, 255, 255, .2);
     display: block;
     margin: 0;
     padding: 2rem;
@@ -116,8 +117,12 @@ body {
 
   &:focus,
   a:hover {
-    background-color: var(--color-link-edit-background-hover);
-    color: var(--color-link-edit-text-hover);
+    /* stylelint-disable-next-line */
+    background-color: transparent;
+    /* stylelint-disable-next-line */
+    border: 2px solid rgba(255, 255, 255, .1);
+    /* stylelint-disable-next-line */
+    color: rgba(255, 255, 255, .4);
   }
 }
 
