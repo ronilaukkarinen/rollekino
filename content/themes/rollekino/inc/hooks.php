@@ -82,3 +82,5 @@ require get_theme_file_path( 'inc/hooks/wp-all-import-hooks.php' );
 require get_theme_file_path( 'inc/hooks/api.php' );
 add_action( 'rest_api_init', __NAMESPACE__ . '\register_movie_api_fields' );
 add_filter( 'rest_movie_query', __NAMESPACE__ . '\order_movie_query', 10, 2 );
+require get_theme_file_path( 'inc/hooks/search-api.php' );
+add_action( 'rest_api_init', __NAMESPACE__ . '\search_endpoint_init' );

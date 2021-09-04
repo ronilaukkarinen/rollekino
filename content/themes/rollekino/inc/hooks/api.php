@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-04 16:33:47
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 22:58:47
+ * @Last Modified time: 2021-09-04 23:22:42
  *
  * @package rollekino
  */
@@ -94,3 +94,4 @@ add_filter( 'rest_endpoints', function ( $routes ) {
 
   return $routes;
 });
+
