@@ -13,7 +13,7 @@ import Sidebar from './components/sidebar.vue';
 import Pagination from './components/pagination.vue';
 
 /**
- * Book archive
+ * Movies archive
  *
  * @param {Element} elem Target element
  */

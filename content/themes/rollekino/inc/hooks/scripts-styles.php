@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 16:46:26
+ * @Last Modified time: 2021-09-04 19:08:37
  *
  * @package rollekino
  */
@@ -106,7 +106,7 @@ function enqueue_polyfills() {
  * @return string file and path of the asset file
  */
 function get_asset_file( $filename ) {
-  $env = 'development' === wp_get_environment_type() && ! isset( $_GET['load_movieion_builds'] ) ? 'dev' : 'prod'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+  $env = 'development' === wp_get_environment_type() && ! isset( $_GET['load_production_builds'] ) ? 'dev' : 'prod'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
   $filetype = pathinfo( $filename )['extension'];
 
@@ -121,8 +121,7 @@ function movie_archive_scripts() {
 		return;
   }
 
-  wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ),
-  array(), filemtime( get_theme_file_uri( get_asset_file( 'movies.js' ) ) ), true );
+  wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ), array(), filemtime( get_theme_file_uri( get_asset_file( 'movies.js' ) ) ), true );
 
   $movie_filters = [
     'movieGenre' => [

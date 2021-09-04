@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-25 18:23:12
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-02 20:31:40
+ * @Last Modified time: 2021-09-04 19:20:39
  *
  * @package rollekino
  */
@@ -39,13 +39,14 @@ class Genre extends Taxonomy {
 
     $args = [
       'labels'            => $labels,
-      'public'            => true,
+      'public'            => false,
       'show_in_nav_menus' => true,
       'show_admin_column' => true,
       'hierarchical'      => true,
       'show_tagcloud'     => false,
       'show_ui'           => true,
       'query_var'         => false,
+      'show_in_rest'      => true,
       'rewrite'           => [
         'slug' => 'genre',
       ],

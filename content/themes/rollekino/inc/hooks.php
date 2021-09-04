@@ -23,6 +23,12 @@ namespace Air_Light;
 require get_theme_file_path( 'inc/hooks/general.php' );
 add_action( 'widgets_init', __NAMESPACE__ . '\widgets_init' );
 add_filter( 'air_helper_custom_settings_post_ids', __NAMESPACE__ . '\custom_settings_post_ids' );
+add_filter( 'term_link', __NAMESPACE__ . '\rewrite_term_link', 10, 3 );
+add_filter( 'air_helper_disable_views_search', '__return_false' );
+add_filter( 'air_helper_disable_views_archive', '__return_false' );
+add_action( 'save_post', __NAMESPACE__ . '\maybe_clear_transient_cache' );
+add_action( 'admin_bar_menu', __NAMESPACE__ . '\adminbar_add_cache_clear_link', 9999 );
+add_action( 'admin_init', __NAMESPACE__ . '\adminbar_maybe_clear_transient_cache' );
 
 /**
  * Scripts and styles associated hooks
@@ -73,5 +79,5 @@ require get_theme_file_path( 'inc/hooks/wp-all-import-hooks.php' );
  * REST API related
  */
 require get_theme_file_path( 'inc/hooks/api.php' );
-add_action( 'rest_api_init', __NAMESPACE__ . '\register_product_api_fields' );
-add_filter( 'rest_product_query', __NAMESPACE__ . '\order_product_query', 10, 2 );
+add_action( 'rest_api_init', __NAMESPACE__ . '\register_movie_api_fields' );
+add_filter( 'rest_movie_query', __NAMESPACE__ . '\order_movie_query', 10, 2 );
