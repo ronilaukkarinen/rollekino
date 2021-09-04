@@ -1,6 +1,6 @@
 <template>
-  <div class="container container-product-archive-grid">
-    <div class="product-archive-grid">
+  <div class="container container-movie-archive-grid">
+    <div class="movie-archive-grid">
       <button class="sidebar-toggle" :class="sidebarToggled ? 'toggled' : ''" v-on:click="sidebarToggled = !sidebarToggled">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 9" v-if="! sidebarToggled">
           <path fill="none" fill-rule="evenodd" stroke="#393939" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.5 1.5h11m-11 3h11m-11 3h11"/>
@@ -14,7 +14,7 @@
       </button>
       <sidebar v-on:updateSelected="updateSelected($event)" :filterGroups="filterGroups" :class="sidebarToggled ? 'toggled' : ''"></sidebar>
       <div class="main">
-        <div class="products" :class="productListStatus">
+        <div class="movies" :class="movieListStatus">
           <div class="top-bar">
             <div class="selected-filters" v-if="filterList.length">
               <ul>
@@ -27,7 +27,7 @@
               </ul>
             </div>
             <div class="orderby">
-              <select name="orderBy" v-model="orderBy" v-on:change="updateProducts(1)">
+              <select name="orderBy" v-model="orderBy" v-on:change="updateMovies(1)">
                 <option v-for="item in orderByOptions" :key="item" :value="item">
                   {{localization.orderBy[item]}}
                 </option>
@@ -37,19 +37,19 @@
           <div class="load-animation">
           </div>
           <div class="cols">
-            <div class="col col-product-listing-single" v-for="product in products" :key="product.id" v-html="product.meta.rendered_listing">
+            <div class="col col-movie-listing-single" v-for="movie in movies" :key="movie.id" v-html="movie.meta.rendered_listing">
             </div>
-          </div><!-- .product-list -->
+          </div><!-- .movie-list -->
 
-          <div class="product-navigation" v-if="totalPages >= 2">
+          <div class="movie-navigation" v-if="totalPages >= 2">
 
-            <pagination :currentPage="currentPage" :totalPages="totalPages" v-on:changePage="updateProducts($event)" />
+            <pagination :currentPage="currentPage" :totalPages="totalPages" v-on:changePage="updateMovies($event)" />
 
-          </div><!-- .product-navigation -->
-        </div><!-- .products -->
+          </div><!-- .movie-navigation -->
+        </div><!-- .movies -->
 
       </div><!-- .main -->
-    </div><!-- .product-archive-grid -->
+    </div><!-- .movie-archive-grid -->
   </div><!-- .container -->
 </template>
 
@@ -60,7 +60,7 @@ import LazyLoad from "vanilla-lazyload";
 
 export default {
   data: function() {
-    const productFilters = Object.values(window.rollekino_productFilters).map((filterGroup) => ({
+    const movieFilters = Object.values(window.rollekino_movieFilters).map((filterGroup) => ({
       ...filterGroup,
       filters: parseFilters(filterGroup.filters),
     }));
@@ -70,14 +70,14 @@ export default {
       orderByOptions: ['date', 'title'],
       orderBy: 'date',
       filterList: [],
-      products: window.rollekino_defaultProducts ? window.rollekino_defaultProducts : [],
-      totalProducts: window.rollekino_productCount ? window.rollekino_productCount : 0,
-      totalPages: window.rollekino_productPages ? parseInt( window.rollekino_productPages ) : 0,
+      movies: window.rollekino_defaultMovies ? window.rollekino_defaultMovies : [],
+      totalMovies: window.rollekino_movieCount ? window.rollekino_movieCount : 0,
+      totalPages: window.rollekino_moviePages ? parseInt( window.rollekino_moviePages ) : 0,
       perPage: 24,
       currentPage: 1,
-      productListStatus: 'visible',
-      localization: window.rollekino_productLocalization,
-      filterGroups: productFilters,
+      movieListStatus: 'visible',
+      localization: window.rollekino_movieLocalization,
+      filterGroups: movieFilters,
       lazyLoad: new LazyLoad(),
 
     };
@@ -105,7 +105,7 @@ export default {
         index: this.filterGroups[filterGroups[filterGroupKey]].filters.findIndex(filter => filter.id === id),
       };
     },
-    // Update selected products in filter groups
+    // Update selected movies in filter groups
     updateSelected(event) {
       // Find the filter that was toggled
       const currentFilter = this.findFilter(event.filter, event.id);
@@ -113,7 +113,7 @@ export default {
       // Update filter value according to event
       this.filterGroups[currentFilter.group].filters[currentFilter.index].selected = event.value;
 
-      // Update filters and products
+      // Update filters and movies
       this.updateFilterList();
       this.loadPage(1);
     },
@@ -131,13 +131,13 @@ export default {
         clearTimeout(this.timeout);
       }
       this.timeout = setTimeout(() => {
-        this.updateProducts(page);
+        this.updateMovies(page);
       }, 1250);
     },
-    updateProducts(page) {
+    updateMovies(page) {
       this.currentPage = parseInt(page);
 
-      this.productListStatus = 'loading';
+      this.movieListStatus = 'loading';
 
       const move = new MoveTo({
         tolerance: 200,
@@ -160,18 +160,18 @@ export default {
         queryString = queryString.concat(`&${groupKey}=${groupValues.join(',')}`);
       }
 
-      // Get products
+      // Get movies
       api
-      .get(`/wp-json/wp/v2/product/${queryString}`)
+      .get(`/wp-json/wp/v2/movie/${queryString}`)
       .then(response => {
-        // Save products
-        this.products = response.data;
+        // Save movies
+        this.movies = response.data;
 
         // Get query info from headers
-        this.totalProducts = parseInt(response.headers['x-wp-total'], 10);
+        this.totalMovies = parseInt(response.headers['x-wp-total'], 10);
         this.totalPages = parseInt(response.headers['x-wp-totalpages'], 10);
 
-        this.productListLoaded();
+        this.movieListLoaded();
         this.saveSession({
           query: response.data,
           queryString: queryString,
@@ -179,7 +179,7 @@ export default {
           perPage: this.perPage,
           currentPage: this.currentPage,
           totalPages: this.totalPages,
-          totalProducts: this.totalProducts,
+          totalMovies: this.totalMovies,
         });
 
 
@@ -188,11 +188,11 @@ export default {
         console.log(error);
       });
     },
-    productListLoaded() {
+    movieListLoaded() {
       // Let it animate
-      this.productListStatus = 'loaded';
+      this.movieListStatus = 'loaded';
       setTimeout(() => {
-        this.productListStatus= 'visible';
+        this.movieListStatus= 'visible';
       }, 1000);
     },
     // Save query to history state and url
@@ -205,13 +205,13 @@ export default {
       if (history.state) {
         // Load session from history
 
-        this.products = 'query' in history.state ? history.state.query : [];
+        this.movies = 'query' in history.state ? history.state.query : [];
         this.filterGroups = 'filters' in history.state ? history.state.filters : this.filterGroups;
 
         this.orderBy = 'orderBy' in history.state ? history.state.orderBy : this.orderBy;
         this.currentPage = 'currentPage' in history.state ? parseInt(history.state.currentPage) : this.currentPage;
         this.perPage = 'perPage' in history.state ? parseInt(history.state.perPage) : this.perPage;
-        this.totalProducts = 'totalProducts' in history.state ? parseInt(history.state.totalProducts) : 0;
+        this.totalMovies = 'totalMovies' in history.state ? parseInt(history.state.totalMovies) : 0;
         this.totalPages = 'totalPages' in history.state ? parseInt(history.state.totalPages) : 0;
 
         this.updateFilterList();
@@ -242,9 +242,9 @@ export default {
         this.currentPage = 'page' in params ? parseInt(params.page) : this.currentPage;
         this.perPage = 'per_page' in params ? parseInt(params.per_page) : this.perPage;
 
-        // Update filters and products
+        // Update filters and movies
         this.updateFilterList();
-        this.updateProducts(this.currentPage);
+        this.updateMovies(this.currentPage);
       }
 
     },

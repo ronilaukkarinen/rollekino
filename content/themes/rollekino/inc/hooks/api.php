@@ -1,0 +1,67 @@
+<?php
+/**
+ * @Author: Roni Laukkarinen
+ * @Date: 2021-08-04 16:33:47
+ * @Last Modified by:   Roni Laukkarinen
+ * @Last Modified time: 2021-09-04 16:38:19
+ *
+ * @package rollekino
+ */
+
+namespace Air_Light;
+
+/**
+ * Register API fields for movies
+ */
+function register_movie_api_fields() {
+  register_rest_field(
+    'movie',
+    'meta',
+    [
+     'get_callback' => __NAMESPACE__ . '\get_movie_additional_fields',
+     'schema'       => null,
+    ]
+  );
+}
+
+/**
+ * Get movie fields
+ */
+function get_movie_additional_fields( $movie ) {
+  // Load single listing template for returning
+  ob_start();
+  get_template_part( 'template-parts/movie/movie-listing-single', '', [ 'post_id' => $movie['id'] ] );
+  $rendered_listing = ob_get_clean();
+  return [
+    'rendered_listing' => $rendered_listing,
+  ];
+}
+
+/**
+ * Order movies by release date or title
+ */
+function order_movie_query( $query_vars, $request ) {
+  $orderby = $request->get_param( 'orderby' );
+
+  if ( ! isset( $orderby ) ) {
+    return $query_vars;
+  }
+
+  if ( 'date' === $orderby ) {
+    /**
+     * Use menu order first.
+     * This if for next calls to paginate correctly,
+     * because otherwise those don't take featured category
+     * into consideration and order goes different.
+     */
+    $query_vars['orderby']   = 'date';
+    $query_vars['order']   = 'DESC';
+  }
+
+  if ( 'title' === $orderby ) {
+    $query_vars['orderby'] = 'title';
+    $query_vars['order']   = 'ASC';
+  }
+
+  return $query_vars;
+} // end order_movie_query

@@ -27,7 +27,7 @@ export default {
   props: ['totalPages', 'currentPage'],
   data: function() {
     return {
-      texts: window.rollekino_productLocalization,
+      texts: window.rollekino_movieLocalization,
       pages: [],
     }
   },

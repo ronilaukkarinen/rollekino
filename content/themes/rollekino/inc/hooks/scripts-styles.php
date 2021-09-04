@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 14:00:52
+ * @Last Modified time: 2021-09-04 16:35:29
  *
  * @package rollekino
  */
@@ -66,6 +66,8 @@ function enqueue_theme_scripts() {
       'airdev.test',
       'airwptheme.com',
   ] );
+
+  wp_localize_script( 'scripts', 'rollekino_apiURL', esc_url( get_home_url() ) );
 } // end rollekino_scripts
 
 /**
@@ -119,31 +121,32 @@ function movie_archive_scripts() {
 		return;
   }
 
-  wp_register_script( 'movies', get_theme_file_uri( 'js/dist/movies.js' ), array(), filemtime( get_theme_file_path( 'js/dist/movies.js' ) ), true );
+  wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ),
+  array(), filemtime( get_theme_file_uri( get_asset_file( 'movies.js' ) ) ), true );
 
   $movie_filters = [
-    'movieCategory' => [
-      'taxonomy' => 'movie-category',
+    'movieGenre' => [
+      'taxonomy' => 'genre',
       'args' => [],
-      'title' => '',
+      'title' => 'Genre',
       'type' => 'checkbox',
     ],
-    'movieGroup'           => [
-      'taxonomy' => 'movie-group',
+    'movieActor' => [
+      'taxonomy' => 'actor',
       'args' => [],
-      'title' => 'Tuoteryhmät',
+      'title' => 'Näyttelijät',
       'type' => 'checkbox',
     ],
-    'usage'           => [
-      'taxonomy' => 'usage',
+    'movieDirector' => [
+      'taxonomy' => 'director',
       'args' => [],
-      'title' => 'Käyttökohteet',
+      'title' => 'Ohjaajat',
       'type' => 'checkbox',
     ],
-    'manufactorer'           => [
-      'taxonomy' => 'manufactorer',
+    'movieWriter' => [
+      'taxonomy' => 'writer',
       'args' => [],
-      'title' => 'Valmistaja',
+      'title' => 'Käsikirjoittajat',
       'type' => 'checkbox',
     ],
   ];
@@ -164,26 +167,26 @@ function movie_archive_scripts() {
 
   wp_localize_script( 'movies', 'rollekino_movieLocalization', [
     'pagination' => [
-      'selectPage'   => 'Tuotearkisto: Avaa sivu',
-      'nextPage'     => 'Tuotearkisto: Seuraava sivu',
-      'previousPage' => 'Tuotearkisto: Edellinen sivu',
+      'selectPage'   => 'Avaa sivu',
+      'nextPage'     => 'Seuraava sivu',
+      'previousPage' => 'Edellinen sivu',
     ],
     'filters' => [
-      'remove' => 'Tuotearkisto: Poista valinta',
+      'remove' => 'Poista valinta',
     ],
     'orderBy' => [
-      'default' => 'Tuotearkisto: Oletus',
-      'date'    => 'Tuotearkisto: Uusin ensin',
-      'title'   => 'Tuotearkisto: Aakkosjärjestys',
+      'default' => 'Oletus',
+      'date'    => 'Uusin ensin',
+      'title'   => 'Aakkosjärjestys',
     ],
     'movieList' => [
-      'inTotal' => 'Tuotearkisto: Yhteensä',
-      'movies'   => 'Tuotearkisto: tuotetta',
-      'movie'    => 'Tuotearkisto: tuote',
+      'inTotal' => 'Yhteensä',
+      'movies'   => 'tuotetta',
+      'movie'    => 'tuote',
     ],
     'moviesPerPage'  => [
-      'label'   => 'Tuotearkisto: Näytä sivulla',
-      'prepend' => 'Tuotearkisto: tuotetta',
+      'label'   => 'Näytä sivulla',
+      'prepend' => 'tuotetta',
     ],
   ] );
 

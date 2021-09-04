@@ -30,6 +30,7 @@ add_filter( 'air_helper_custom_settings_post_ids', __NAMESPACE__ . '\custom_sett
 require get_theme_file_path( 'inc/hooks/scripts-styles.php' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_polyfills' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_theme_scripts' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\movie_archive_scripts' );
 
 // NB! If you use ajax functionality in Gravity Forms, remove this line
 // to prevent Uncaught ReferenceError: jQuery is not defined
@@ -67,3 +68,10 @@ require get_theme_file_path( 'inc/hooks/movie-hooks.php' );
  * WP All Import related hooks
  */
 require get_theme_file_path( 'inc/hooks/wp-all-import-hooks.php' );
+
+/**
+ * REST API related
+ */
+require get_theme_file_path( 'inc/hooks/api.php' );
+add_action( 'rest_api_init', __NAMESPACE__ . '\register_product_api_fields' );
+add_filter( 'rest_product_query', __NAMESPACE__ . '\order_product_query', 10, 2 );

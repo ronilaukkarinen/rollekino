@@ -46,12 +46,13 @@
     "stylelint-value-no-unknown-custom-properties": "^3.0.0",
     "terser-webpack-plugin": "^4.2.3",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.2.6",
-    "webpack-stream": "^6.1.2",
     "vue-loader": "^15.9.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.2.6",
+    "webpack-stream": "^6.1.2"
   },
   "dependencies": {
+    "axios": "^0.21.2",
     "airbnb-browser-shims": "^3.3.0",
     "npx": "^10.2.2",
     "vue": "^2.6.11"
