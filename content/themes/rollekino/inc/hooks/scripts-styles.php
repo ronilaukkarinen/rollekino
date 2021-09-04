@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 23:32:41
+ * @Last Modified time: 2021-09-04 23:47:25
  *
  * @package rollekino
  */
@@ -173,7 +173,7 @@ function movie_archive_scripts() {
     ],
     'orderBy' => [
       'default' => 'Oletus',
-      'date'    => 'Uusin ensin',
+      'date'    => 'Viimeksi katsottu ensin',
       'meta_value_num' => 'Pisteytys',
       'title'   => 'Aakkosjärjestys',
     ],

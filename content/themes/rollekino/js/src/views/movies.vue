@@ -137,9 +137,9 @@ export default {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
-      this.timeout = setTimeout(() => {
+      // this.timeout = setTimeout(() => {
         this.updateMovies(page);
-      }, 1250);
+      // }, 1250);
     },
     updateMovies(page) {
       this.currentPage = parseInt(page);
@@ -189,7 +189,6 @@ export default {
           totalMovies: this.totalMovies,
         });
 
-
       })
       .catch(error => {
         console.log(error);
@@ -200,7 +199,7 @@ export default {
       this.movieListStatus = 'loaded';
       setTimeout(() => {
         this.movieListStatus= 'visible';
-      }, 1000);
+      }, 500);
     },
     // Save query to history state and url
     saveSession(session) {
