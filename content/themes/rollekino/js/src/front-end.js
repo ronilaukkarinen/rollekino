@@ -151,32 +151,37 @@ players.forEach((player) => {
 
 // Dynamic form label
 var textfield = document.getElementById('search');
-textfield.addEventListener('input', function () {
 
-  if ( this.value == "" ) {
-    this.parentNode.classList.remove('filled');
-    this.parentNode.classList.remove('focused');
-  } else {
-    this.parentNode.classList.add('filled');
-  }
+if ( textfield ) {
+  textfield.addEventListener('input', function () {
 
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-
-  // Dynamic form label
-  textfield.addEventListener('focus', function() {
-    this.parentNode.classList.add('focused');
-  });
-
-  textfield.addEventListener('blur', function() {
     if ( this.value == "" ) {
       this.parentNode.classList.remove('filled');
       this.parentNode.classList.remove('focused');
     } else {
       this.parentNode.classList.add('filled');
     }
-  })
+
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  if ( textfield ) {
+    // Dynamic form label
+    textfield.addEventListener('focus', function() {
+      this.parentNode.classList.add('focused');
+    });
+
+    textfield.addEventListener('blur', function() {
+      if ( this.value == "" ) {
+        this.parentNode.classList.remove('filled');
+        this.parentNode.classList.remove('focused');
+      } else {
+        this.parentNode.classList.add('filled');
+      }
+    })
+  }
 
   function RemoveClass(elem, newClass) {
       elem.className = elem.className.replace(/(?:^|\s)newClass(?!\S)/g, '')

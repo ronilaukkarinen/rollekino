@@ -1,4 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   optimization: {
@@ -50,6 +51,20 @@ module.exports = {
           ]
         }
       }]
-    }]
-  }
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    },
+  ]
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    }
+  },
+  plugins: [
+    // make sure to include the plugin!
+    new VueLoaderPlugin()
+  ],
 };

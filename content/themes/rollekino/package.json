@@ -47,7 +47,9 @@
     "terser-webpack-plugin": "^4.2.3",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.46.0",
-    "webpack-stream": "^6.1.2"
+    "webpack-stream": "^6.1.2",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
     "airbnb-browser-shims": "^3.3.0",
@@ -57,6 +59,7 @@
     "sanitize.css": "git+https://github.com/csstools/sanitize.css.git",
     "slick-carousel": "^1.8.1",
     "vanilla-lazyload": "^17.3",
-    "what-input": "^5.2.10"
+    "what-input": "^5.2.10",
+    "vue": "^2.6.11"
   }
 }

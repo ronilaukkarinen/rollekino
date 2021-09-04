@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-05-04 11:12:29
+ * @Last Modified time: 2021-09-04 14:00:52
  *
  * @package rollekino
  */
@@ -104,9 +104,88 @@ function enqueue_polyfills() {
  * @return string file and path of the asset file
  */
 function get_asset_file( $filename ) {
-  $env = 'development' === wp_get_environment_type() && ! isset( $_GET['load_production_builds'] ) ? 'dev' : 'prod'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+  $env = 'development' === wp_get_environment_type() && ! isset( $_GET['load_movieion_builds'] ) ? 'dev' : 'prod'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
   $filetype = pathinfo( $filename )['extension'];
 
   return "${filetype}/${env}/${filename}";
 } // end get_asset_file
+
+/**
+ * Localize data to movies archive
+ */
+function movie_archive_scripts() {
+  if ( ! is_post_type_archive( 'movie' ) ) {
+		return;
+  }
+
+  wp_register_script( 'movies', get_theme_file_uri( 'js/dist/movies.js' ), array(), filemtime( get_theme_file_path( 'js/dist/movies.js' ) ), true );
+
+  $movie_filters = [
+    'movieCategory' => [
+      'taxonomy' => 'movie-category',
+      'args' => [],
+      'title' => '',
+      'type' => 'checkbox',
+    ],
+    'movieGroup'           => [
+      'taxonomy' => 'movie-group',
+      'args' => [],
+      'title' => 'Tuoteryhmät',
+      'type' => 'checkbox',
+    ],
+    'usage'           => [
+      'taxonomy' => 'usage',
+      'args' => [],
+      'title' => 'Käyttökohteet',
+      'type' => 'checkbox',
+    ],
+    'manufactorer'           => [
+      'taxonomy' => 'manufactorer',
+      'args' => [],
+      'title' => 'Valmistaja',
+      'type' => 'checkbox',
+    ],
+  ];
+
+  foreach ( $movie_filters as $object_name => $taxonomy ) {
+    $movie_filters[ $object_name ]['filters'] = get_movie_filter( $object_name, $taxonomy['taxonomy'], $taxonomy['args'] );
+    $taxonomy = get_taxonomy( $taxonomy['taxonomy'] );
+    $movie_filters[ $object_name ]['name'] = $taxonomy->rewrite['slug'] ? $taxonomy->rewrite['slug'] : $taxonomy->name;
+  }
+
+  wp_localize_script( 'movies', 'rollekino_movieFilters', $movie_filters );
+
+  $default_content = get_initial_movies();
+
+  wp_localize_script( 'scripts', 'rollekino_defaultMovies', $default_content['movies'] ? $default_content['movies'] : [] );
+  wp_localize_script( 'scripts', 'rollekino_moviePages', $default_content['pages'] ? (string) $default_content['pages'] : '0' );
+  wp_localize_script( 'scripts', 'rollekino_movieCount', $default_content['count'] ? (string) $default_content['count'] : '0' );
+
+  wp_localize_script( 'movies', 'rollekino_movieLocalization', [
+    'pagination' => [
+      'selectPage'   => 'Tuotearkisto: Avaa sivu',
+      'nextPage'     => 'Tuotearkisto: Seuraava sivu',
+      'previousPage' => 'Tuotearkisto: Edellinen sivu',
+    ],
+    'filters' => [
+      'remove' => 'Tuotearkisto: Poista valinta',
+    ],
+    'orderBy' => [
+      'default' => 'Tuotearkisto: Oletus',
+      'date'    => 'Tuotearkisto: Uusin ensin',
+      'title'   => 'Tuotearkisto: Aakkosjärjestys',
+    ],
+    'movieList' => [
+      'inTotal' => 'Tuotearkisto: Yhteensä',
+      'movies'   => 'Tuotearkisto: tuotetta',
+      'movie'    => 'Tuotearkisto: tuote',
+    ],
+    'moviesPerPage'  => [
+      'label'   => 'Tuotearkisto: Näytä sivulla',
+      'prepend' => 'Tuotearkisto: tuotetta',
+    ],
+  ] );
+
+  wp_enqueue_script( 'movies' );
+}
