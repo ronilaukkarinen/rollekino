@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 16:35:29
+ * @Last Modified time: 2021-09-04 16:46:26
  *
  * @package rollekino
  */
@@ -129,24 +129,6 @@ function movie_archive_scripts() {
       'taxonomy' => 'genre',
       'args' => [],
       'title' => 'Genre',
-      'type' => 'checkbox',
-    ],
-    'movieActor' => [
-      'taxonomy' => 'actor',
-      'args' => [],
-      'title' => 'Näyttelijät',
-      'type' => 'checkbox',
-    ],
-    'movieDirector' => [
-      'taxonomy' => 'director',
-      'args' => [],
-      'title' => 'Ohjaajat',
-      'type' => 'checkbox',
-    ],
-    'movieWriter' => [
-      'taxonomy' => 'writer',
-      'args' => [],
-      'title' => 'Käsikirjoittajat',
       'type' => 'checkbox',
     ],
   ];
