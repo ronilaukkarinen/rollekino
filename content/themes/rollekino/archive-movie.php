@@ -15,9 +15,9 @@ get_header(); ?>
     <section class="block block-movie-archive has-dark-bg">
       <div class="container">
         <div id="movies-listing"></div>
-      </div><!-- .container -->
-    </section><!-- .block-products -->
-	</main><!-- #main -->
-</div><!-- #primary -->
+      </div>
+    </section>
+	</main>
+</div>
 
 <?php get_footer();
