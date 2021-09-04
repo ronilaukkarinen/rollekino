@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-04 16:33:47
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 16:38:19
+ * @Last Modified time: 2021-09-04 22:58:47
  *
  * @package rollekino
  */
@@ -63,5 +63,34 @@ function order_movie_query( $query_vars, $request ) {
     $query_vars['order']   = 'ASC';
   }
 
+  if ( 'meta_value_num' === $orderby ) {
+    $query_vars['orderby'] = 'meta_value_num';
+    $query_vars['order']   = 'DESC';
+    $query_vars['meta_key'] = 'rating';
+  }
+
   return $query_vars;
 } // end order_movie_query
+
+// Add sort by meta_value_num to WP REST API
+add_filter( 'rest_endpoints', function ( $routes ) {
+  // Modifying multiple types here, you won't need the loop if you're just doing posts
+  foreach ( [ 'movie' ] as $type ) {
+    if ( ! ( $route =& $routes[ '/wp/v2/' . $type ] ) ) { // phpcs:ignore
+        continue;
+    }
+
+    // Allow ordering by my meta value
+    $route[0]['args']['orderby']['enum'][] = 'meta_value_num';
+
+    // Allow only the meta keys that I want
+    // $route[0]['args']['meta_key'] = array(
+    //   'description'       => 'The meta key to query.',
+    //   // 'type'              => 'string',
+    //   'enum'              => [ 'rating' ],
+    //   'validate_callback' => 'rest_validate_request_arg',
+    // );
+  }
+
+  return $routes;
+});

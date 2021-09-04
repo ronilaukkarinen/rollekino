@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 19:08:37
+ * @Last Modified time: 2021-09-04 22:57:25
  *
  * @package rollekino
  */
@@ -158,16 +158,17 @@ function movie_archive_scripts() {
     'orderBy' => [
       'default' => 'Oletus',
       'date'    => 'Uusin ensin',
+      'meta_value_num' => 'Pisteytys',
       'title'   => 'Aakkosjärjestys',
     ],
     'movieList' => [
       'inTotal' => 'Yhteensä',
-      'movies'   => 'tuotetta',
-      'movie'    => 'tuote',
+      'movies'   => 'elokuvaa',
+      'movie'    => 'elokuva',
     ],
     'moviesPerPage'  => [
       'label'   => 'Näytä sivulla',
-      'prepend' => 'tuotetta',
+      'prepend' => 'elokuvaa',
     ],
   ] );
 

@@ -37,6 +37,7 @@ require get_theme_file_path( 'inc/hooks/scripts-styles.php' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_polyfills' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_theme_scripts' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\movie_archive_scripts' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\localize_search' );
 
 // NB! If you use ajax functionality in Gravity Forms, remove this line
 // to prevent Uncaught ReferenceError: jQuery is not defined

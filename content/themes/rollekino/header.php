@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:17:32
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-02-25 13:47:40
+ * @Last Modified time: 2021-09-04 22:49:51
  *
  * @package rollekino
  */
@@ -27,6 +27,15 @@ namespace Air_Light;
   <?php wp_head(); ?>
 </head>
 
+<div hidden>
+  <?php /* The SVG sprite for using the load animation in Vue app */ ?>
+    <svg>
+      <symbol id="load-animation">
+        Ladataan.
+      </symbol>
+    </svg>
+</div>
+
 <body <?php body_class( 'no-js' ); ?>>
   <a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( get_default_localization( 'Skip to content' ) ); ?></a>
 
@@ -43,3 +52,5 @@ namespace Air_Light;
     </div><!-- .nav-container -->
 
     <div class="site-content">
+
+    <div id="search"></div>

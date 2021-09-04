@@ -2,13 +2,20 @@
 /**
  * @Author: Timi Wahalahti
  * @Date:   2019-12-03 11:03:31
- * @Last Modified by:   Timi Wahalahti
- * @Last Modified time: 2021-05-11 14:40:19
+ * @Last Modified by:   Roni Laukkarinen
+ * @Last Modified time: 2021-09-04 22:38:29
  *
  * @package rollekino
  */
 
 namespace Air_Light;
+
+function localize_search() {
+  wp_localize_script( 'scripts', 'rollekino_searchLocalization', [
+    'noResults' => 'Ei hakutuloksia',
+    'instructions' => 'Voit hakea elokuvia nimen, ohjaajan, genren tai minkä tahansah akusanan kuten "pelottava" perusteella. Haku hakee niin nimestä, tiedoista kuin arvionkin tekstistä.',
+  ] );
+}
 
 add_filter( 'air_helper_pll_register_strings', function() {
   $strings = [

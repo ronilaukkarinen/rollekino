@@ -74,7 +74,7 @@ export default {
 
     return {
       sidebarToggled: false,
-      orderByOptions: ['date', 'title'],
+      orderByOptions: ['date', 'title', 'meta_value_num'],
       orderBy: 'date',
       filterList: [],
       movies: window.rollekino_defaultMovies ? window.rollekino_defaultMovies : [],

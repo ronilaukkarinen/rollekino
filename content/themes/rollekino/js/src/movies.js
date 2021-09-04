@@ -5,12 +5,31 @@ import Vue from 'vue';
 
 // Import views
 import Movies from './views/movies.vue';
+import Search from './views/search.vue';
 
 // Import components
 import Checkbox from './components/checkbox.vue';
 import FilterGroup from './components/filter-group.vue';
 import Sidebar from './components/sidebar.vue';
 import Pagination from './components/pagination.vue';
+
+/**
+ * Site search
+ *
+ * @param {Element} elem Target element
+ */
+const search = (elem) => {
+  Vue.component('search', Search);
+
+  // eslint-disable-next-line no-shadow
+  const search = new Vue({
+    render: (h) => h(Search),
+  }).$mount(elem);
+
+  return search;
+};
+
+export default { search };
 
 /**
  * Movies archive

@@ -150,7 +150,7 @@ players.forEach((player) => {
 })(jQuery);
 
 // Dynamic form label
-var textfield = document.getElementById('search');
+var textfield = document.getElementById('search-field');
 
 if ( textfield ) {
   textfield.addEventListener('input', function () {
