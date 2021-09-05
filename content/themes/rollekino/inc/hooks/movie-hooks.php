@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-05 21:42:32
+ * @Last Modified time: 2021-09-05 22:47:47
  *
  * @package rollekino
  */
@@ -252,6 +252,7 @@ function save_post_function( $data, $id ) {
       $cast_array = $result_cast['cast'];
       $crew_array = $result_cast['crew'];
 
+      if ( ! empty( $cast_array ) || ! empty( $crew_array ) ) {
       // Cast image URL base
       // @link https://developers.themoviedb.org/3/getting-started/images
       $cast_image_url_base = 'https://image.tmdb.org/t/p/w400/';
@@ -391,6 +392,7 @@ function save_post_function( $data, $id ) {
           update_field( 'avatar', $media_file_actor_profile_photo_id, 'actor_' . $actor_taxonomy_id );
         }
       }
+    } // Cast and crew ends
 
       // Construct poster URL
       $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
@@ -437,6 +439,20 @@ function save_post_function( $data, $id ) {
       // Get backdrop ID from media library based on URL
       if ( file_exists( $media_file_backdrop_path ) ) {
         $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+      }
+
+      // If for some obscure reason file is found from uploads dir but not on media library
+      if ( empty( $media_file_backdrop_id ) ) {
+
+        // First delete the file that is not linked to media library
+        unlink( $media_file_backdrop_path );
+
+        // Then reupload it
+        $media_backdrop_description = 'Tausta elokuvalle ' . $imdb_title;
+        $media_sideload_image_backdrop = media_sideload_image( $tmdb_backdrop_url, $post_id, $media_backdrop_description, 'id' );
+
+        // Set uploaded image as acf field image
+        set_post_thumbnail( $post_id, $media_sideload_image_backdrop );
       }
 
       // Upload image if not existing
