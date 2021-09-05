@@ -65,6 +65,10 @@ body::before {
       cursor: text;
       outline: 0;
     }
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
 
   .search-submit {
@@ -108,5 +112,9 @@ body::before {
 
   &.filled .search-form-field {
     width: 400px;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
   }
 }

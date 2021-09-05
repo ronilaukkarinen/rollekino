@@ -7,13 +7,17 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:17:32
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 23:37:50
+ * @Last Modified time: 2021-09-05 21:16:56
  *
  * @package rollekino
  */
 
 namespace Air_Light;
 
+$body_class = array( 'no-js' );
+if ( is_search() ) {
+  $body_class[] = 'is-search-on hide-containers';
+}
 ?>
 
 <!doctype html>
@@ -27,7 +31,7 @@ namespace Air_Light;
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class( 'no-js' ); ?>>
+<body <?php body_class( $body_class ); ?>>
   <a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( get_default_localization( 'Skip to content' ) ); ?></a>
 
   <?php wp_body_open(); ?>

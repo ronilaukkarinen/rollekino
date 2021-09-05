@@ -15,7 +15,7 @@
               <div class="loader__filmstrip">
               </div>
               <p class="loader__text">
-                  ladataan
+                ladataan
               </p>
           </div>
         </div>
