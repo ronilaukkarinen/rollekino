@@ -3,13 +3,13 @@
     <div class="movie-archive-grid">
       <button class="sidebar-toggle" :class="sidebarToggled ? 'toggled' : ''" v-on:click="sidebarToggled = !sidebarToggled">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 9" v-if="! sidebarToggled">
-          <path fill="none" fill-rule="evenodd" stroke="#393939" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.5 1.5h11m-11 3h11m-11 3h11"/>
+          <path fill="none" fill-rule="evenodd" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.5 1.5h11m-11 3h11m-11 3h11"/>
         </svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" v-else>
-          <path fill="none" fill-rule="evenodd" stroke="#393939" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l20 20m0-20L1 21"/>
+          <path fill="none" fill-rule="evenodd" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1l20 20m0-20L1 21"/>
         </svg>
 
-        <span v-if="! sidebarToggled">Suodata tuotteita</span>
+        <span v-if="! sidebarToggled">Suodata leffoja</span>
         <span v-else>Sulje</span>
       </button>
       <sidebar v-on:updateSelected="updateSelected($event)" :filterGroups="filterGroups" :class="sidebarToggled ? 'toggled' : ''"></sidebar>
