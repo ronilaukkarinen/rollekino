@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 23:47:25
+ * @Last Modified time: 2021-09-05 12:27:54
  *
  * @package rollekino
  */
@@ -54,10 +54,9 @@ function enqueue_theme_scripts() {
 
   wp_localize_script( 'search', 'rollekino_searchLocalization', [
     'apiUrl'        => get_rest_url(),
-    'blockTitle'    => 'Hae sivustolta',
     'inputLabel'    => 'Hae',
     'noResults'     => 'Ei hakutuloksia',
-    'instructions'  => 'Voit hakea elokuvia nimen, ohjaajan, genren tai minkä tahansah akusanan kuten "pelottava" perusteella. Haku hakee niin nimestä, tiedoista kuin arvionkin tekstistä.',
+    'instructions'  => 'Voit hakea elokuvia nimen, ohjaajan, genren tai minkä tahansa hakusanan kuten "pelottava" perusteella. Haku hakee niin nimestä, tiedoista kuin arvionkin tekstistä.',
   ] );
 
   // Required comment-reply script

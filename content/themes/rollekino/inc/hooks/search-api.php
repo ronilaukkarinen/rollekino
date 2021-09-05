@@ -3,7 +3,7 @@
  * @Author: Timi Wahalahti
  * @Date:   2021-06-11 13:17:44
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 23:36:44
+ * @Last Modified time: 2021-09-05 12:29:45
  * @package rollekino
  */
 
@@ -46,18 +46,32 @@ function search_endpoint_callback( $request ) {
       'posts_status'           => 'publish',
       'has_password'           => false,
       'no_found_rows'          => true,
-      'cache_results'          => true,
+      'cache_results'          => false,
       'update_post_term_cache' => false,
       'posts_per_page'         => 999, // phpcs:ignore
     ],
   );
 
   $queries = [
+    'movie' => [
+      'type'  => 'WP_Query',
+      'title' => 'Leffat',
+      'args'  => [
+        'post_type' => [ 'movie' ],
+      ],
+    ],
+    'page' => [
+      'type'  => 'WP_Query',
+      'title' => 'Sivut',
+      'args'  => [
+        'post_type' => [ 'page' ],
+      ],
+    ],
     'post' => [
       'type'  => 'WP_Query',
-      'title' => 'Sisältö',
+      'title' => 'Artikkelit',
       'args'  => [
-        'post_type' => [ 'post', 'page', 'movie' ],
+        'post_type' => [ 'post' ],
       ],
     ],
   ];
@@ -82,8 +96,12 @@ function search_endpoint_callback( $request ) {
         ob_start();
         if ( 'movie' === $key ) {
           include get_template_part( 'template-parts/movie/movie-listing-single', '', [ 'post_id' => $item->ID ] );
+        } elseif ( 'post' === $key ) {
+          include get_template_part( 'template-parts/loops-post', '', [ 'post_id' => $item->ID ] );
+        } elseif ( 'åage' === $key ) {
+          include get_template_part( 'template-parts/loops-post', '', [ 'post_id' => $item->ID ] );
         } else {
-          include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
+          include get_template_part( 'template-parts/loops-post', '', [ 'post_id' => $item->ID ] );
         }
 
         $html = ob_get_clean();
@@ -91,7 +109,6 @@ function search_endpoint_callback( $request ) {
           'id'    => $item->ID,
           'html'  => $html,
         ];
-        // continue;
 
         // Remove some un-necssary data
         unset( $item->post_content );

@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 19:04:11
+ * @Last Modified time: 2021-09-05 12:23:56
  *
  * @package rollekino
  */
@@ -64,10 +64,10 @@ function maybe_clear_transient_cache( $post_id ) {
 function adminbar_add_cache_clear_link( $wp_admin_bar ) {
   global $wp;
   $wp_admin_bar->add_node( array(
-    'id'    => 'greencareccaheclear',
+    'id'    => 'rollekinoccaheclear',
     'title' => 'Tyhjennä välimuisti',
     'class' => 'no-external-link-indicator',
-    'href'  => wp_nonce_url( home_url( add_query_arg( array( 'clear-greencare-cache' => true ), $wp->request ) ), 'clear_cache', 'greencare_cache_clear_nonce' ),
+    'href'  => wp_nonce_url( home_url( add_query_arg( array( 'clear-rollekino-cache' => true ), $wp->request ) ), 'clear_cache', 'rollekino_cache_clear_nonce' ),
   ) );
 } // end adminbar_add_cache_clear_link
 
@@ -78,7 +78,7 @@ function adminbar_maybe_clear_transient_cache() {
   }
 
   // bail if nonce is not there or is invalid.
-  if ( ! isset( $_GET['greencare_cache_clear_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['greencare_cache_clear_nonce'] ), 'clear_cache' ) ) {
+  if ( ! isset( $_GET['rollekino_cache_clear_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_GET['rollekino_cache_clear_nonce'] ), 'clear_cache' ) ) {
     return;
   }
 

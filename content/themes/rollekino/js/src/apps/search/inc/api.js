@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiURL = window.atena_apiURL;
+const apiURL = window.rollekino_apiURL;
 
 /* eslint-disable-next-line */
 export const api = axios.create({

@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-18 15:07:17
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 16:37:01
+ * @Last Modified time: 2021-09-05 12:16:37
  *
  * @package rollekino
  */
@@ -33,3 +33,6 @@ if ( file_exists( get_theme_file_path( '/inc/includes/post-type.php' ) ) ) {
 
 // Movie archive functions
 require get_theme_file_path( '/inc/includes/movies.php' );
+
+// Cache functions
+require get_theme_file_path( '/inc/includes/cache.php' );
