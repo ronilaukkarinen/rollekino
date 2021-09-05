@@ -39,8 +39,8 @@ namespace Air_Light;
 
           <h2 class="block-title-secondary">Top-10 tänä vuonna julkaistut</h2>
           <p class="read-more">
-            <a href="#">
-              Katso lisää
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
+              Katso kaikki
               <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
             </a>
           </p>
@@ -120,8 +120,8 @@ namespace Air_Light;
 
           <h2 class="block-title-secondary">Kaikkien aikojen Top-10</h2>
           <p class="read-more">
-            <a href="#">
-              Katso lisää
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
+              Katso kaikki
               <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
             </a>
           </p>
@@ -197,8 +197,8 @@ namespace Air_Light;
 
           <h2 class="block-title-secondary">Top-10 modernit klassikot</h2>
           <p class="read-more">
-            <a href="#">
-              Katso lisää
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
+              Katso kaikki
               <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
             </a>
           </p>
