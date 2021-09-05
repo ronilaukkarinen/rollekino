@@ -12,20 +12,45 @@
  * @package rollekino
  */
 
-// Block settings
-$block_classes[] = is_front_page() ? ' block-hero-front' : ' block-hero-' . get_post_type();
+wp_reset_postdata();
+$movies = [];
+$post_type = 'movie';
+$args = [
+  'orderby' => 'rand',
+  'post_type' => $post_type,
+  'posts_per_page' => 1,
+];
 
-// Featured image
-$featured_image = has_post_thumbnail() ? wp_get_attachment_url( get_post_thumbnail_id() ) : THEME_SETTINGS['default_featured_image'];
+$query = new \WP_Query( $args );
 ?>
 
-<section class="block block-hero <?php echo esc_attr( implode( ' ', $block_classes ) ); ?>"
-  <?php if ( ! empty( $featured_image ) ) : ?>
-    style="background-image: url('<?php echo esc_url( $featured_image ); ?>');"
-  <?php endif; ?>
->
+<section class="block block-hero block-hero-normal block-hero-movies<?php echo esc_attr( implode( ' ', $block_classes ) ); ?>">
   <div class="shade" aria-hidden="true"></div>
 
-  <!-- <div class="container">
-  </div> -->
+  <div class="container">
+    <div class="content">
+      <?php if ( is_post_type_archive( 'movie' ) ) : ?>
+        <h1 class="block-title">Leffat</h1>
+        <p class="block-description">Täällä ne ovat, kaikki <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> leffa-arviota. Selaa rauhassa.</p>
+      <?php endif; ?>
+    </div>
+
+    <?php if ( ! empty( $query->posts ) ) : ?>
+
+      <?php while ( $query->have_posts() ) :
+        $query->the_post();
+
+        // Meta data
+        $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
+        $poster_id = get_post_meta( get_the_ID(), 'poster', true );
+        $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
+        ?>
+
+        <div class="backdrop">
+          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+        </div>
+
+      <?php endwhile; ?>
+    <?php endif; ?>
+  </div>
 </section>

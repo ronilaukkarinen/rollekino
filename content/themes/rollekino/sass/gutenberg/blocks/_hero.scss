@@ -2,6 +2,46 @@
   height: 710px;
   overflow: visible;
 
+  &.block-hero-normal {
+    --height-hero: 350px;
+    height: var(--height-hero);
+    max-height: var(--height-hero);
+
+    .shade {
+      opacity: .8;
+    }
+
+    .backdrop::before,
+    .container,
+    .backdrop {
+      height: var(--height-hero);
+      max-height: var(--height-hero);
+    }
+
+    .container {
+      align-items: center;
+      z-index: 4;
+    }
+
+    .content {
+      align-self: center;
+      margin-top: 0;
+    }
+
+    .block-title {
+      opacity: .9;
+    }
+
+    .block-description {
+      opacity: .8;
+    }
+
+    .block-title,
+    .block-description {
+      color: var(--color-white);
+    }
+  }
+
   .movie-meta-data-box {
     align-self: flex-end;
     justify-content: flex-end;
@@ -75,12 +115,15 @@
   position: relative;
 }
 
+.block-hero-movies .backdrop + .movie-meta-data {
+  transform: translateY(30px);
+}
+
 .movie-meta-data {
   color: var(--color-white);
   display: flex;
   justify-content: space-between;
   position: relative;
-  transform: translateY(30px);
   width: 100%;
   z-index: 5;
 
@@ -165,11 +208,12 @@
     content: "";
     display: block;
     height: 870px;
-    left: 50%;
+    // transform: translateX(-50%);
+    left: 0;
+    // left: 50%;
     pointer-events: none;
     position: absolute;
     top: 0;
-    transform: translateX(-50%);
     width: 100%;
     z-index: 1;
   }

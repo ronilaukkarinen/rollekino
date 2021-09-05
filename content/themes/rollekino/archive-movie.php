@@ -12,10 +12,9 @@ get_header(); ?>
 
 <div class="content-area">
 	<main id="main" class="site-main">
+    <?php get_template_part( 'template-parts/hero', get_post_type() ); ?>
     <section class="block block-movie-archive has-dark-bg">
-      <div class="container">
-        <div id="movies-listing"></div>
-      </div>
+      <div id="movies-listing"></div>
     </section>
 	</main>
 </div>

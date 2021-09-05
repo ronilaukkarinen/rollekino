@@ -6,8 +6,8 @@
   --color-border-forms-focus: rgba(42, 45, 62, .3);
   --color-button: var(--color-white);
   --color-button-hover: var(--color-white);
-  --color-button-background: var(--color-east-bay);
-  --color-button-background-hover: var(--color-valhalla);
+  --color-button-background: var(--color-buttons);
+  --color-button-background-hover: var(--color-buttons-hover);
   --color-checkbox: var(--color-east-bay);
   --color-checkbox-outline: 0 0 0 3px rgba(84, 87, 115, .2);
   --color-checkbox-border-hover: lighten(#545773, 15%);
@@ -21,7 +21,7 @@
   --border-radius-input-field: 4px;
   --border-radius-select: 0;
   --border-width-checkbox: 2px;
-  --border-width-input-field: 2px;
+  --border-width-input-field: 0;
   --gap-checkbox: 10px;
   --line-height-checkbox: var(--line-height-paragraphs);
   --size-checkbox-marker: 12px;
