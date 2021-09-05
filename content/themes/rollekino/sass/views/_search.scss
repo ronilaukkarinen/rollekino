@@ -20,7 +20,7 @@ body.is-search-on .block-hero-movies .container .result-container,
     /* stylelint-disable-next-line */
     background: linear-gradient(0deg, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 1) 30%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 1) 80%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 0) 100%);
     height: calc(100% - 300px);
-    margin-top: 150px;
+    margin-top: 22rem;
 
     .loader {
       margin-top: 22rem;
@@ -226,4 +226,13 @@ body.is-search-on.hide-containers {
       color: var(--color-background-tag);
     }
   }
+}
+
+.excerpt {
+  color: var(--color-white);
+  font-size: 14px;
+}
+
+.result-post {
+  margin-bottom: 4rem;
 }
