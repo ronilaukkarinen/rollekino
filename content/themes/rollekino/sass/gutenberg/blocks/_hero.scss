@@ -119,6 +119,18 @@
   transform: translateY(30px);
 }
 
+.block-hero-movies .movie-meta-data {
+  @media (max-width: 640px) {
+    display: block;
+
+    .movie-meta-data-box {
+      justify-content: flex-start;
+      justify-self: flex-start;
+      margin: 4rem 0 0;
+    }
+  }
+}
+
 .movie-meta-data {
   color: var(--color-white);
   display: flex;
@@ -172,16 +184,6 @@
 
   * {
     color: var(--color-white);
-  }
-
-  @media (max-width: 640px) {
-    display: block;
-
-    .movie-meta-data-box {
-      justify-content: flex-start;
-      justify-self: flex-start;
-      margin: 4rem 0 0;
-    }
   }
 }
 

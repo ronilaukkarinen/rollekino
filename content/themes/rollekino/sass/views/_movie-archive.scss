@@ -26,6 +26,7 @@
 
 .block-movie-archive {
   margin-top: -5rem;
+  overflow: visible;
   position: relative;
   z-index: 5;
 
@@ -65,6 +66,7 @@
   }
 
   .container {
+    overflow: visible;
     padding-top: 2rem;
   }
 }
@@ -180,6 +182,7 @@
   .main {
     grid-area: main;
     position: relative;
+    transform: translateY(-28px);
 
     li:first-of-type {
       margin-left: 0;
@@ -189,6 +192,13 @@
       display: block;
       margin: 0;
       position: relative;
+    }
+
+    // We have no need for thse because we already have checkboxes
+    /* stylelint-disable-next-line */
+    .selected-filters {
+      /* stylelint-disable-next-line */
+      display: none;
     }
 
     .selected-filters ul {
