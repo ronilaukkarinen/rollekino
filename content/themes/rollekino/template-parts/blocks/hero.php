@@ -19,7 +19,7 @@ $args = [
 $query = new \WP_Query( $args );
 
 if ( ! empty( $query->posts ) ) : ?>
-  <section class="block block-hero-movies has-dark-bg">
+  <section class="block block-search block-hero-movies has-dark-bg">
     <div class="shade" aria-hidden="true"></div>
 
     <div class="container">
@@ -27,11 +27,6 @@ if ( ! empty( $query->posts ) ) : ?>
         <h1 class="block-title">Rollen kotiteatterissa on katsottu ja arvioitu <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> elokuvaa vuodesta 2005.</h1>
 
         <div id="search"></div>
-        <form id="search-form" role="search" method="get" class="search-form" action="<?php echo esc_url( get_home_url() ); ?>">
-				  <label for="search-field" class="search-form-label">Hae elokuvaa</label>
-					<input id="search-field" type="search" class="search-field search-form-field" value="" name="s" autocomplete="off">
-				  <button type="submit" class="search-submit" aria-label="Hae"><?php include get_theme_file_path( '/svg/search.svg' ); ?></button>
-			  </form>
       </div>
 
       <?php while ( $query->have_posts() ) :

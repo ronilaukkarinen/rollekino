@@ -1,11 +1,104 @@
-// Search
+// Real time Vue.js search
+/* stylelint-disable-next-line */
+body.is-search-on .block-hero-movies .container .result-container,
+.result-container {
+  display: none;
 
-.block-search,
-.block-search-results {
+  /* stylelint-disable-next-line */
+  &.loaded {
+    display: block;
+  }
+
+  /* stylelint-disable-next-line */
+  .container {
+    height: auto;
+  }
+}
+
+.site-main .result-container {
+  padding: 4rem 2rem;
+
+  .result-group {
+    > h2 {
+      color: var(--color-white);
+      font-size: var(--font-size-22);
+      text-align: left;
+    }
+
+    /* stylelint-disable-next-line */
+    h2 > span {
+      font-family: var(--font-paragraph);
+      font-size: var(--font-size-16);
+      font-weight: var(--font-weight-regular);
+      margin-left: 8px;
+      opacity: .5;
+    }
+
+    ol:not([class]),
+    ul:not([class]) {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+  }
+}
+
+.results {
+  display: flex;
+
+  > * {
+    flex: 1;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  div {
+    position: relative;
+  }
+}
+
+.block-search .block-title,
+.block-hero-movies .container,
+.movie-meta-data,
+.block:not(.block-search) {
+  @include cubic-bezier($property: all, $duration: 2s);
+  transition-duration: 2s;
+}
+
+body.is-search-on {
+  /* stylelint-disable-next-line */
+  .site-main .block-hero-movies .content .block-title {
+    // font-size: 0;
+  }
+
+  .block-search .block-title,
+  .block-search .js-video,
+  .movie-meta-data,
+  .block:not(.block-search) {
+    opacity: 0;
+  }
+
+  .block-hero-movies .container {
+    height: 400px;
+  }
+}
+
+body.is-search-on.hide-containers {
+  /* stylelint-disable-next-line */
+  .block:not(.block-search) {
+    // display: none;
+  }
+}
+
+// Search
+.block-search-traditional,
+.block-search-traditional-results {
   background-color: var(--color-white);
 }
 
-.block-search form {
+.block-search-traditional form {
   display: grid;
   /* autoprefixer: off */
   grid-gap: 1rem;
@@ -17,7 +110,7 @@
   }
 }
 
-.block-search-results {
+.block-search-traditional-results {
   > .container {
     padding-top: 0;
 

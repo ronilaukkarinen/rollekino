@@ -44,7 +44,7 @@ get_header(); ?>
     <div id="search"></div>
   <?php else : ?>
 
-  <section class="block block-search">
+  <section class="block block-search-traditional">
     <div class="container">
       <h1><?php echo esc_html( get_default_localization( 'Search' ) ); ?></h1>
       <?php get_search_form( true ); ?>
@@ -52,7 +52,7 @@ get_header(); ?>
   </section>
 
   <?php if ( ! empty( $results ) ) : ?>
-    <section class="block block-search-results">
+    <section class="block block-search-traditional-results">
       <div class="container">
 
 

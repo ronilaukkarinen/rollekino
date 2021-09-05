@@ -1,7 +1,7 @@
 <template>
   <div class="search-wrapper">
 
-      <form id="search-form" role="search" method="get" class="search-form" action="<?php echo esc_url( get_home_url() ); ?>">
+      <form id="search-form" role="search" method="get" class="search-form" action="/?">
 				<label for="search-field" class="search-form-label">Hae elokuvaa</label>
 				<input id="search-field" type="search" class="search-field search-input search-form-field" ref="search" v-model="searchQuery" v-on:input="search()" value="" name="s" autocomplete="off">
 				<button type="submit" class="search-submit" aria-label="Hae">
@@ -11,9 +11,13 @@
 
       <div class="result-container" :class="searchStatus">
         <div class="load-animation">
-          <span class="circle"></span>
-          <span class="circle"></span>
-          <span class="circle"></span>
+          <div class="loader">
+              <div class="loader__filmstrip">
+              </div>
+              <p class="loader__text">
+                  ladataan
+              </p>
+          </div>
         </div>
         <div class="container">
           <div class="instructions" v-if="!resultCount && searchQuery.length < 3">
@@ -23,7 +27,7 @@
           <div class="results" v-if="Object.keys(results).length">
             <template v-for="(resultGroup, key) in results">
               <div class="result-group"  :class="key" :key="key" v-if="resultGroup.count">
-                <h2>{{resultGroup.title}} <span>({{resultGroup.count}})</span></h2>
+                <h2>{{resultGroup.title}} <span>{{resultGroup.count}}</span></h2>
                 <ul>
                   <li v-for="item in resultGroup.items" :key="item.id">
                     <div v-html="item.html"></div>
@@ -46,6 +50,52 @@
 <script>
 import {api} from '../inc/api';
 export default {
+  // Vanilla JS inside Vue.js component
+  mounted() {
+    // Dynamic form label
+    var textfield = document.getElementById('search-field');
+
+    if ( textfield ) {
+      textfield.addEventListener('input', function () {
+
+        if ( this.value == "" ) {
+          document.body.classList.remove('is-search-on');
+          this.parentNode.classList.remove('filled');
+          this.parentNode.classList.remove('focused');
+
+            setTimeout(function () {
+              document.body.classList.remove('hide-containers');
+            }, 2000);
+        } else {
+          document.body.classList.add('is-search-on');
+          this.parentNode.classList.add('filled');
+
+            setTimeout(function () {
+              document.body.classList.add('hide-containers');
+            }, 2000);
+        }
+
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if ( textfield ) {
+        // Dynamic form label
+        textfield.addEventListener('focus', function() {
+          this.parentNode.classList.add('focused');
+        });
+
+        textfield.addEventListener('blur', function() {
+          if ( this.value == "" ) {
+            this.parentNode.classList.remove('filled');
+            this.parentNode.classList.remove('focused');
+          } else {
+            this.parentNode.classList.add('filled');
+          }
+        })
+      }
+    });
+  },
   data: function () {
 
     return {
@@ -54,7 +104,7 @@ export default {
       timeout: false,
       localization: window.rollekino_searchLocalization,
       resultCount: -1,
-      searchStatus: 'visible',
+      // searchStatus: 'visible',
     }
   },
   methods: {
@@ -62,6 +112,7 @@ export default {
       if ( this.searchQuery.length < 3 ) {
         return;
       }
+
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
@@ -102,7 +153,7 @@ export default {
 
       this.resultCount = searchResults.length;
 
-      setTimeout(() => this.searchStatus = 'visible', 1000);
+      setTimeout(() => this.searchStatus = 'visible', 500);
     },
   },
 }

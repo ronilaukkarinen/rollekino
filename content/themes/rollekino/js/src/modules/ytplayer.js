@@ -7,7 +7,7 @@
  * @param {*} target The target element for the video
  * @param {*} args   Video args
  */
- export default function init(target, args) {
+export default function init(target, args) {
   // Create event for api being ready and make a listerer for it
   const APIReadyEvent = new Event('youtube-api-ready');
   window.addEventListener('youtube-api-ready', () => loadPlayer(target, args));
@@ -55,7 +55,6 @@ const loadPlayer = (target, args) => {
  * @param {*} target Video target element
  */
 const onPlayerReady = (event, target) => {
-
   // Set a class so the play button is visible when video has loaded successfully
   target.parentNode.classList.add('loaded');
 
@@ -64,7 +63,7 @@ const onPlayerReady = (event, target) => {
     ? document.getElementById(target.dataset.playButton)
     : null;
 
-  if ( ! playButton ) {
+  if (!playButton) {
     return false;
   }
 
@@ -93,12 +92,12 @@ const playYTVideo = (player, target) => {
     ? document.getElementById(target.dataset.playButton)
     : null;
 
-  if ( ! playButton ) {
+  if (!playButton) {
     return false;
   }
 
   // Delay adding class so we will not see the loading animation
-  setTimeout(function() {
+  setTimeout(() => {
     target.parentNode.classList.add('playing');
     playButton.classList.remove('hidden');
     playButton.querySelector('.pause-label').classList.remove('hidden');
@@ -111,15 +110,14 @@ const toggleYTVideo = (player, target) => {
 
   // Find the play button
   const playButton = target.dataset.playButton
-  ? document.getElementById(target.dataset.playButton)
-  : null;
+    ? document.getElementById(target.dataset.playButton)
+    : null;
 
-  if ( ! playButton ) {
+  if (!playButton) {
     return false;
   }
 
-
-  if ( target.parentNode.classList.contains('playing') ) {
+  if (target.parentNode.classList.contains('playing')) {
     player.target.pauseVideo();
     target.parentNode.classList.remove('playing');
     playButton.querySelector('.play-label').classList.remove('hidden');
