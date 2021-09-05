@@ -361,18 +361,20 @@
   }
 }
 
-.result-container .load-animation {
-  background-color: transparent;
+.block-search .loading .load-animation {
+  opacity: 1;
+  z-index: 55;
 }
 
-.result-container .loader {
-  margin-top: 0;
+.result-container .load-animation {
+  background-color: transparent;
 }
 
 // Loader
 /* stylelint-disable */
 .loader {
   margin-top: 30vh;
+  overflow: hidden;
 
   &__text {
     color: var(--color-white);

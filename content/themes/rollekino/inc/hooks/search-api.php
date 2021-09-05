@@ -3,7 +3,7 @@
  * @Author: Timi Wahalahti
  * @Date:   2021-06-11 13:17:44
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-05 12:37:41
+ * @Last Modified time: 2021-09-05 15:05:14
  * @package rollekino
  */
 
@@ -100,8 +100,6 @@ function search_endpoint_callback( $request ) {
           include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
         } elseif ( 'page' === $key ) {
           include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
-        } else {
-          include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
         }
 
         $html = ob_get_clean();
@@ -109,6 +107,8 @@ function search_endpoint_callback( $request ) {
           'id'    => $item->ID,
           'html'  => $html,
         ];
+        // phpcs:disable
+        continue;
 
         // Remove some un-necssary data
         unset( $item->post_content );
