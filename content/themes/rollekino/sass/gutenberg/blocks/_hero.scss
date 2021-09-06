@@ -44,6 +44,7 @@
 
   .movie-meta-data-box {
     align-self: flex-end;
+    gap: 2rem;
     justify-content: flex-end;
     justify-self: flex-end;
     margin-left: auto;
@@ -112,6 +113,7 @@
 
 .movie-meta-data-box {
   display: flex;
+  gap: 2rem;
   position: relative;
 }
 
@@ -141,10 +143,6 @@
 
   .global-link {
     z-index: 99;
-  }
-
-  .movie-poster-wrapper {
-    margin-right: 2rem;
   }
 
   .movie-meta-data-content {

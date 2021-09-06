@@ -13,6 +13,12 @@
 // @include fontFace('NeueHaasDisplay', '../../fonts/NeueHaasDisplay-Bold', 700);
 // @include fontFace('Garnett', '../../fonts/GHGuardianHeadlineSemibold', 600);
 // @include fontFace('Garnett', '../../fonts/GHGuardianHeadline-Bold', 700);
+
+// SF Movie Poster
+@include fontFace('Poster Labels', '../../fonts/julisteteksti', 400);
+// Steel Tongs
+@include fontFace('Posters', '../../fonts/movie-titles', 400);
+@include fontFace('Posters', '../../fonts/movie-titles-i', 400, italic);
 @include fontFace('BasementGrotesque', '../../fonts/BasementGrotesque-Black', 700);
 // @include fontFace('AvenirNext', '../../fonts/AvenirNextW05-Bold', 700);
 @include fontFace('CeraPro', '../../fonts/CeraPro-Regular', 400);

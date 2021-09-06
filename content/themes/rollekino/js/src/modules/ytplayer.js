@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
 /**
@@ -102,7 +103,7 @@ const playYTVideo = (player, target) => {
     playButton.classList.remove('hidden');
     playButton.querySelector('.pause-label').classList.remove('hidden');
     playButton.querySelector('.play-label').classList.add('hidden');
-  }, 700);
+  }, 800);
 };
 
 const toggleYTVideo = (player, target) => {

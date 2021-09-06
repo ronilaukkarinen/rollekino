@@ -25,6 +25,11 @@
     overflow: hidden;
     padding: 0;
     position: relative;
+
+    /* stylelint-disable-next-line */
+    &.genre-talk-show {
+      display: none;
+    }
   }
 
   .backdrop-genre {

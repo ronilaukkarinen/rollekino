@@ -65,9 +65,10 @@ players.forEach((player) => {
       rel: 0,
       disablekb: 1,
       enablejsapi: 1,
+      cc_load_policy: 0,
       iv_load_policy: 3,
       start: 15,
-      // end: 60,
+      end: 120,
       playlist: player.dataset.videoId,
     },
   });

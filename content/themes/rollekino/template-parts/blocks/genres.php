@@ -25,7 +25,7 @@ namespace Air_Light;
       if ( ! empty( $terms ) && is_array( $terms ) ) : ?>
 
         <?php foreach ( $terms as $term ) : ?>
-        <li class="col has-link">
+        <li class="col has-link genre-<?php echo esc_html( sanitize_title( $term->name ) ); ?>">
 
           <?php
           $genre_backdrops = [];
