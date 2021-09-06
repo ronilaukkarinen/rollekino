@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-05 23:13:06
+ * @Last Modified time: 2021-09-06 07:53:03
  *
  * @package rollekino
  */
@@ -18,6 +18,11 @@ add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
 function save_post_function_publish( $post_id ) {
   global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
+
+  // Prevent running twice
+  if ( ! ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) ) {
+    return;
+  }
 
   if ( 'movie' === get_post_type( $post_id ) ) {
 
