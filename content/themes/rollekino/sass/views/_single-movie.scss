@@ -463,3 +463,39 @@
     margin-top: 0;
   }
 }
+
+.spoiler-warning:not(.visible) {
+  position: relative;
+
+  .spoiler-warning-wrapper {
+    filter: blur(6px);
+  }
+
+  &:focus,
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.spoiler-warning:not(.visible)::before {
+  @include cubic-bezier($property: all);
+  background-color: var(--color-black);
+  border-radius: 5px;
+  color: var(--color-white);
+  content: 'Spoiler-varoitus! Katso paljastus klikkaamalla.';
+  filter: none;
+  font-size: var(--font-size-15);
+  margin: 0 auto;
+  opacity: 0;
+  padding: 1px 8px;
+  position: absolute;
+  transform: scale(0);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.spoiler-warning:focus::before,
+.spoiler-warning:hover::before {
+  opacity: 1;
+  transform: scale(1.1);
+}

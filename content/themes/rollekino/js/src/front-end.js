@@ -167,6 +167,25 @@ players.forEach((player) => {
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Spoiler warning tooltip on load
+  const spoilerWarningItems = document.querySelectorAll('.spoiler-warning');
+  spoilerWarningItems.forEach((span) => {
+
+    const originalHTML = span.innerHTML;
+    const spoilerWrapperHTML = '<span class="spoiler-warning-wrapper">' + originalHTML + '</span>';
+    span.innerHTML = spoilerWrapperHTML;
+
+    span.onclick = function () {
+      this.classList.toggle('visible');
+    }
+
+    // span.addEventListener('mouseover', function () {
+    // });
+
+    // span.addEventListener('mouseleave', function () {
+    // });
+  });
+
   function RemoveClass(elem, newClass) {
       elem.className = elem.className.replace(/(?:^|\s)newClass(?!\S)/g, '')
   }
