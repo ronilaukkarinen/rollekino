@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-07 17:47:23
+ * @Last Modified time: 2021-09-07 23:41:57
  *
  * @package rollekino
  */
@@ -370,7 +370,7 @@ function save_post_function( $data, $id ) {
       $director_names = array_column( $directors_array, 'name' );
 
       // Get director profile photo path
-      $director_profile_photo_path = array_splice( array_column( $directors_array, 'profile_path' ), 0, 5 );
+      $director_profile_photo_path = array_splice( array_column( $directors_array, 'profile_path' ), 0, 6 );
 
       // Set directors in taxonomies
       wp_set_object_terms( $post_id, $director_names, 'director' );
@@ -408,10 +408,10 @@ function save_post_function( $data, $id ) {
 
       // Get actor names
       $actor_names = array_column( $cast_array, 'name' );
-      $actor_names_five = array_splice( $actor_names, 0, 5 );
+      $actor_names_five = array_splice( $actor_names, 0, 6 );
 
       // Get actor profile photo path
-      $actor_profile_photo_path = array_splice( array_column( $cast_array, 'profile_path' ), 0, 5 );
+      $actor_profile_photo_path = array_splice( array_column( $cast_array, 'profile_path' ), 0, 6 );
 
       // Set cast in taxonomies
       wp_set_object_terms( $post_id, $actor_names_five, 'actor' );
