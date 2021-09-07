@@ -1,14 +1,61 @@
 // Error 404 title
-.block-error-404 {
+.site-main .block-error-404 {
+  background-color: transparent;
+  position: relative;
+  z-index: 4;
+
   .container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    padding-bottom: 0;
+    padding-top: 0;
+
     @media (min-width: $container-mobile) {
-      padding-bottom: 10%;
-      padding-top: 10%;
+      min-height: 900px;
     }
   }
 
   h1 {
-    @include responsive-font(42px, 200px);
+    @include responsive-font(42px, 150px);
+    color: var(--color-white);
+    line-height: 1;
     margin-bottom: 2rem;
+  }
+
+  p {
+    @include responsive-font(22px, 32px);
+    color: var(--color-white);
+  }
+}
+
+body.error404 .backdrop {
+  height: 100vh;
+
+  .shade {
+    opacity: .5;
+    z-index: 3;
+  }
+
+  video {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &::before {
+    height: 115vh;
+    z-index: 3;
+
+    @media (min-width: $container-mobile) {
+      min-height: 900px;
+    }
+  }
+
+  @media (min-width: $container-mobile) {
+    min-height: 900px;
   }
 }

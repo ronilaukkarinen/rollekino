@@ -12,17 +12,29 @@
 
 namespace Air_Light;
 
+$backdrop_url = wp_get_attachment_url( 73114 );
+$backdrop_video_url = wp_get_attachment_url( 73116 );
 get_header(); ?>
 
 <main class="site-main">
+
+  <div class="backdrop">
+    <div class="shade" aria-hidden="true"></div>
+    <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+    <?php // vanilla_lazyload_div( get_post_thumbnail_id() ); ?>
+
+    <div class="video js-video">
+      <video src="<?php echo esc_url( $backdrop_video_url ); ?>" loop muted autoplay></video>
+      <div aria-hidden="true" class="video-preview lazy" data-bg="<?php echo esc_url( $backdrop_url ); ?>"></div>
+    </div>
+  </div>
 
   <section class="block block-error-404">
     <div class="container">
       <div class="content">
 
-        <h1 id="content">404 <span class="screen-reader-text"><?php echo esc_html( get_default_localization( 'Page not found.' ) ); ?></span></h1>
-        <h2 aria-hidden="true"><?php echo esc_html( get_default_localization( 'Page not found.' ) ); ?></h2>
-        <p><?php echo esc_html( get_default_localization( 'The reason might be mistyped or expired URL.' ) ); ?></p>
+        <h1 id="content">These aren't the Droids you're looking for</h1>
+        <p>Sivua ei löydy.</p>
 
       </div>
     </div>
