@@ -1,0 +1,140 @@
+/* stylelint-disable */
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+.mediabox-wrap {
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-name: mediabox;
+  background-color: rgba(0, 0, 0, .8);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+@-webkit-keyframes mediabox {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mediabox {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.mediabox-content {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+}
+
+.mediabox-content iframe {
+  border: none !important;
+  bottom: 0;
+  display: block !important;
+  height: 100% !important;
+  margin: auto 0;
+  max-width: 100% !important;
+  position: absolute;
+  top: 0;
+  width: 100% !important;
+}
+
+.mediabox-hide {
+  animation-duration: .5s;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: mediaboxhide;
+  animation-name: mediaboxhide;
+}
+
+@-webkit-keyframes mediaboxhide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes mediaboxhide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.mediabox-close {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .8);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNTA1Ljk0MyA2LjA1OGMtOC4wNzctOC4wNzctMjEuMTcyLTguMDc3LTI5LjI0OSAwTDYuMDU4IDQ3Ni42OTNjLTguMDc3IDguMDc3LTguMDc3IDIxLjE3MiAwIDI5LjI0OUEyMC42MTIgMjAuNjEyIDAgMDAyMC42ODMgNTEyYTIwLjYxNCAyMC42MTQgMCAwMDE0LjYyNS02LjA1OUw1MDUuOTQzIDM1LjMwNmM4LjA3Ni04LjA3NiA4LjA3Ni0yMS4xNzEgMC0yOS4yNDh6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTUwNS45NDIgNDc2LjY5NEwzNS4zMDYgNi4wNTljLTguMDc2LTguMDc3LTIxLjE3Mi04LjA3Ny0yOS4yNDggMC04LjA3NyA4LjA3Ni04LjA3NyAyMS4xNzEgMCAyOS4yNDhsNDcwLjYzNiA0NzAuNjM2YTIwLjYxNiAyMC42MTYgMCAwMDE0LjYyNSA2LjA1OCAyMC42MTUgMjAuNjE1IDAgMDAxNC42MjQtNi4wNTdjOC4wNzUtOC4wNzggOC4wNzUtMjEuMTczLS4wMDEtMjkuMjV6Ii8+PC9zdmc+");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  border-bottom-left-radius: 6px;
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70px;
+  z-index: 99999;
+}
+
+.mediabox-close:hover,
+.mediabox-close:focus {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+@media all and (max-width: 768px) {
+  .mediabox-content {
+    max-width: 90%;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .mediabox-content iframe {
+    height: 320px !important;
+  }
+
+  .mediabox-close {
+    bottom: 362px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .mediabox-content iframe {
+    height: 220px !important;
+  }
+
+  .mediabox-close {
+    bottom: 262px;
+  }
+}

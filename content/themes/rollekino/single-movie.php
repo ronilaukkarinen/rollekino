@@ -71,17 +71,26 @@ if ( 60 <= $metascore_rating ) {
 
         <div class="movie-meta-data">
 
-          <button
-            class="play play-button hidden"
-            id="play-<?php echo esc_html( $trailer_youtube_key ); ?>"
-            type="button">
-            <span class="play-label hidden">
-              <?php include get_theme_file_path( '/svg/play.svg' ); ?> Jatka trailerin pyörittämistä sittenkin
-            </span>
-            <span class="pause-label hidden">
-              <?php include get_theme_file_path( '/svg/pause.svg' ); ?> Älä spoilaa, pysäytä taustavideo
-            </span>
-          </button>
+          <div class="buttons">
+            <?php if ( ! empty( $trailer_youtube_key ) ) : ?>
+              <a type="button" class="mediabox no-external-link-indicator" href="https://www.youtube.com/watch?v=<?php echo esc_html( $trailer_youtube_key ); ?>">
+                <?php include get_theme_file_path( '/svg/youtube.svg' ); ?>
+                <span>Katso traileri</span>
+              </a>
+            <?php endif; ?>
+
+            <button
+              class="play play-button hidden"
+              id="play-<?php echo esc_html( $trailer_youtube_key ); ?>"
+              type="button">
+              <span class="play-label hidden">
+                <?php include get_theme_file_path( '/svg/play.svg' ); ?> Jatka trailerin pyörittämistä sittenkin
+              </span>
+              <span class="pause-label hidden">
+                <?php include get_theme_file_path( '/svg/pause.svg' ); ?> Älä spoilaa, pysäytä taustavideo
+              </span>
+            </button>
+          </div>
 
           <div class="movie-meta-data-box movie-meta-data-box-large">
             <div class="movie-poster-wrapper movie-poster-wrapper-large">
@@ -166,6 +175,7 @@ if ( 60 <= $metascore_rating ) {
 
       <aside class="side">
         <ul class="side-information">
+
           <li>
             <span class="side-information-title">Julkaisuajankohta</span><span class="screen-reader-text">:</span> <span class="side-information-meta"><?php echo esc_html( $imdb_release_date_readable ); ?></span>
           </li>
@@ -197,42 +207,87 @@ if ( 60 <= $metascore_rating ) {
                 <?php endforeach; ?>
               </ul>
             <?php endif; ?>
+          </li>
+
+          <?php
+          wp_reset_postdata();
+          $terms = get_the_terms( get_the_ID(), 'writer' ); ?>
+          <li style="display: none;">
+            <span class="side-information-title">Käsikirjoittaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?><span class="screen-reader-text">:</span>
+
+            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+              <ul class="side-information-meta-crew<?php if ( 1 < count( $terms ) ) : echo ' multiple-directors'; endif; ?>">
+                <?php foreach ( $terms as $term ) :
+                  $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  ?>
+                  <li>
+                    <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>
+                    <?php if ( ! empty( $avatar_url ) ) : ?>
+                      <div aria-hidden="true" class="avatar" style="background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+                    <?php else : ?>
+                      <div aria-hidden="true" class="avatar avatar-empty">
+                        <?php include get_theme_file_path( '/svg/avatar-empty.svg' ); ?>
+                      </div>
+                    <?php endif; ?>
+                    <span class="side-information-meta side-information-meta-crew-name" aria-hidden="true"><?php echo esc_html( $term->name ); ?></span>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+
+          <?php
+          wp_reset_postdata();
+          $terms = get_the_terms( get_the_ID(), 'actor' ); ?>
+          <li>
+            <span class="side-information-title">Pääosissa<span class="screen-reader-text">:</span>
+
+            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+              <ul class="side-information-meta-crew-actors side-information-meta-crew">
+                <?php foreach ( $terms as $term ) :
+                  $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  ?>
+                  <li class="has-small-avatar">
+                    <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>
+                    <?php if ( ! empty( $avatar_url ) ) : ?>
+                      <div aria-hidden="true" class="avatar avatar-small" style="background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+                    <?php else : ?>
+                      <div aria-hidden="true" class="avatar avatar-small avatar-empty">
+                        <?php include get_theme_file_path( '/svg/avatar-empty.svg' ); ?>
+                      </div>
+                    <?php endif; ?>
+                    <span class="side-information-meta side-information-meta-crew-name" aria-hidden="true"><?php echo esc_html( $term->name ); ?></span>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+
         </ul>
-
-        <h3>Pääosissa</h3>
-
-        <?php
-        $terms = get_the_terms( get_the_ID(), 'actor' );
-
-        if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-          <ul>
-            <?php foreach ( $terms as $term ) :
-              $avatar_url = get_field( 'avatar', 'actor_' . $term->term_id )['url'];
-              ?>
-              <li><?php echo esc_html( $term->name ); ?>
-              <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover;         background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        <?php endif; ?>
       </aside>
 
       <section class="content">
-        <?php the_content(); ?>
+        <?php if ( empty( get_the_content() ) ) : ?>
+          <div class="content-empty">
+            <p>Valitettavasti tästä elokuvasta ei ole kirjoitettu tekstiarviota. Syynä voivat olla mm. jokin seuraavista:</p>
+            <ul>
+              <li>Elokuva on katsottu ennen kuin tekstiarvio-ominaisuus oli käytössä (2005-2007).</li>
+              <li>Elokuva on katsottu 2020-2021, jolloin Rollekinon vanha versio poistui käytöstä ja uutta alettiin työstämään.</li>
+              <li>Leffa on ainoastaan pisteytetty <a href="https://www.imdb.com/user/ur12339490/ratings">IMDb-profiiliin</a> ajan puutteen vuoksi.</li>
+              <li>Elokuva ei ole ollut pidemmän arvioimisen arvoinen tai siitä ei yksinkertaisesti ole riittänyt juttua tekstiksi asti.</li>
+              <li>Jokin muu tuntematon syy, mutta todennäköisesti jokin kolmesta edellisestä.</li>
+            </ul>
+            <p>Toivottavasti silti nautit suuntaa-antavasta pisteytyksestä ja elokuvan tiedoista!</p>
+          </div>
+        <?php else : ?>
+          <?php the_content(); ?>
+        <?php endif; ?>
 
         <?php
-        entry_footer();
-
-        if ( get_edit_post_link() ) {
-          edit_post_link( sprintf( wp_kses( __( 'Muokkaa <span class="screen-reader-text">%s</span>', 'rollekino' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ), '<p class="edit-link">', '</p>' );
-        }
-
-        the_post_navigation();
-
-        // If comments are open or we have at least one comment, load up the comment template.
-        if ( comments_open() || get_comments_number() ) {
-          comments_template();
-        } ?>
+          if ( get_edit_post_link() ) {
+            edit_post_link( sprintf( wp_kses( __( 'Muokkaa <span class="screen-reader-text">%s</span>', 'rollekino' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ), '<p class="edit-link">', '</p>' );
+          }
+        ?>
       </section>
 
     </div>

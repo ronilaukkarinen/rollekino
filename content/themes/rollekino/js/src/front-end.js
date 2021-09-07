@@ -9,7 +9,8 @@ import reframe from 'reframe.js';
 import getLocalization from './modules/localization';
 import { styleExternalLinks, getChildAltText } from './modules/external-link';
 import { setFigureWidths, setLazyLoadedFigureWidth } from './modules/gutenberg-helpers';
-import ytPlayer from "./modules/ytplayer.js";
+import ytPlayer from './modules/ytplayer.js';
+import MediaBox from 'mediabox';
 import 'what-input';
 
 // Navigation
@@ -44,6 +45,20 @@ rollekino_LazyLoad.update();
 
 //Dynamic Form Label
 const input = document.querySelectorAll('.custom-input');
+
+// Open YouTube videos full screen from button
+MediaBox('.mediabox', {
+  start: 1,
+  autoplay: 1,
+  modestbranding: 1,
+  autohide: 1,
+  mute: 0,
+  loop: 0,
+  controls: 1,
+  showinfo: 0,
+  disablekb: 1,
+  enablejsapi: 1,
+});
 
 // Find players from DOM and load if found
 const players = document.querySelectorAll(".youtube-player");

@@ -237,8 +237,49 @@
   }
 
   .movie-meta-data {
-    button {
+    transform: none;
+
+    .buttons {
+      display: flex;
+      flex-flow: column;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-self: flex-end;
+      margin-top: auto;
+      order: 3;
+    }
+
+    .mediabox {
+      @include cubic-bezier($property: all);
+      align-items: center;
+      align-self: flex-end;
+      /* stylelint-disable-next-line */
+      background-color: #f00;
+      border-radius: 5px;
+      display: inline-flex;
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-bold);
+      justify-content: center;
+      margin-bottom: 2rem;
       order: 2;
+      padding: 5px 10px;
+      white-space: nowrap;
+
+      &:hover,
+      &:focus {
+        /* stylelint-disable-next-line */
+        background-color: rgb(161, 17, 17);
+      }
+
+      svg {
+        height: 22px;
+        margin-right: 1rem;
+        width: 22px;
+      }
+
+      button {
+        order: 1;
+      }
     }
   }
 }
@@ -250,12 +291,27 @@
 
 .block-movie-review {
   > .container {
-    padding-top: 5rem;
+    padding-top: 4rem;
   }
 
   .side-information {
     margin: 2.9rem 0;
     padding: 0;
+
+    .side-information-meta-crew-actors {
+      max-width: 80%;
+    }
+
+    .side-information-meta-crew li:focus,
+    .side-information-meta-crew li:hover {
+      .avatar {
+        transform: scale(1.07);
+      }
+
+      .side-information-meta-crew-name {
+        opacity: .8;
+      }
+    }
 
     li {
       list-style: none;
@@ -286,11 +342,6 @@
         width: 64px;
       }
 
-      .side-information-meta-crew.multiple-directors li:focus .avatar,
-      .side-information-meta-crew.multiple-directors li:hover .avatar {
-        transform: scale(1.05);
-      }
-
       .side-information-meta-crew.multiple-directors .avatar {
         height: 64px;
         max-width: 64px;
@@ -303,11 +354,13 @@
       }
 
       .side-information-meta-crew-name {
+        @include cubic-bezier($property: all);
         color: var(--color-white);
         display: inline-block;
         font-size: var(--font-size-15);
         font-weight: var(--font-weight-regular);
         line-height: 1.3;
+        margin: 0 auto;
         opacity: .5;
         padding-top: 1rem;
       }
@@ -365,5 +418,48 @@
   svg {
     height: 55px;
     width: 55px;
+  }
+
+  &.avatar-small {
+    height: 55px;
+    max-width: 55px;
+    min-width: 55px;
+    width: 55px;
+
+    svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}
+
+.side-information .side-information-meta-crew .has-small-avatar {
+  max-width: 55px;
+  min-width: 55px;
+  width: 55px;
+
+  .side-information-meta-crew-name {
+    font-size: 13px;
+  }
+}
+
+.content-empty {
+  background-color: transparent;
+  /* stylelint-disable-next-line */
+  border: 2px dashed rgba(255, 255, 255, .1);
+  clear: both;
+  /* stylelint-disable-next-line */
+  margin-top: 4rem;
+  padding: 4rem;
+  text-decoration: none;
+
+  p,
+  li {
+    /* stylelint-disable-next-line */
+    color: rgba(255, 255, 255, .6);
+  }
+
+  p:first-of-type {
+    margin-top: 0;
   }
 }
