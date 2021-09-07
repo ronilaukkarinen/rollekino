@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-05 12:23:56
+ * @Last Modified time: 2021-09-07 19:31:08
  *
  * @package rollekino
  */
@@ -35,6 +35,9 @@ function widgets_init() {
 function rewrite_term_link( $termlink, $term, $taxonomy ) {
   $taxonomies = [
     'genre',
+    'director',
+    'writer',
+    'actor',
   ];
   if ( ! in_array( $taxonomy, $taxonomies, true ) ) {
     return $termlink;

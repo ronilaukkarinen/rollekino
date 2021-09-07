@@ -15,6 +15,11 @@ namespace Air_Light;
 the_post();
 get_header();
 
+// Set locale
+date_default_timezone_set( 'Europe/Helsinki' ); // phpcs:ignore
+setlocale( LC_ALL, array( 'fi_FI.UTF-8', 'fi_FI@euro', 'fi_FI', 'Finnish' ) );
+setlocale( LC_TIME, array( 'fi_FI.UTF-8', 'fi_FI@euro', 'fi_FI', 'Finnish' ) );
+
 // Meta data
 $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
 $poster_id = get_post_meta( get_the_ID(), 'poster', true );
@@ -24,8 +29,12 @@ $imdb_rating = get_post_meta( get_the_ID(), '_imdb_rating', true );
 $imdb_url = get_post_meta( get_the_ID(), 'imdb_url', true );
 $imdb_year = get_post_meta( get_the_ID(), '_imdb_year', true );
 $imdb_release_date = get_post_meta( get_the_ID(), '_imdb_release_date', true );
+$imdb_release_date_readable = strftime( '%e. %B', strtotime( $imdb_release_date ) ) . 'ta ' . strftime( '%Y', strtotime( $imdb_release_date ) );
 $metascore_rating = get_post_meta( get_the_ID(), '_metascore_rating', true );
 $imdb_runtime_total_minutes = get_post_meta( get_the_ID(), '_idmb_runtime', true );
+$idmb_runtime_hours = floor( $imdb_runtime_total_minutes / 60 );
+$imdb_runtime_minutes = $imdb_runtime_total_minutes % 60;
+$runtime_human_readable = $idmb_runtime_hours . ' tuntia, ' . $imdb_runtime_minutes . ' minuuttia';
 $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
 $metascore_url = 'https://www.metacritic.com/movie/' . sanitize_title( get_the_title() );
 
@@ -153,74 +162,78 @@ if ( 60 <= $metascore_rating ) {
   </section>
 
   <section class="block block-movie-review has-dark-bg">
-    <div class="gutenberg-content">
+    <div class="container">
 
-      <h2><?php the_title(); ?></h2>
+      <aside class="side">
+        <ul class="side-information">
+          <li>
+            <span class="side-information-title">Julkaisuajankohta</span><span class="screen-reader-text">:</span> <span class="side-information-meta"><?php echo esc_html( $imdb_release_date_readable ); ?></span>
+          </li>
+          <li>
+            <span class="side-information-title">Kesto</span><span class="screen-reader-text">:</span> <span class="side-information-meta"><?php echo esc_html( $runtime_human_readable ); ?></span>
+          </li>
 
-<p>Vuosi: <?php echo esc_html( $imdb_year ); ?></p>
-<p>Julkaisuajankohta: <?php echo esc_html( $imdb_release_date ); ?></p>
+          <?php
+          $terms = get_the_terms( get_the_ID(), 'director' ); ?>
+          <li>
+            <span class="side-information-title">Ohjaaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?><span class="screen-reader-text">:</span>
 
-<?php
-// Get the number of whole hours
-$idmb_runtime_hours = floor( $imdb_runtime_total_minutes / 60 );
-$imdb_runtime_minutes = $imdb_runtime_total_minutes % 60;
-$runtime_human_readable = $idmb_runtime_hours . ' tuntia, ' . $imdb_runtime_minutes . ' minuuttia';
-?>
+            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+              <ul class="side-information-meta-crew<?php if ( 1 < count( $terms ) ) : echo ' multiple-directors'; endif; ?>">
+                <?php foreach ( $terms as $term ) :
+                  $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  ?>
+                  <li>
+                    <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>
+                    <?php if ( ! empty( $avatar_url ) ) : ?>
+                      <div aria-hidden="true" class="avatar" style="background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+                    <?php else : ?>
+                      <div aria-hidden="true" class="avatar avatar-empty">
+                        <?php include get_theme_file_path( '/svg/avatar-empty.svg' ); ?>
+                      </div>
+                    <?php endif; ?>
+                    <span class="side-information-meta side-information-meta-crew-name" aria-hidden="true"><?php echo esc_html( $term->name ); ?></span>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+        </ul>
 
-<p><?php echo esc_html( $runtime_human_readable ); ?></p>
-<p>YouTube: <?php echo esc_html( $trailer_youtube_key ); ?></p>
+        <h3>Pääosissa</h3>
 
-<h3>Pääosissa</h3>
+        <?php
+        $terms = get_the_terms( get_the_ID(), 'actor' );
 
-<?php
-$terms = get_the_terms( get_the_ID(), 'actor' );
+        if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+          <ul>
+            <?php foreach ( $terms as $term ) :
+              $avatar_url = get_field( 'avatar', 'actor_' . $term->term_id )['url'];
+              ?>
+              <li><?php echo esc_html( $term->name ); ?>
+              <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover;         background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+      </aside>
 
-if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-  <ul>
-    <?php foreach ( $terms as $term ) :
-      $avatar_url = get_field( 'avatar', 'actor_' . $term->term_id )['url'];
-      ?>
-      <li><?php echo esc_html( $term->name ); ?>
-      <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-      </li>
-    <?php endforeach; ?>
-  </ul>
-<?php endif; ?>
+      <section class="content">
+        <?php the_content(); ?>
 
-<?php
-$terms = get_the_terms( get_the_ID(), 'director' ); ?>
+        <?php
+        entry_footer();
 
-<h3>Ohjaaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?></h4>
+        if ( get_edit_post_link() ) {
+          edit_post_link( sprintf( wp_kses( __( 'Muokkaa <span class="screen-reader-text">%s</span>', 'rollekino' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ), '<p class="edit-link">', '</p>' );
+        }
 
-<?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-  <ul>
-    <?php foreach ( $terms as $term ) :
-      $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
-      ?>
-      <li><?php echo esc_html( $term->name ); ?>
-      <div style="width: 80px; height: 80px; border-radius: 50%; background-position: center; background-size: cover; background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-      </li>
-    <?php endforeach; ?>
-  </ul>
-<?php endif; ?>
+        the_post_navigation();
 
-      <?php the_content();
-
-      // Required by WordPress Theme Check, feel free to remove as it's rarely used in starter themes
-      wp_link_pages( array( 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rollekino' ), 'after' => '</div>' ) );
-
-      entry_footer();
-
-      if ( get_edit_post_link() ) {
-        edit_post_link( sprintf( wp_kses( __( 'Muokkaa <span class="screen-reader-text">%s</span>', 'rollekino' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ), '<p class="edit-link">', '</p>' );
-      }
-
-      the_post_navigation();
-
-  		// If comments are open or we have at least one comment, load up the comment template.
-      if ( comments_open() || get_comments_number() ) {
-        comments_template();
-      } ?>
+        // If comments are open or we have at least one comment, load up the comment template.
+        if ( comments_open() || get_comments_number() ) {
+          comments_template();
+        } ?>
+      </section>
 
     </div>
   </section>

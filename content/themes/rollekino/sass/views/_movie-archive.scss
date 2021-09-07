@@ -12,6 +12,16 @@
 .filter-group {
   margin-bottom: 36px;
 
+  &.writer,
+  &.actor,
+  &.director {
+    /* stylelint-disable a11y/no-display-none */
+    h2,
+    .input-group:not([checked]) {
+      display: none;
+    }
+  }
+
   label {
     font-size: var(--font-size-14);
   }
@@ -332,7 +342,6 @@
       display: block;
     }
 
-    /* stylelint-disable a11y/no-display-none */
     @media (max-width: 760px) {
       .prev,
       .next {

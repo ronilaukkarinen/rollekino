@@ -1,6 +1,14 @@
+:root {
+  --height-single-hero: 750px;
+}
+
 /* stylelint-disable selector-max-class, selector-max-specificity, selector-max-combinators, selector-max-compound-selectors */
 .site-main .block-hero-movies.block-hero-movies-single {
-  height: 900px;
+  height: var(--height-single-hero);
+
+  > .container {
+    align-items: flex-end;
+  }
 
   .movie-meta-data-list {
     display: flex;
@@ -157,12 +165,12 @@
 
   .container,
   .backdrop {
-    height: 900px;
-    max-height: 900px;
+    height: var(--height-single-hero);
+    max-height: var(--height-single-hero);
   }
 
   .backdrop::before {
-    height: 970px;
+    height: calc(var(--height-single-hero) + 70px);
   }
 
   .movie-poster-wrapper.movie-poster-wrapper-large {
@@ -238,4 +246,124 @@
 /* stylelint-disable a11y/no-display-none */
 .star-rating-text {
   display: none;
+}
+
+.block-movie-review {
+  > .container {
+    padding-top: 5rem;
+  }
+
+  .side-information {
+    margin: 2.9rem 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      margin-bottom: 2.9rem;
+      margin-left: 0;
+      margin-top: 0;
+      padding: 0;
+      position: relative;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .side-information-meta-crew {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 2rem;
+        padding: 0;
+      }
+
+      .side-information-meta-crew.multiple-directors li {
+        max-width: 64px;
+        min-width: 64px;
+        width: 64px;
+      }
+
+      .side-information-meta-crew.multiple-directors li:focus .avatar,
+      .side-information-meta-crew.multiple-directors li:hover .avatar {
+        transform: scale(1.05);
+      }
+
+      .side-information-meta-crew.multiple-directors .avatar {
+        height: 64px;
+        max-width: 64px;
+        min-width: 64px;
+        width: 64px;
+      }
+
+      .side-information-meta-crew.multiple-directors .side-information-meta-crew-name {
+        font-size: var(--font-size-14);
+      }
+
+      .side-information-meta-crew-name {
+        color: var(--color-white);
+        display: inline-block;
+        font-size: var(--font-size-15);
+        font-weight: var(--font-weight-regular);
+        line-height: 1.3;
+        opacity: .5;
+        padding-top: 1rem;
+      }
+
+      ul li {
+        line-height: 1;
+        list-style: none;
+        margin: 0;
+        max-width: 80px;
+        min-width: 80px;
+        padding: 0;
+        text-align: center;
+        width: 80px;
+      }
+    }
+
+    .side-information-title {
+      color: var(--color-white);
+      display: block;
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: .5rem;
+      margin-left: 0;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .side-information-meta {
+      font-size: var(--font-size-16);
+    }
+  }
+
+  .container {
+    display: grid;
+    grid-gap: 4rem;
+    grid-template-columns: 300px minmax(0, 1fr);
+  }
+}
+
+.avatar {
+  @include cubic-bezier($property: all);
+  align-items: center;
+  /* stylelint-disable-next-line */
+  background-color: rgba(255, 255, 255, .1);
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  max-width: 80px;
+  min-width: 80px;
+  width: 80px;
+
+  svg {
+    height: 55px;
+    width: 55px;
+  }
 }

@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-05 15:52:46
+ * @Last Modified time: 2021-09-07 19:29:13
  *
  * @package rollekino
  */
@@ -139,10 +139,28 @@ function movie_archive_scripts() {
   wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ), array(), filemtime( get_theme_file_uri( get_asset_file( 'movies.js' ) ) ), true );
 
   $movie_filters = [
-    'movieGenre' => [
+    'genre' => [
       'taxonomy' => 'genre',
       'args' => [],
       'title' => 'Genre',
+      'type' => 'checkbox',
+    ],
+    'director' => [
+      'taxonomy' => 'director',
+      'args' => [],
+      'title' => 'Ohjaajat',
+      'type' => 'checkbox',
+    ],
+    'writer' => [
+      'taxonomy' => 'writer',
+      'args' => [],
+      'title' => 'Käsikirjoittajat',
+      'type' => 'checkbox',
+    ],
+    'actor' => [
+      'taxonomy' => 'actor',
+      'args' => [],
+      'title' => 'Näyttelijät',
       'type' => 'checkbox',
     ],
   ];

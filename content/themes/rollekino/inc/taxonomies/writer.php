@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-25 18:23:12
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-08-27 21:32:13
+ * @Last Modified time: 2021-09-07 19:32:51
  *
  * @package rollekino
  */
@@ -46,8 +46,9 @@ class Writer extends Taxonomy {
       'show_tagcloud'     => false,
       'show_ui'           => true,
       'query_var'         => false,
+      'show_in_rest'      => true,
       'rewrite'           => [
-        'slug' => 'kasikirjoittajat',
+        // 'slug' => 'kasikirjoittajat',
       ],
     ];
 
