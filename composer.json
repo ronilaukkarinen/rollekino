@@ -86,7 +86,8 @@
     "rooxie/omdb": "^0.3.0",
     "guzzlehttp/guzzle": "^7.3",
     "vfalies/tmdb": "^1.12",
-    "relevanssi/relevanssi-premium": "*"
+    "relevanssi/relevanssi-premium": "*",
+    "wpackagist-plugin/disable-media-pages": "*"
   },
   "require-dev": {
     "rarst/wps": "*"

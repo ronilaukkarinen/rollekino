@@ -86,7 +86,6 @@ export default {
       localization: window.rollekino_movieLocalization,
       filterGroups: movieFilters,
       lazyLoad: new LazyLoad(),
-
     };
   },
   mounted() {
@@ -188,7 +187,6 @@ export default {
           totalPages: this.totalPages,
           totalMovies: this.totalMovies,
         });
-
       })
       .catch(error => {
         console.log(error);

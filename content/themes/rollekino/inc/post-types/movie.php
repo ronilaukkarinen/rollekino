@@ -3,7 +3,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-18 15:06:45
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 13:28:43
+ * @Last Modified time: 2021-09-07 20:07:50
  *
  * @package rollekino
  **/
@@ -19,10 +19,10 @@ class Movie extends Post_Type {
 
     // Modify all the i18ized strings here.
     $generated_labels = [
-      'menu_name'          => __( 'Leffa-arviot', 'rollekino' ),
-      'name'               => _x( 'Leffa-arviot', 'post type general name', 'rollekino' ),
-      'singular_name'      => _x( 'Leffa-arvio', 'post type singular name', 'rollekino' ),
-      'name_admin_bar'     => _x( 'Leffa-arviot', 'add new on admin bar', 'rollekino' ),
+      'menu_name'          => __( 'Leffat', 'rollekino' ),
+      'name'               => _x( 'Leffat', 'post type general name', 'rollekino' ),
+      'singular_name'      => _x( 'Leffat', 'post type singular name', 'rollekino' ),
+      'name_admin_bar'     => _x( 'Leffat', 'add new on admin bar', 'rollekino' ),
       'add_new'            => _x( 'Lisää uusi', 'thing', 'rollekino' ),
       'add_new_item'       => __( 'Lisää uusi', 'rollekino' ),
       'new_item'           => __( 'Uusi leffa-arvio', 'rollekino' ),
