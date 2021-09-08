@@ -141,7 +141,6 @@ if ( 60 <= $metascore_rating ) {
 
               <h1 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h1>
               <ul class="movie-meta-data-list">
-                <!-- <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li> -->
                 <li><?php rating_stars( $text = true ); ?></li>
                 <li class="imdb">
                   <a href="<?php echo esc_url( $imdb_url ); ?>" class="no-external-link-indicator">
@@ -267,6 +266,24 @@ if ( 60 <= $metascore_rating ) {
       </aside>
 
       <section class="content">
+
+        <?php
+          $post_year = get_the_time( 'Y' );
+          $now_year = gmdate( 'Y' );
+        ?>
+
+        <?php if ( $post_year <= $now_year - 4 ) : ?>
+          <div class="notification-box-old-stuff">
+            <p>Ennen kuin luet, otathan huomioon, että tämä elokuva on katsottu <?php echo get_the_date(); ?>, joka tarkoittaa sitä että arvostelu on <b><?php echo esc_attr( $now_year ) - esc_attr( $post_year ); ?> vuotta vanha</b> ja saattaa siitä syystä sisältää vanhahtanutta tekstiä tai kankeaa kielenkäyttöä. Mielipiteeni on saattanut ajan saatossa muuttua ja elokuva saattaa vaatia uudelleenkatselun uusilla avoilla. Olin arvion kirjoittamishetkellä <?php $post_year = get_the_time( 'Y' ); $age = $post_year - 1988; echo esc_attr( $age ); ?>-vuotias.</p>
+          </div>
+        <?php endif; ?>
+
+        <?php if ( ! empty( get_field( 'plot' ) ) ) : ?>
+          <div class="plot">
+            <?php echo wpautop( get_field( 'plot' ) ); // phpcs:ignore ?>
+          </div>
+        <?php endif; ?>
+
         <?php if ( empty( get_the_content() ) ) : ?>
           <div class="content-empty">
             <p>Valitettavasti tästä elokuvasta ei ole kirjoitettu tekstiarviota. Syynä voivat olla mm. jokin seuraavista:</p>
@@ -275,13 +292,35 @@ if ( 60 <= $metascore_rating ) {
               <li>Elokuva on katsottu 2020-2021, jolloin Rollekinon vanha versio poistui käytöstä ja uutta alettiin työstämään.</li>
               <li>Leffa on ainoastaan pisteytetty <a href="https://www.imdb.com/user/ur12339490/ratings">IMDb-profiiliin</a> ajan puutteen vuoksi.</li>
               <li>Elokuva ei ole ollut pidemmän arvioimisen arvoinen tai siitä ei yksinkertaisesti ole riittänyt juttua tekstiksi asti.</li>
-              <li>Jokin muu tuntematon syy, mutta todennäköisesti jokin kolmesta edellisestä.</li>
+              <li>Jokin muu tuntematon syy, mutta todennäköisesti jokin edellisestä.</li>
             </ul>
             <p>Toivottavasti silti nautit suuntaa-antavasta pisteytyksestä ja elokuvan tiedoista!</p>
           </div>
         <?php else : ?>
           <?php the_content(); ?>
         <?php endif; ?>
+
+        <ul class="side-information side-information-main-content">
+          <li><span class="side-information-title">Katsottu ja arvioitu</span><span class="screen-reader-text">:</span> <?php echo get_the_date(); ?></li>
+
+          <?php
+            wp_reset_postdata();
+            $terms = get_the_terms( get_the_ID(), 'genre' ); ?>
+          <li><span class="side-information-title">Genret</span><span class="screen-reader-text">:</span>
+            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+              <ul class="genres">
+                <?php foreach ( $terms as $term ) : ?>
+                  <li>
+                    <a class="genre-pill" href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>">
+                      <?php echo esc_html( $term->name ); ?></span>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+
+        </ul>
 
         <?php
           if ( get_edit_post_link() ) {

@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:33:49
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 16:14:48
+ * @Last Modified time: 2021-09-08 08:33:17
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  * @package rollekino
@@ -23,13 +23,13 @@ namespace Air_Light;
 
   <div class="container">
     <h2>Seuraa <span>&</span> keskustele</h2>
-    <p>Rollen leffaprofiilit löytyvät lähes jokaisesta netin leffapalvelusta. Saat ensimmäisenä tiedon uusista arvioista kun pistät seurantaan esimerkiksi <a href="<?php echo esc_url( bloginfo( 'rss2_url' ) ); ?>">RSS-syötteen</a> tai Twitterin <a href="https://twitter.com/search?q=from%3Arolle%20%23leffat&src=typed_query&f=live">#leffat</a> -hashtagin. Alla olevista palveluista löydät kätevästi leffasuosituksia.</p>
+    <p>Rollen leffaprofiilit löytyvät lähes jokaisesta netin leffapalvelusta. Saat ensimmäisenä tiedon uusista arvioista kun pistät seurantaan esimerkiksi <a href="<?php echo esc_url( get_home_url() ); ?>/leffat/feed">RSS-syötteen</a> tai Twitterin <a href="https://twitter.com/search?q=from%3Arolle%20%23leffat&src=typed_query&f=live">#leffat</a> -hashtagin. Alla olevista palveluista löydät kätevästi leffasuosituksia.</p>
 
     <ul>
       <li class="imdb">
         <a
           class="no-external-link-indicator"
-          href="http://www.imdb.com/mymovies/list?l=27761618">
+          href="https://www.imdb.com/user/ur12339490/ratings">
           <span class="screen-reader-text">IMDb</span>
           <span aria-hidden="true">
             <?php include get_theme_file_path( '/svg/imdb.svg' ); ?>

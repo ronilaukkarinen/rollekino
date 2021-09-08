@@ -48,7 +48,7 @@ const input = document.querySelectorAll('.custom-input');
 
 // Open YouTube videos full screen from button
 MediaBox('.mediabox', {
-  start: 1,
+  start:  0,
   autoplay: 1,
   modestbranding: 1,
   autohide: 1,
