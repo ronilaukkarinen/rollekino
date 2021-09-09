@@ -220,7 +220,6 @@ export default {
 
         this.updateFilterList();
 
-
       } else if (window.location.search) {
         // Load session from URL
         const params = this.getUrlParameters(window.location.search);
