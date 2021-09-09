@@ -185,8 +185,8 @@ namespace Air_Light;
           'posts_per_page' => 10,
           'meta_query' => array(
             array(
-              'key' => '_imdb_year',
-              'value' => '1999',
+              'key' => '_imdb_rating',
+              'value' => '6.5',
               'compare' => '<',
             ),
           ),
@@ -195,7 +195,7 @@ namespace Air_Light;
         $best_query = new \WP_Query( $best_args );
         if ( ! empty( $best_query->posts ) ) : ?>
 
-          <h2 class="block-title-secondary">Top-10 modernit klassikot</h2>
+          <h2 class="block-title-secondary">Top-10 yllättäjät</h2>
           <p class="read-more">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
               Katso kaikki
