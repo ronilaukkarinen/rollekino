@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-07 23:41:57
+ * @Last Modified time: 2021-09-11 00:52:56
  *
  * @package rollekino
  */
@@ -17,9 +17,13 @@ add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 
 add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
 function save_post_function_publish( $post_id ) {
-  global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
+  if ( 'post' !== get_post_type( $post_id ) || 'page' !== get_post_type( $post_id ) || 'movie' === get_post_type( $post_id ) ) {
 
-  if ( 'movie' === get_post_type( $post_id ) ) {
+    global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
+
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/image.php';
 
     // Unhook this function so it doesn't loop infinitely
     remove_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
@@ -107,7 +111,7 @@ function save_post_function( $data, $id ) {
   global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
   $post_id = $id['ID'];
 
-  if ( 'movie' === $data['post_type'] ) {
+  if ( 'post' !== get_post_type( $post_id ) || 'page' !== get_post_type( $post_id ) || 'movie' === $data['post_type'] ) {
 
     // Need to define at least IMDb URL or IMDb ID
     if ( ! metadata_exists( 'movie', $post_id, 'imdb_url' ) ) {
@@ -468,6 +472,9 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_featured_image', 10, 2 );
 function add_featured_image( $post_type, $post ) {
   $post_types = get_post_types();
   $post_id = $post->ID;
+
+  if ( 'movie' === get_post_type( $post_id ) )
+  return;
 
   // Need to define at least IMDb URL or IMDb ID
   if ( ! metadata_exists( 'movie', $post_id, 'imdb_url' ) ) {

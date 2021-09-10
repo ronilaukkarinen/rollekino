@@ -26,6 +26,7 @@ get_header(); ?>
     <div class="container">
 
       <?php if ( have_posts() ) : ?>
+        <div class="cols">
 
         <?php if ( is_home() && ! is_front_page() ) : ?>
           <h1 id="content" class="screen-reader-text"><?php single_post_title(); ?></h1>
@@ -38,6 +39,7 @@ get_header(); ?>
           </article>
         <?php endwhile; ?>
 
+        </div>
         <?php the_posts_pagination(); ?>
 
       <?php endif; ?>

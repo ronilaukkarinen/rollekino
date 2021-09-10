@@ -44,11 +44,15 @@
   --font-weight-paragraphs: var(--font-weight-regular);
   --font-weight-headings: var(--font-weight-bold);
 
+  @media (max-width: 800px) {
+    --font-size-h2: 24px;
+  }
+
   // Heading font sizes in mobile
   @media (max-width: $container-mobile) {
     --font-size-hero: 38px;
     --font-size-h1: 32px;
-    --font-size-h2: 24px;
+    --font-size-h2: 22px;
     --font-size-h3: 21px;
     --font-size-h4: 18px;
     --font-size-h5: 14px;

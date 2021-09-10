@@ -1,0 +1,11 @@
+.block-blog .cols {
+  @include grid(2, $gutter_x: 10rem, $gutter_y: 10rem);
+
+  @media (max-width: 700px) {
+    @include grid(2, $gutter_x: 4rem, $gutter_y: 4rem);
+  }
+
+  @media (max-width: 600px) {
+    @include grid(1, $gutter_x: 4rem, $gutter_y: 4rem);
+  }
+}

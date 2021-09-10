@@ -18,7 +18,8 @@ get_header();
 
 <main class="site-main">
 
-  <section class="block block-single has-light-bg">
+  <?php get_template_part( 'template-parts/hero', get_post_type() ); ?>
+  <section class="block block-single has-dark-bg">
     <div class="gutenberg-content">
 
       <h2><?php the_title(); ?></h2>

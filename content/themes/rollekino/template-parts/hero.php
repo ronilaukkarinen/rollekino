@@ -12,6 +12,7 @@
  * @package rollekino
  */
 
+if ( ! is_singular( 'post' ) ) :
 wp_reset_postdata();
 $movies = [];
 $post_type = 'movie';
@@ -73,4 +74,26 @@ $query = new \WP_Query( $args );
   </div>
 </section>
 
-<?php wp_reset_postdata();
+<?php
+wp_reset_postdata();
+
+else :
+$backdrop_url = wp_get_attachment_url( get_post_thumbnail_id() );
+?>
+
+<section class="block block-hero block-hero-normal block-hero-movies<?php echo esc_attr( implode( ' ', $block_classes ) ); ?>">
+  <div class="shade" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="content">
+      <h1 class="block-title"><?php the_title(); ?></h1>
+    </div>
+
+    <div class="backdrop">
+      <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+    </div>
+  </div>
+
+</section>
+
+<?php endif;
