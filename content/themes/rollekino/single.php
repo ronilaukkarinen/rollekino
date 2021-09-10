@@ -22,8 +22,6 @@ get_header();
   <section class="block block-single has-dark-bg">
     <div class="gutenberg-content">
 
-      <h2><?php the_title(); ?></h2>
-
       <?php the_content();
 
       if ( get_edit_post_link() ) {

@@ -9,3 +9,8 @@
     @include grid(1, $gutter_x: 4rem, $gutter_y: 4rem);
   }
 }
+
+/* stylelint-disable-next-line */
+.blog .site-main .block-hero-movies .content .block-title {
+  @include responsive-font(22px, 80px);
+}

@@ -1,0 +1,57 @@
+/* stylelint-disable selector-max-class, selector-max-specificity */
+.block-single {
+  background-color: transparent;
+  position: relative;
+  z-index: 7;
+
+  .container {
+    max-width: 700px;
+  }
+
+  @media (min-width: 600px) {
+    transform: translateY(-20rem);
+  }
+}
+
+body.single-post.postid-74322 .block-hero-movies.block-hero-normal .backdrop .lazy {
+  background-position: bottom;
+}
+
+body.single-post .block-hero-movies.block-hero-normal {
+  --height-hero: 770px;
+  padding-bottom: 0;
+
+  .content .block-title {
+    @include responsive-font(22px, 80px);
+  }
+
+  .block-description-quote {
+    font-size: var(--font-size-22);
+  }
+
+  .lazy {
+    background-position: top;
+  }
+
+  .container {
+    padding-bottom: 0;
+
+    @media (max-width: 600px) {
+      align-items: flex-end;
+
+      .content {
+        align-self: flex-end;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  + .block-page .container,
+  + .block-page {
+    padding-top: 0;
+  }
+
+  @media (max-width: 600px) {
+    --height-hero: 320px;
+  }
+}
