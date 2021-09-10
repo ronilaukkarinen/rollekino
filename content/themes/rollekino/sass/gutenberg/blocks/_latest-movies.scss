@@ -69,6 +69,7 @@
 
 .star-rating {
   position: relative;
+  white-space: nowrap;
 
   .half {
     height: 18px;

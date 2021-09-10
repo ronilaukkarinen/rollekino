@@ -167,9 +167,9 @@ if ( 60 <= $metascore_rating ) {
 
         </div>
 
-  </section>
+</section>
 
-  <section class="block block-movie-review has-dark-bg">
+<section class="block block-movie-review has-dark-bg">
     <div class="container">
 
       <aside class="side">
@@ -265,7 +265,7 @@ if ( 60 <= $metascore_rating ) {
         </ul>
       </aside>
 
-      <section class="content">
+      <div class="content">
 
         <?php
           $post_year = get_the_time( 'Y' );
@@ -327,10 +327,16 @@ if ( 60 <= $metascore_rating ) {
             edit_post_link( sprintf( wp_kses( __( 'Muokkaa <span class="screen-reader-text">%s</span>', 'rollekino' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ), '<p class="edit-link">', '</p>' );
           }
         ?>
-      </section>
+      </div>
 
     </div>
-  </section>
+</section>
+
+<?php
+  if ( function_exists( 'relevanssi_the_related_posts' ) ) {
+    relevanssi_the_related_posts();
+  }
+?>
 
 </main>
 

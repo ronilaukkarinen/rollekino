@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-09 23:40:52
+ * @Last Modified time: 2021-09-10 21:19:29
  *
  * @package rollekino
  */
@@ -206,14 +206,4 @@ function movie_archive_scripts() {
   ] );
 
   wp_enqueue_script( 'movies' );
-}
-
-// Reload Vue.js for Swup
-add_filter( 'script_loader_tag', __NAMESPACE__ . '\swup_script_loader_tag', 10, 2 );
-function swup_script_loader_tag( $tag, $handle ) {
-	if ( 'movies-js' === $handle || 'movies' === $handle ) {
-		return str_replace( '<script', '<script data-swup-reload-script', $tag );
-	}
-
-	return $tag;
 }
