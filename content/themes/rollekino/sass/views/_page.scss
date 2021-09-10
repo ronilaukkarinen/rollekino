@@ -1,0 +1,41 @@
+/* stylelint-disable selector-max-class, selector-max-specificity */
+.block-page {
+  .container {
+    max-width: 700px;
+  }
+}
+
+body.page-id-150 .block-hero-movies.block-hero-normal {
+  --height-hero: 450px;
+  padding-bottom: 0;
+
+  .block-description-quote {
+    font-size: var(--font-size-22);
+  }
+
+  .lazy {
+    background-position: top;
+  }
+
+  .container {
+    padding-bottom: 0;
+
+    @media (max-width: 600px) {
+      align-items: flex-end;
+
+      .content {
+        align-self: flex-end;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  + .block-page .container,
+  + .block-page {
+    padding-top: 0;
+  }
+
+  @media (max-width: 600px) {
+    --height-hero: 320px;
+  }
+}

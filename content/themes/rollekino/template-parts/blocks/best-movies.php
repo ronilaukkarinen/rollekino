@@ -109,7 +109,7 @@ namespace Air_Light;
                 'compare' => '=',
             ),
             // 'other_clause' => array(
-            //     'key' => 'city',
+            //     'key' => 'othermeta',
             //     'compare' => 'EXISTS',
             // ),
         ),

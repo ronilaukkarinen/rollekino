@@ -15,11 +15,21 @@
 wp_reset_postdata();
 $movies = [];
 $post_type = 'movie';
-$args = [
-  'orderby' => 'rand',
-  'post_type' => $post_type,
-  'posts_per_page' => 1,
-];
+
+if ( get_the_ID() === 150 ) :
+  $args = [
+    // 'orderby' => 'rand',
+    'p' => 45952,
+    'post_type' => $post_type,
+    'posts_per_page' => 1,
+  ];
+else :
+  $args = [
+    'orderby' => 'rand',
+    'post_type' => $post_type,
+    'posts_per_page' => 1,
+  ];
+endif;
 
 $query = new \WP_Query( $args );
 ?>
@@ -32,6 +42,11 @@ $query = new \WP_Query( $args );
       <?php if ( is_post_type_archive( 'movie' ) ) : ?>
         <h1 class="block-title">Leffat</h1>
         <p class="block-description">Täällä ne ovat, kaikki <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> leffa-arviota. Selaa rauhassa.</p>
+       <?php else : ?>
+        <h1 class="block-title"><?php the_title(); ?></h1>
+        <?php if ( get_the_ID() === 150 ) : ?>
+          <p class="block-description block-description-quote">“If you build it, he will come.” &mdash; <a href="<?php echo esc_url( get_the_permalink( 45952 ) ); ?>">Field of dreams (1989)</a></p>
+        <?php endif; ?>
       <?php endif; ?>
     </div>
 
@@ -54,3 +69,5 @@ $query = new \WP_Query( $args );
     <?php endif; ?>
   </div>
 </section>
+
+<?php wp_reset_postdata();
