@@ -1,5 +1,5 @@
 // Alternative style: https://i.imgur.com/A8gUyu2.png
-/* stylelint-disable a11y/font-size-is-readable */
+/* stylelint-disable a11y/font-size-is-readable, sh-waqar/declaration-use-variable */
 .navigation:not(.post-navigation) .nav-links {
   align-items: flex-start;
   display: flex;
@@ -15,15 +15,15 @@
     text-decoration: none;
   }
 }
-/* stylelint-enable */
+
 .page-numbers {
   align-items: center;
-  background-color: var(--color-white);
-  border-bottom: 2px solid var(--color-blue-chalk);
-  border-left: 1px solid var(--color-blue-chalk);
-  border-right: 1px solid var(--color-blue-chalk);
-  border-top: 2px solid var(--color-blue-chalk);
-  color: var(--color-pagination-text);
+  background-color: #1d1f2a;
+  border-bottom: 2px solid #1d1f2a;
+  border-left: 1px solid #1d1f2a;
+  border-right: 1px solid #1d1f2a;
+  border-top: 2px solid #1d1f2a;
+  color: var(--color-white);
   display: flex;
   font-weight: var(--font-weight-medium);
   height: 35px;

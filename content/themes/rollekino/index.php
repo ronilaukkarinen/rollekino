@@ -35,13 +35,6 @@ get_header(); ?>
           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <h2><a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php the_title(); ?></a></h2>
             <p><time datetime="<?php the_time( 'c' ); ?>"><?php echo get_the_date( get_option( 'date_format' ) ); ?></time></p>
-
-            <div class="content">
-              <?php
-                the_content();
-                entry_footer();
-              ?>
-            </div>
           </article>
         <?php endwhile; ?>
 

@@ -42,7 +42,10 @@ $query = new \WP_Query( $args );
       <?php if ( is_post_type_archive( 'movie' ) ) : ?>
         <h1 class="block-title">Leffat</h1>
         <p class="block-description">Täällä ne ovat, kaikki <?php echo esc_attr( wp_count_posts( 'movie' )->publish ); ?> leffa-arviota. Selaa rauhassa.</p>
-       <?php else : ?>
+      <?php elseif ( is_home() ) : ?>
+        <h1 class="block-title">Leffablogi</h1>
+        <p class="block-description">Tavallisia blogikirjoituksia elokuvista ja vähän niiden vierestäkin.</p>
+      <?php else : ?>
         <h1 class="block-title"><?php the_title(); ?></h1>
         <?php if ( get_the_ID() === 150 ) : ?>
           <p class="block-description block-description-quote">“If you build it, he will come.” &mdash; <a href="<?php echo esc_url( get_the_permalink( 45952 ) ); ?>">Field of dreams (1989)</a></p>
