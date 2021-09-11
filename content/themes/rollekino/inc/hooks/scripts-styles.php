@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-10 21:19:29
+ * @Last Modified time: 2021-09-11 21:19:16
  *
  * @package rollekino
  */
@@ -78,8 +78,9 @@ function enqueue_theme_scripts() {
   // Add domains/hosts to disable external link indicators
   wp_localize_script( 'scripts', 'rollekino_externalLinkDomains', [
       'localhost:3000',
-      'airdev.test',
-      'airwptheme.com',
+      'rollekino.test',
+      'rollekino.fi',
+      'www.rollekino.fi',
   ] );
 
   wp_localize_script( 'scripts', 'rollekino_apiURL', esc_url( get_home_url() ) );
