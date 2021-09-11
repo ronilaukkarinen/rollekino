@@ -35,6 +35,7 @@
 
     &:focus,
     &:hover {
+      /* stylelint-disable-next-line */
       color: rgba(255, 255, 255, 1);
     }
   }
