@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-11 00:52:56
+ * @Last Modified time: 2021-09-11 16:57:16
  *
  * @package rollekino
  */
@@ -538,10 +538,9 @@ function custom_admin_head() {
 function rating_stars() {
   $rating = get_post_meta( get_the_ID(), 'rating', true ) / 2; ?>
 
-  <span class="star-rating"
+  <span class="star-rating">
     <?php
     if ( 5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Viisi tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -549,7 +548,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star.svg' );
       echo '<span class="star-rating-text">Voittajaehdokas</span>';
     } elseif ( 4.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Neljä ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -560,7 +558,6 @@ function rating_stars() {
       echo '</span>';
       echo '<span class="star-rating-text">Ällistyttävä</span>';
     } elseif ( 4 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Neljä tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -568,7 +565,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Loistava</span>';
     } elseif ( 3.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kolme ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -579,7 +575,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Erittäin hyvä</span>';
     } elseif ( 3 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kolme tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -587,7 +582,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Hyvä</span>';
     } elseif ( 2.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kaksi ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       echo '<span class="half">';
@@ -598,7 +592,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Kelvollinen</span>';
     } elseif ( 2 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kaksi tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
@@ -606,7 +599,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Siedettävä</span>';
     } elseif ( 1.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Yksi ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       echo '<span class="half">';
       include get_theme_file_path( '/svg/star-half.svg' );
@@ -617,7 +609,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Tuskin siedettävä</span>';
     } elseif ( 1 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Yksi tähti">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
@@ -625,7 +616,6 @@ function rating_stars() {
       include get_theme_file_path( '/svg/star-empty.svg' );
       echo '<span class="star-rating-text">Huono</span>';
     } elseif ( 0.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Puoli tähteä">';
       echo '<span class="half">';
       include get_theme_file_path( '/svg/star-half.svg' );
       include get_theme_file_path( '/svg/star-bg.svg' );
@@ -651,17 +641,15 @@ function rating_stars_by_id( $post_id ) {
 
   $rating = get_post_meta( $post_id, 'rating', true ) / 2; ?>
 
-  <span class="star-rating"
+  <span class="star-rating">
     <?php
     if ( 5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Viisi tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
     } elseif ( 4.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Neljä ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -671,14 +659,12 @@ function rating_stars_by_id( $post_id ) {
       include get_theme_file_path( '/svg/star-bg.svg' );
       echo '</span>';
     } elseif ( 4 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Neljä tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 3.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kolme ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
@@ -688,14 +674,12 @@ function rating_stars_by_id( $post_id ) {
       echo '</span>';
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 3 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kolme tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 2.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kaksi ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       echo '<span class="half">';
@@ -705,14 +689,12 @@ function rating_stars_by_id( $post_id ) {
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 2 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Kaksi tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 1.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Yksi ja puoli tähteä">';
       include get_theme_file_path( '/svg/star.svg' );
       echo '<span class="half">';
       include get_theme_file_path( '/svg/star-half.svg' );
@@ -722,14 +704,12 @@ function rating_stars_by_id( $post_id ) {
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 1 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Yksi tähti">';
       include get_theme_file_path( '/svg/star.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
       include get_theme_file_path( '/svg/star-empty.svg' );
     } elseif ( 0.5 === $rating ) {
-      echo ' aria-label="Tähtiarvosana: Puoli tähteä">';
       echo '<span class="half">';
       include get_theme_file_path( '/svg/star-half.svg' );
       include get_theme_file_path( '/svg/star-bg.svg' );

@@ -56,7 +56,7 @@ if ( 60 <= $metascore_rating ) {
 
     <div class="container">
         <div class="backdrop">
-          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
 
           <div class="video js-video">
             <div

@@ -66,7 +66,7 @@ $query = new \WP_Query( $args );
         ?>
 
         <div class="backdrop">
-          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
         </div>
 
       <?php endwhile; ?>
@@ -91,7 +91,7 @@ $backdrop_url = wp_get_attachment_url( get_post_thumbnail_id() );
     </div>
 
     <div class="backdrop">
-      <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+      <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
     </div>
   </div>
 

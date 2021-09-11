@@ -46,7 +46,7 @@ if ( ! empty( $query->posts ) ) : ?>
         ?>
 
         <div class="backdrop">
-          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
           <?php // vanilla_lazyload_div( get_post_thumbnail_id() ); ?>
 
           <div class="video js-video">
@@ -95,6 +95,8 @@ if ( ! empty( $query->posts ) ) : ?>
         </div>
 
       <?php endwhile; ?>
+
+    </div>
 
   </section>
 <?php endif;

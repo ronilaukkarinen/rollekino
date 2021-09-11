@@ -11,6 +11,7 @@ namespace Air_Light;
 
 <section class="block block-genres has-dark-bg">
   <div class="container">
+    <h2 class="screen-reader-text">Genret</h2>
     <ul class="cols">
 
       <?php
@@ -70,4 +71,5 @@ namespace Air_Light;
       <?php endif; ?>
 
     </ul>
-  </section>
+  </div>
+</section>

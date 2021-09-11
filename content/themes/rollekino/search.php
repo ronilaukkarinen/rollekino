@@ -165,10 +165,12 @@ if ( ! empty( $query->posts ) ) : ?>
         ?>
 
         <div class="backdrop">
-          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>'); ?>"></div>
+          <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
         </div>
 
       <?php endwhile; ?>
+
+    </div>
 
   </section>
   <?php endif; ?>
