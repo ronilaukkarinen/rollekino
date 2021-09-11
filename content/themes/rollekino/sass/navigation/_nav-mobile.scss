@@ -22,29 +22,29 @@ $nav-open-from-direction: top;
 // These can be adjusted with media queries for in-between breakpoints
 :root {
   // Dimensions, gaps and spacings
-  --font-size-main-level-mobile: 17px;
+  --font-size-main-level-mobile: 22px;
   --font-size-sub-menu-mobile: 17px;
-  --font-weight-main-level-mobile: 600;
-  --font-weight-sub-menu-mobile: 600;
+  --font-weight-main-level-mobile: 500;
+  --font-weight-sub-menu-mobile: 500;
   --dropdown-toggle-size-mobile: 12px;
   --height-navigation-mobile: 72px;
   --margin-left-sub-menu: 2rem;
-  --padding-main-level-vertical-mobile: 1.2rem;
+  --padding-main-level-vertical-mobile: 1rem;
   --padding-sub-menu-vertical-mobile: .8rem;
   --padding-sub-menu-horizontal-mobile: 2.5rem;
 
   // Colors
   --color-active-main-level-mobile: var(--color-white);
   --color-background-nav-mobile-header: transparent;
-  --color-background-nav-mobile-header-active: var(--color-main);
-  --color-background-nav-mobile-layer: var(--color-main);
-  --color-background-nav-mobile-layer-active: var(--color-main);
+  --color-background-nav-mobile-header-active: var(--color-background);
+  --color-background-nav-mobile-layer: var(--color-background);
+  --color-background-nav-mobile-layer-active: var(--color-background);
   --color-current-mobile: var(--color-white);
   --color-dropdown-toggle-mobile: var(--color-white);
   --color-hamburger-active: var(--color-white);
   --color-hamburger: var(--color-white);
   --color-main-level-mobile: var(--color-white);
-  --color-separator-nav-mobile: rgba(255, 255, 255, .1);
+  --color-separator-nav-mobile: transparent;
   --color-sub-menu-mobile: rgba(255, 255, 255, .8);
 }
 
@@ -124,6 +124,7 @@ $nav-open-from-direction: top;
     margin: 0;
     opacity: 0;
     overflow: auto;
+    padding-top: 5rem;
     pointer-events: none;
     transition: all $transition-duration ease-in-out;
     visibility: hidden;

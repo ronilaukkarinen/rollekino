@@ -68,7 +68,6 @@
 
   .content {
     align-self: flex-end;
-    margin-top: 10rem;
     position: relative;
     text-align: center;
     width: 100%;
@@ -94,6 +93,10 @@
         font-size: 24px;
         width: 85%;
       }
+    }
+
+    @media (min-width: 600px) {
+      margin-top: 10rem;
     }
   }
 
