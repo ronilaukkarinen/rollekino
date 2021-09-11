@@ -27,7 +27,7 @@ $nav-open-from-direction: top;
   --font-weight-main-level-mobile: 500;
   --font-weight-sub-menu-mobile: 500;
   --dropdown-toggle-size-mobile: 12px;
-  --height-navigation-mobile: 72px;
+  --height-navigation-mobile: 68.69px;
   --margin-left-sub-menu: 2rem;
   --padding-main-level-vertical-mobile: 1rem;
   --padding-sub-menu-vertical-mobile: .8rem;
@@ -77,6 +77,7 @@ $nav-open-from-direction: top;
 @media (max-width: $width-max-mobile) {
   .nav-container {
     background-color: var(--color-background-nav-mobile-header);
+    z-index: 50;
 
     @if $absolute-navigation-mobile == false {
       position: relative;
