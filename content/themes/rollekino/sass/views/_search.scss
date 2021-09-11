@@ -232,4 +232,8 @@ body.is-search-on.hide-containers {
 
 .result-post {
   margin-bottom: 4rem;
+
+  a {
+    color: var(--color-white);
+  }
 }

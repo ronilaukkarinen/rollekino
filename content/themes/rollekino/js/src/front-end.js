@@ -229,9 +229,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Show aria-hidden value toggle
-  document.getElementById('result').innerHTML = attr['aria-hidden'].value;
-
   // Spoiler warning tooltip on load
   const spoilerWarningItems = document.querySelectorAll('.spoiler-warning');
   spoilerWarningItems.forEach((span) => {
