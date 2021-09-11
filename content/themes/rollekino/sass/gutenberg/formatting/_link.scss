@@ -33,3 +33,20 @@ a {
     @include link();
   }
 }
+
+.block-page .container,
+.block-movie-review .content {
+  [data-type="core/paragraph"] > a,
+  li > a,
+  p > strong > a,
+  p > em > a,
+  p:not([class]) > a:not([class]),
+  p.has-text-align-left > a,
+  p.has-text-align-center > a,
+  p.has-text-align-right > a,
+  p.has-small-font-size > a,
+  figcaption > a,
+  p:not([class]) > a.is-external-link {
+    @include link();
+  }
+}

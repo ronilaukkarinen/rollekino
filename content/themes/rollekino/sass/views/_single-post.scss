@@ -18,6 +18,10 @@
 }
 
 // Movie Gutenberg block
+.block-picked-movie.block-hero-movies.block-hero-movies-single {
+  height: unset;
+}
+
 .block-picked-movie.block-hero-movies.block-hero-movies-single .container,
 .block-single .block-hero-movies.block-hero-movies-single .container,
 .site-main .block-single .block-hero-movies.block-hero-movies-single .container {

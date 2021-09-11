@@ -3,7 +3,7 @@
 * @Author: Roni Laukkarinen
 * @Date: 2021-08-24 15:45:19
 * @Last Modified by:   Roni Laukkarinen
-* @Last Modified time: 2021-09-11 14:37:48
+* @Last Modified time: 2021-09-11 14:44:20
 *
 * @package flux
 */
@@ -60,8 +60,9 @@ if ( 60 <= $metascore_rating ) {
         <div class="movie-meta-data">
 
           <div class="movie-meta-data-box movie-meta-data-box-large">
-            <div class="movie-poster-wrapper movie-poster-wrapper-large">
+            <div class="movie-poster-wrapper movie-poster-wrapper-large has-link">
               <div class="movie-poster">
+                <a aria-label="Elokuvan <?php echo esc_html( $movie->post_title ); ?> arvioon" class="global-link" href="<?php echo esc_url( get_the_permalink( $post_id ) ); ?>"></a>
                 <img src="<?php echo esc_url( $poster_url ); ?>" alt="<?php echo esc_html( get_the_title( $poster_id ) ); ?>" />
                 <div class="frame" aria-hidden="true"></div>
               </div>

@@ -32,6 +32,11 @@
   a {
     /* stylelint-disable-next-line */
     color: rgba(255, 255, 255, .8);
+
+    &:focus,
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
   }
 
   a.is-external-link::after {

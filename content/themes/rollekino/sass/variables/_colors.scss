@@ -22,6 +22,11 @@
   --color-buttons-hover: rgb(25, 34, 46);
   --color-background-search: rgba(255, 255, 255, .1);
 
+  // Neon colors
+  --color-neon-green: #00e676;
+  --color-neon-pink: #ff005b;
+  --color-neon-blue: #2196f3;
+
   // Main element colors
   --color-heading: var(--color-white);
   --color-main: var(--color-white);
@@ -36,9 +41,9 @@
   --color-link-edit-border: var(--color-pattens-blue);
   --color-link-edit-text: darken(#eaf1f8, 20%);
   --color-link-edit-text-hover: var(--color-east-bay);
-  --color-link-text: var(--color-white);
-  --color-link-text-focus: var(--color-black);
-  --color-link-text-hover: var(--color-white);
+  --color-link-text: var(--color-neon-blue);
+  --color-link-text-focus: var(--color-neon-pink);
+  --color-link-text-hover: var(--color-neon-pink);
   --color-link-background-hover: var(--color-white);
 
   // Element colors
