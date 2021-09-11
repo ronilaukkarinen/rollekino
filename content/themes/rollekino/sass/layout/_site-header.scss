@@ -25,6 +25,11 @@
     margin-right: 7px;
     position: relative;
     top: 3px;
+
+    @media (max-width: 600px) {
+      height: auto;
+      width: 150px;
+    }
   }
 
   a {
