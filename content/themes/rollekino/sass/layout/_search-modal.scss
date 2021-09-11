@@ -1,0 +1,82 @@
+/* stylelint-disable selector-max-combinators, selector-max-compound-selectors, selector-max-class, selector-max-specificity, a11y/no-display-none */
+// Search modal
+.block.block-search-modal.block-search.block-hero-movies {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+
+  &.is-visible {
+    display: block;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+
+    .content {
+      margin-top: 10rem;
+    }
+
+    .shade {
+      z-index: 1;
+    }
+  }
+
+  @media (max-width: $width-max-mobile) {
+    height: 100vh;
+    max-height: 100vh;
+
+    .container,
+    .backdrop,
+    .backdrop::before {
+      height: 100vh;
+      max-height: 100vh;
+    }
+  }
+}
+
+// Toggle button
+.open-search {
+  background-color: transparent;
+  border: 0;
+  color: var(--color-white);
+
+  &.toggled .icon-search,
+  .icon-close {
+    display: none;
+  }
+
+  &:focus,
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.toggled .icon-close {
+    display: inline-flex;
+  }
+}
+
+/* stylelint-disable-next-line */
+body.search .menu-item-search,
+body.search .open-search.open-search-mobile,
+.page-id-124 .menu-item-search,
+.page-id-124 .open-search.open-search-mobile {
+  display: none;
+}
+
+@media (min-width: $width-max-mobile) {
+  .open-search.open-search-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: $width-max-mobile) {
+  .menu-item-search {
+    display: none;
+  }
+}

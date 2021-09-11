@@ -1,47 +1,11 @@
 <?php
 /**
- * The template for displaying search results pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @Date:   2019-10-15 12:30:02
- * @Last Modified by:   Timi Wahalahti
- * @Last Modified time: 2021-01-12 17:23:47
+ * Search page and modal.
  *
  * @package rollekino
  */
 
-namespace Air_Light;
-
-$results = [];
-
-if ( ! empty( $_GET['s'] ) && have_posts() ) { // phpcs:ignore
-  while ( have_posts() ) {
-    the_post();
-    $post_type = get_post_type();
-
-    $results[ $post_type ]['posts'][] = [
-      'title'     => (string) get_the_title(),
-      'permalink' => (string) get_permalink(),
-      'excerpt'   => (string) get_the_excerpt(),
-      'id'        => (string) get_the_ID(),
-      'post_type' => (string) get_post_type(),
-      'date'      => (string) get_the_date(),
-    ];
-  }
-} wp_reset_postdata();
-
-// Get post type objects for results
-foreach ( $results as $slug => $post_type ) {
-  $results[ $slug ]['object'] = (object) get_post_type_object( $slug );
-  $results[ $slug ]['count']  = (int) count( $results[ $slug ]['posts'] );
-}
-
-get_header(); ?>
-
-<main class="site-main">
-
-<?php
+wp_reset_postdata();
 $movies = [];
 $post_type = 'movie';
 $args = [
@@ -53,10 +17,11 @@ $args = [
 $query = new \WP_Query( $args );
 
 if ( ! empty( $query->posts ) ) : ?>
-  <section class="block block-search block-hero-movies has-dark-bg">
-  <div class="shade" aria-hidden="true"></div>
+
+<section aria-hidden="true" id="search-modal" class="block block-search-modal block-search block-hero-movies has-dark-bg">
 
     <div class="container">
+
       <div class="content">
         <h1 class="block-title block-title-persistent">Haku</h1>
 
@@ -165,6 +130,7 @@ if ( ! empty( $query->posts ) ) : ?>
         ?>
 
         <div class="backdrop">
+          <div class="shade" aria-hidden="true"></div>
           <div class="lazy" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
         </div>
 
@@ -175,15 +141,3 @@ if ( ! empty( $query->posts ) ) : ?>
 </section>
 
 <?php endif; ?>
-
-  <?php
-    wp_reset_postdata();
-    if ( ! is_search() && empty( $_GET['s'] ) ) { // phpcs:ignore
-      if ( ! is_front_page() ) {
-        include get_theme_file_path( 'template-parts/search-modal.php' );
-      }
-    }
-  ?>
-</main>
-
-<?php get_footer();

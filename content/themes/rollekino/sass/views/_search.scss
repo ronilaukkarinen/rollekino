@@ -6,6 +6,7 @@
 }
 
 /* stylelint-disable-next-line */
+body .site-main .block-search-modal.block-hero-movies .container .result-container,
 body.search .block-hero-movies .container .result-container,
 body.is-search-on .block-hero-movies .container .result-container,
 .result-container {
@@ -139,20 +140,24 @@ body.is-search-on .block-hero-movies .container .result-container,
   }
 }
 
+.block-search-modal .no-results,
 body.search .no-results {
   margin-bottom: 16rem;
   margin-top: 4rem;
 }
 
+body .site-main .block-search-modal.block-search.block-hero-movies,
 body.search .block-search.block-hero-movies {
   min-height: 710px;
 }
 
+body .site-main .block-search-modal.block-hero-movies .content,
 body.search .block-hero-movies .content,
 .site-main .block-hero-movies .content {
   align-self: flex-start;
 }
 
+body .site-main .block-search-modal .backdrop .lazy,
 body.search .backdrop .lazy {
   background-position: top;
 }

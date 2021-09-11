@@ -338,6 +338,14 @@ if ( 60 <= $metascore_rating ) {
   }
 ?>
 
+  <?php
+    wp_reset_postdata();
+    if ( ! is_search() && empty( $_GET['s'] ) ) { // phpcs:ignore
+      if ( ! is_front_page() ) {
+        include get_theme_file_path( 'template-parts/search-modal.php' );
+      }
+    }
+  ?>
 </main>
 
 <?php get_footer();

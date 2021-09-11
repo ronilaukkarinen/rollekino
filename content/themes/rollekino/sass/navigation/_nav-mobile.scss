@@ -102,6 +102,8 @@ $nav-open-from-direction: top;
   }
 
   .main-navigation-wrapper {
+    display: flex;
+    gap: 2rem;
     order: 6;
     z-index: 999;
   }
@@ -126,7 +128,7 @@ $nav-open-from-direction: top;
     overflow: auto;
     padding-top: 5rem;
     pointer-events: none;
-    transition: all $transition-duration ease-in-out;
+    transition: none;
     visibility: hidden;
     width: 100vw;
   }
@@ -212,7 +214,7 @@ $nav-open-from-direction: top;
     right: 0;
     top: 2px;
     transform: rotate(0);
-    transition: all $transition-duration;
+    transition: none;
     z-index: 9999;
   }
 

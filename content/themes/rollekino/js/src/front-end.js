@@ -167,6 +167,71 @@ players.forEach((player) => {
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Search modal stuff
+  var openModalButton = document.getElementById('open-search');
+  var openModalButtonMobile = document.getElementById('open-search-mobile');
+  var searchField = document.getElementById('search-field');
+  var searchModal = document.getElementById('search-modal');
+
+  // Open modal by click or enter
+  openModalButton.onclick = function () {
+    searchModal.classList.toggle('is-visible');
+    openModalButton.classList.toggle('toggled');
+    searchField.focus();
+
+    if ( openModalButton['aria-expanded'].value == 'true"') {
+      openModalButton.setAttribute('aria-expanded', 'false');
+    } else {
+      openModalButton.setAttribute('aria-expanded', 'true');
+    }
+
+    if ( searchModal['aria-hidden'].value == 'true"') {
+      searchModal.setAttribute('aria-hidden', 'false');
+    } else {
+      searchModal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  openModalButtonMobile.onclick = function () {
+    searchModal.classList.toggle('is-visible');
+    openModalButtonMobile.classList.toggle('toggled');
+    searchField.focus();
+
+    if ( openModalButtonMobile['aria-expanded'].value == 'true"') {
+      openModalButtonMobile.setAttribute('aria-expanded', 'false');
+    } else {
+      openModalButtonMobile.setAttribute('aria-expanded', 'true');
+    }
+
+    if ( searchModal['aria-hidden'].value == 'true"') {
+      searchModal.setAttribute('aria-hidden', 'false');
+    } else {
+      searchModal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  document.addEventListener('keydown', function(event){
+    if ( event.key === 'Escape' ) {
+      searchModal.classList.remove('is-visible');
+      openModalButton.classList.remove('toggled');
+
+      if ( openModalButton['aria-expanded'].value == 'true"') {
+        openModalButton.setAttribute('aria-expanded', 'false');
+      } else {
+        openModalButton.setAttribute('aria-expanded', 'true');
+      }
+
+      if ( searchModal['aria-hidden'].value == 'true"') {
+        searchModal.setAttribute('aria-hidden', 'false');
+      } else {
+        searchModal.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+
+  // Show aria-hidden value toggle
+  document.getElementById('result').innerHTML = attr['aria-hidden'].value;
+
   // Spoiler warning tooltip on load
   const spoilerWarningItems = document.querySelectorAll('.spoiler-warning');
   spoilerWarningItems.forEach((span) => {

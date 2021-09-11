@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:33:49
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-08 08:33:17
+ * @Last Modified time: 2021-09-11 17:45:26
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  * @package rollekino

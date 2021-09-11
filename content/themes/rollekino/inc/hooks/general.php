@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-07 19:31:08
+ * @Last Modified time: 2021-09-11 18:11:28
  *
  * @package rollekino
  */
@@ -87,3 +87,19 @@ function adminbar_maybe_clear_transient_cache() {
 
   transient_cache_clear();
 } // end adminbar_maybe_clear_transient_cache
+
+/**
+ * Add extra item to navigation
+ */
+add_filter( 'wp_nav_menu_items', function( $items, $args ) {
+
+  $link = '<li class="menu-item menu-item-search">
+      <button class="open-search" id="open-search" aria-expanded="false" aria-haspopup="true" aria-label="Avaa haku">
+        <svg class="icon-search" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 27 27"><g stroke="currentColor" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><circle cx="11.813" cy="11.813" r="11.25"></circle><path d="M26.438 26.438l-6.671-6.671"></path></g></svg>
+        <svg class="icon-close" width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505.943 6.058c-8.077-8.077-21.172-8.077-29.249 0L6.058 476.693c-8.077 8.077-8.077 21.172 0 29.249A20.612 20.612 0 0020.683 512a20.614 20.614 0 0014.625-6.059L505.943 35.306c8.076-8.076 8.076-21.171 0-29.248z"/><path d="M505.942 476.694L35.306 6.059c-8.076-8.077-21.172-8.077-29.248 0-8.077 8.076-8.077 21.171 0 29.248l470.636 470.636a20.616 20.616 0 0014.625 6.058 20.615 20.615 0 0014.624-6.057c8.075-8.078 8.075-21.173-.001-29.25z"/></svg>
+      </button>
+    </li>';
+
+  return $items . $link;
+
+}, 20, 2);
