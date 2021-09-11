@@ -1,6 +1,16 @@
 .block-blog .cols {
   @include grid(2, $gutter_x: 10rem, $gutter_y: 10rem);
 
+  a {
+    @include cubic-bezier($property: all);
+    color: var(--color-white);
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
   @media (max-width: 700px) {
     @include grid(2, $gutter_x: 4rem, $gutter_y: 4rem);
   }

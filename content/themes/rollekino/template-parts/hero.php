@@ -87,7 +87,7 @@ $backdrop_url = wp_get_attachment_url( get_post_thumbnail_id() );
   <div class="container">
     <div class="content">
       <h1 class="block-title"><?php the_title(); ?></h1>
-      <p class="block-description block-description-quote"><?php echo esc_html( get_the_date( 'j.n.Y', get_the_ID() ) ); ?></p>
+      <p class="block-description block-description-quote"><?php echo esc_html( get_the_date( 'j.n.Y', get_the_ID() ) ); ?> <span class="auth"><a href="https://twitter.com/rolle"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gravatar.jpg" alt="Kasvokuva minusta, Roni Laukkarisesta" class="gravatar-small" /> @rolle</a></span></p>
     </div>
 
     <div class="backdrop">

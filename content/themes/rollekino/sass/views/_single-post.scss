@@ -79,7 +79,14 @@ body.single-post .block-hero-movies.block-hero-normal {
   }
 
   .block-description-quote {
-    font-size: var(--font-size-22);
+    align-items: center;
+    display: inline-flex;
+    font-size: var(--font-size-20);
+    gap: 4rem;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .lazy {
@@ -107,4 +114,45 @@ body.single-post .block-hero-movies.block-hero-normal {
   @media (max-width: 600px) {
     --height-hero: 320px;
   }
+}
+
+.auth {
+  align-items: center;
+  display: inline-flex;
+  margin: 0;
+}
+
+.auth a {
+  /* stylelint-disable-next-line */
+  color: rgba(255, 255, 255, .7);
+  display: inline-flex;
+  font-size: var(--font-size-16);
+  font-weight: 400;
+  text-decoration: none;
+  transition: color .55s cubic-bezier(.19, 1, .22, 1), background-color .2s cubic-bezier(.19, 1, .22, 1);
+}
+
+.auth a:hover,
+.auth a:focus {
+  color: var(--color-neon-pink);
+}
+
+.auth a:hover img,
+.auth a:focus img {
+  border-color: var(--color-neon-pink);
+}
+
+/* stylelint-disable-next-line */
+.auth a::after {
+  display: none;
+}
+
+.auth .gravatar-small {
+  border: 2px solid rgba(255, 255, 255, .7);
+  border-radius: 50%;
+  height: 22px;
+  margin-right: 1rem;
+  overflow: hidden;
+  transition: border-color .55s cubic-bezier(.19, 1, .22, 1), background-color .2s cubic-bezier(.19, 1, .22, 1);
+  width: 22px;
 }
