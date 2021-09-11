@@ -1,4 +1,4 @@
-/* stylelint-disable selector-max-class, selector-max-specificity */
+/* stylelint-disable selector-max-class, selector-max-specificity, selector-max-combinators, selector-max-compound-selectors */
 .block-single {
   background-color: transparent;
   position: relative;
@@ -10,6 +10,55 @@
 
   @media (min-width: 600px) {
     transform: translateY(-20rem);
+  }
+}
+
+.block-picked-movie {
+  max-width: $width-max-article;
+}
+
+// Movie Gutenberg block
+.block-picked-movie.block-hero-movies.block-hero-movies-single .container,
+.block-single .block-hero-movies.block-hero-movies-single .container,
+.site-main .block-single .block-hero-movies.block-hero-movies-single .container {
+  align-items: flex-start;
+  height: unset;
+  max-width: 100%;
+  padding: 4rem 0;
+  width: 100%;
+
+  // Ordering
+  .movie-meta-data-content {
+    .buttons {
+      justify-self: flex-start;
+      order: 4;
+
+      .mediabox {
+        margin: 2rem 0;
+      }
+    }
+
+    .movie-meta-data-title {
+      order: 1;
+    }
+
+    .movie-meta-data-list {
+      order: 2;
+    }
+
+    .poster-information {
+      margin-bottom: 0;
+      order: 4;
+    }
+  }
+
+  .backdrop {
+    height: unset;
+    max-width: unset;
+  }
+
+  .movie-meta-data-title {
+    font-size: var(--font-size-h1);
   }
 }
 

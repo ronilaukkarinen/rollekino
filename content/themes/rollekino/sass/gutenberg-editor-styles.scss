@@ -35,6 +35,8 @@
 // Apply general styles from site front-end
 @import 'layout/general';
 @import 'layout/typography';
+@import 'views/single-movie';
+@import 'views/single-post';
 
 // Gutenberg formatting
 @import 'gutenberg/formatting';
