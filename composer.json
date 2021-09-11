@@ -83,7 +83,6 @@
     "wpackagist-plugin/so-clean-up-wp-seo": "*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*",
     "kevinruscoe/acf-star-rating-field": "dev-master",
-    "rooxie/omdb": "^0.3.0",
     "guzzlehttp/guzzle": "^7.3",
     "vfalies/tmdb": "^1.12",
     "relevanssi/relevanssi-premium": "*",
