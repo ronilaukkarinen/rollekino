@@ -24,13 +24,13 @@ body::before {
     left: 84px;
     opacity: .8;
     position: absolute;
-    top: 16px;
+    top: 10px;
     z-index: 0;
 
     @media (max-width: 800px) {
       font-size: 22px;
       left: 78px;
-      top: 20px;
+      top: 14px;
     }
 
     @media (max-width: 600px) {
