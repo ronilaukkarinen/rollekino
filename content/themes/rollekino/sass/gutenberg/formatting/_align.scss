@@ -30,6 +30,9 @@
   }
 
   .alignwide {
+    padding-left: 0;
+    padding-right: 0;
+
     @media (min-width: $width-grid-base + 40px) {
       max-width: $width-wide;
       width: 100%;
@@ -37,15 +40,18 @@
   }
 
   .alignfull {
+    padding-left: 0;
+    padding-right: 0;
+
+    &.wp-block-image img {
+      border-radius: 0;
+    }
+
     @media (min-width: $width-grid-base + 40px) {
       margin-bottom: var(--padding-block);
       margin-top: var(--padding-block);
       max-width: $width-full;
       width: 100%;
-    }
-
-    &.wp-block-image img {
-      border-radius: 0;
     }
   }
 }

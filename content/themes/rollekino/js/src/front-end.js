@@ -272,3 +272,17 @@ document.addEventListener('DOMContentLoaded', function () {
     moveTo.registerTrigger(triggers[i]);
   }
 });
+
+// Add aria-labels to links without text or aria-labels and contain image with alt text
+const links = [...document.querySelectorAll('a')];
+const linksWithImgChildren = links.forEach(link => {
+  // If link already has text content or an aria label no need to add aria-label
+  if (link.textContent.trim() !== '' || link.ariaLabel) {
+    return;
+  }
+
+  const ariaLabel = getChildAltText(link);
+  if (ariaLabel !== '') {
+    link.ariaLabel = ariaLabel;
+  }
+});
