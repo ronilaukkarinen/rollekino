@@ -3,14 +3,18 @@
   --width-poster-large: 300px;
 
   @media (max-width: 1100px) {
+    --width-poster-large: 250px;
+  }
+
+  @media (max-width: 700px) {
     --width-poster-large: 200px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 600px) {
     --width-poster-large: 150px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     --height-single-hero: 550px;
   }
 }
@@ -483,8 +487,9 @@
     margin: 2.9rem 0;
     padding: 0;
 
-    .side-information-meta-crew-actors {
-      max-width: 80%;
+    .side-information-meta-crew {
+      @include grid(3, $gutter_x: 2rem, $gutter_y: 2rem);
+      max-width: 500px;
     }
 
     .side-information-meta-crew li:focus,
@@ -511,38 +516,27 @@
       }
 
       .side-information-meta-crew {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
         margin-bottom: 0;
         margin-left: 0;
         margin-right: 0;
         margin-top: 2rem;
         padding: 0;
-      }
 
-      .side-information-meta-crew.multiple-directors li {
-        max-width: 64px;
-        min-width: 64px;
-        width: 64px;
-      }
-
-      .side-information-meta-crew.multiple-directors .avatar {
-        height: 64px;
-        max-width: 64px;
-        min-width: 64px;
-        width: 64px;
+        @media (min-width: 700px) {
+          max-width: 80%;
+        }
       }
 
       .side-information-meta-crew.multiple-directors .side-information-meta-crew-name {
-        font-size: var(--font-size-14);
+        max-width: 100%;
+        width: 100%;
       }
 
       .side-information-meta-crew-name {
         @include cubic-bezier($property: all);
         color: var(--color-white);
         display: inline-block;
-        font-size: var(--font-size-15);
+        font-size: var(--font-size-14);
         font-weight: var(--font-weight-regular);
         line-height: 1.3;
         margin: 0 auto;
@@ -554,11 +548,8 @@
         line-height: 1;
         list-style: none;
         margin: 0;
-        max-width: 80px;
-        min-width: 80px;
         padding: 0;
         text-align: center;
-        width: 80px;
       }
     }
 
@@ -602,7 +593,12 @@
   }
 }
 
+.avatar.avatar-empty svg {
+  position: absolute;
+}
+
 .avatar {
+  @include aspect-ratio(1, 1);
   @include cubic-bezier($property: all);
   align-items: center;
   /* stylelint-disable-next-line */
@@ -611,37 +607,11 @@
   background-size: cover;
   border-radius: 50%;
   display: flex;
-  height: 80px;
   justify-content: center;
-  max-width: 80px;
-  min-width: 80px;
-  width: 80px;
 
   svg {
-    height: 55px;
-    width: 55px;
-  }
-
-  &.avatar-small {
-    height: 55px;
-    max-width: 55px;
-    min-width: 55px;
-    width: 55px;
-
-    svg {
-      height: 48px;
-      width: 48px;
-    }
-  }
-}
-
-.side-information .side-information-meta-crew .has-small-avatar {
-  max-width: 55px;
-  min-width: 55px;
-  width: 55px;
-
-  .side-information-meta-crew-name {
-    font-size: 13px;
+    height: 60%;
+    width: auto;
   }
 }
 
@@ -663,6 +633,10 @@
 
   p:first-of-type {
     margin-top: 0;
+  }
+
+  @media (max-width: 700px) {
+    padding: 3rem;
   }
 }
 
@@ -716,6 +690,10 @@
     /* stylelint-disable-next-line */
     color: rgba(255, 255, 255, .8);
     margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    padding: 3rem;
   }
 }
 
