@@ -23,7 +23,7 @@ get_header(); ?>
 <main class="site-main">
 
   <?php get_template_part( 'template-parts/hero', get_post_type() ); ?>
-  <section class="block block-page has-light-bg">
+  <section class="block block-page has-dark-bg">
     <div class="container">
 
       <?php the_content(); ?>

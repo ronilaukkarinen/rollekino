@@ -181,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if ( openModalButton['aria-expanded'].value == 'true"') {
       openModalButton.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('is-search-on');
+      document.body.classList.remove('hide-containers');
     } else {
       openModalButton.setAttribute('aria-expanded', 'true');
     }
@@ -189,6 +191,8 @@ document.addEventListener('DOMContentLoaded', function () {
       searchModal.setAttribute('aria-hidden', 'false');
     } else {
       searchModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-search-on');
+      document.body.classList.remove('hide-containers');
     }
   }
 
@@ -199,6 +203,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if ( openModalButtonMobile['aria-expanded'].value == 'true"') {
       openModalButtonMobile.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('is-search-on');
+      document.body.classList.remove('hide-containers');
     } else {
       openModalButtonMobile.setAttribute('aria-expanded', 'true');
     }
@@ -207,6 +213,8 @@ document.addEventListener('DOMContentLoaded', function () {
       searchModal.setAttribute('aria-hidden', 'false');
     } else {
       searchModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-search-on');
+      document.body.classList.remove('hide-containers');
     }
   }
 
@@ -217,6 +225,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if ( openModalButton['aria-expanded'].value == 'true"') {
         openModalButton.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('is-search-on');
+        document.body.classList.remove('hide-containers');
       } else {
         openModalButton.setAttribute('aria-expanded', 'true');
       }
@@ -225,6 +235,8 @@ document.addEventListener('DOMContentLoaded', function () {
         searchModal.setAttribute('aria-hidden', 'false');
       } else {
         searchModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('is-search-on');
+        document.body.classList.remove('hide-containers');
       }
     }
   });

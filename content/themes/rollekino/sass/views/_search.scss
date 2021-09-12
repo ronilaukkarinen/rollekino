@@ -203,6 +203,10 @@ body.search .backdrop .lazy {
 
 body.search,
 body.is-search-on {
+  .site {
+    position: static;
+  }
+
   .site-main .block-hero-movies .content {
     position: static;
   }
