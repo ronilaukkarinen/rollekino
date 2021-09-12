@@ -32,6 +32,11 @@ body::before {
       left: 78px;
       top: 20px;
     }
+
+    @media (max-width: 600px) {
+      left: 72px;
+      top: 14px;
+    }
   }
 
   .search-form-field {

@@ -403,7 +403,7 @@
   display: flex;
   height: calc(100% + 40px);
   justify-content: center;
-  left: -20px;
+  left: 0;
   opacity: 1;
   position: absolute;
   top: var(--height-of-top-bar);
@@ -413,7 +413,6 @@
 
   @media (max-width: 500px) {
     height: 100%;
-    left: -15px;
     width: 100%;
   }
 }

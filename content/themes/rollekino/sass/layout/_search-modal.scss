@@ -13,6 +13,10 @@
     display: block;
   }
 
+  > .container {
+    overflow: auto;
+  }
+
   .container {
     position: relative;
     width: 100%;
