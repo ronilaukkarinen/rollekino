@@ -10,7 +10,15 @@
     max-width: 1000px;
     padding-bottom: 9rem;
     padding-top: 9rem;
-    width: 80%;
+
+    @media (min-width: 900px) {
+      width: 80%;
+    }
+
+    @media (max-width: 600px) {
+      padding-bottom: 6rem;
+      padding-top: 6rem;
+    }
   }
 
   h2 {
@@ -45,11 +53,19 @@
   }
 
   ul {
+    --gap: 2rem;
+    align-items: center;
     display: inline-flex;
     flex-wrap: wrap;
+    gap: var(--gap) 0;
+    justify-content: center;
     list-style: none;
     margin: 0 auto;
     padding: 1rem 0 0;
+
+    @media (max-width: 600px) {
+      --gap: 1.5rem;
+    }
   }
 
   li {
@@ -59,12 +75,12 @@
 
     &.imdb svg {
       height: 25px;
-      margin-right: 2rem;
+      margin-right: var(--gap);
     }
 
     &.listal svg {
       height: 22px;
-      margin-right: 1rem;
+      margin-right: calc(var(--gap) / 2);
     }
 
     &.letterboxd svg {
@@ -72,7 +88,7 @@
     }
 
     &.trakt svg {
-      margin-left: 1rem;
+      margin-left: calc(var(--gap) / 2);
     }
 
     &.tmdb svg {
@@ -90,8 +106,12 @@
 
   li svg {
     height: 35px;
-    margin: 0 2rem;
+    margin: 0 var(--gap);
     width: auto;
+
+    @media (max-width: 600px) {
+      height: 25px;
+    }
   }
 
   /* stylelint-disable-next-line */
