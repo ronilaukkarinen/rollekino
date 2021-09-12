@@ -300,6 +300,12 @@ if ( 60 <= $metascore_rating ) {
           <?php the_content(); ?>
         <?php endif; ?>
 
+        <p>
+          <a class="button button-small button-bmc no-external-link-indicator" href="https://www.buymeacoffee.com/Fd140aV">
+            <span>Saitko leffavinkin? Tarjoa kirjoittajalle kahvit kiitokseksi!</span>
+          </a>
+        </p>
+
         <ul class="side-information side-information-main-content">
           <li><span class="side-information-title">Katsottu ja arvioitu</span><span class="screen-reader-text">:</span> <?php echo get_the_date(); ?></li>
 

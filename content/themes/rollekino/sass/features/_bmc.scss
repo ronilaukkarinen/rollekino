@@ -1,0 +1,12 @@
+/* stylelint-disable */
+body .block .container .content a.button.button-bmc {
+  background-color: var(--color-buttons-hover);
+  box-shadow: none;
+  color: rgba(255, 255, 255, .6);
+  display: inline-block;
+  font-weight: var(--font-weight-regular);
+  padding-bottom: .8rem;
+  padding-top: .8rem;
+  text-shadow: none;
+  white-space: unset;
+}
