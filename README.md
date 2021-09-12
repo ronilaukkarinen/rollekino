@@ -1,15 +1,11 @@
-# rollekino
+# Rollekino.fi
 ![based_on_air_version 7.6.0_](https://img.shields.io/badge/based_on_air_version-7.6.0_-brightgreen.svg?style=flat-square) ![project_created 31_May_2021](https://img.shields.io/badge/project_created-31_May_2021-blue.svg?style=flat-square) ![Tested_up_to WordPress_5.7.2](https://img.shields.io/badge/Tested_up_to-WordPress_5.7.2-blue.svg?style=flat-square) ![Compatible_with PHP_7.2](https://img.shields.io/badge/Compatible_with-PHP_7.2-green.svg?style=flat-square)
 
-This project is hand made for customer.
+This project is hand made for **personal use**.
+
 ## Stack
 
-This project is built on [digitoimistodude/dudestack](https://github.com/digitoimistodude/dudestack), [digitoimistodude/air-light](https://github.com/digitoimistodude/air-light), [digitoimistodude/marlin-vagrant](https://github.com/digitoimistodude/marlin-vagrant) or [digitoimistodude/macos-lemp-setup](https://github.com/digitoimistodude/macos-lemp-setup), [digitoimistodude/devpackages](https://github.com/digitoimistodude/devpackages) which are documented at their corresponding locations. This is a guide on:
-
-- How to setup the project initially<br>
-- How to update the project dependencies<br>
-- Project settings and features
-
+This project is built on [digitoimistodude/dudestack](https://github.com/digitoimistodude/dudestack), [digitoimistodude/air-light](https://github.com/digitoimistodude/air-light), [digitoimistodude/marlin-vagrant](https://github.com/digitoimistodude/marlin-vagrant) or [digitoimistodude/macos-lemp-setup](https://github.com/digitoimistodude/macos-lemp-setup), [digitoimistodude/devpackages](https://github.com/digitoimistodude/devpackages) which are documented at their corresponding locations.
 ## Theme screenshot
 
 ![Screenshot](/content/themes/rollekino/screenshot.png?raw=true "Screenshot")
@@ -19,8 +15,7 @@ This project is built on [digitoimistodude/dudestack](https://github.com/digitoi
 Green checkmarks show if the environment is already set up and running, red cross indicates if it's not yet there or disabled.
 
 ✅  Development: [rollekino.test](http://rollekino.test)<br>
-❌  Staging: [rollekino.vaiheessa.fi](https://rollekino.vaiheessa.fi)<br>
-❌  Production: [rollekino.fi](https://rollekino.fi/)
+✅  Production: [rollekino.fi](https://rollekino.fi/)
 
 ## Setting it up initially
 
