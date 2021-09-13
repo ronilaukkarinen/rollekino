@@ -8,14 +8,17 @@
 
   @media (max-width: 700px) {
     --width-poster-large: 200px;
+    --height-single-hero: 550px;
   }
 
   @media (max-width: 600px) {
     --width-poster-large: 150px;
+    --height-single-hero: 480px;
   }
 
-  @media (max-width: 620px) {
-    --height-single-hero: 550px;
+  @media (max-width: 600px) {
+    --width-poster-large: 150px;
+    --height-single-hero: unset;
   }
 }
 
@@ -26,6 +29,10 @@
 
   > .container {
     align-items: flex-end;
+
+    @media (max-width: 600px) {
+      padding-top: 6rem;
+    }
   }
 
   .movie-meta-data-list {
@@ -226,10 +233,22 @@
   .backdrop {
     height: var(--height-single-hero);
     max-height: var(--height-single-hero);
+
+    @media (max-width: 600px) {
+      height: 100%;
+
+      .video {
+        display: none;
+      }
+    }
   }
 
   .backdrop::before {
     height: calc(var(--height-single-hero) + 70px);
+
+    @media (max-width: 600px) {
+      height: 100%;
+    }
   }
 
   .movie-poster-wrapper.movie-poster-wrapper-large {
@@ -370,8 +389,13 @@
 
         /* stylelint-disable-next-line */
         button.play-button {
+          display: none;
           width: 100%;
         }
+      }
+
+      @media (max-width: 500px) {
+        width: 100%;
       }
     }
 
@@ -410,6 +434,12 @@
       @media (max-width: 920px) {
         align-self: flex-start;
         margin-bottom: 1rem;
+      }
+
+      @media (max-width: 500px) {
+        margin-bottom: 0;
+        padding: 10px;
+        width: 100%;
       }
     }
 

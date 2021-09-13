@@ -8,7 +8,7 @@
   animation-duration: .5s;
   animation-fill-mode: both;
   animation-name: mediabox;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, .88);
   height: 100%;
   left: 0;
   opacity: 0;
@@ -115,7 +115,7 @@
 
 @media all and (max-width: 768px) {
   .mediabox-content {
-    max-width: 90%;
+    max-width: 100%;
   }
 }
 
