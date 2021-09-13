@@ -274,7 +274,7 @@ if ( 60 <= $metascore_rating ) {
 
         <?php if ( $post_year <= $now_year - 4 ) : ?>
           <div class="notification-box-old-stuff">
-            <p>Ennen kuin luet, otathan huomioon, että tämä elokuva on katsottu <?php echo get_the_date(); ?>, joka tarkoittaa sitä että arvostelu on <b><?php echo esc_attr( $now_year ) - esc_attr( $post_year ); ?> vuotta vanha</b> ja saattaa siitä syystä sisältää vanhahtanutta tekstiä tai kankeaa kielenkäyttöä. Mielipiteeni on saattanut ajan saatossa muuttua ja elokuva saattaa vaatia uudelleenkatselun uusilla avoilla. Olin arvion kirjoittamishetkellä <?php $post_year = get_the_time( 'Y' ); $age = $post_year - 1988; echo esc_attr( $age ); ?>-vuotias.</p>
+            <p>Ennen kuin luet, otathan huomioon, että tämä elokuva on katsottu <?php echo get_the_date(); ?>, joka tarkoittaa sitä että arvostelu on <b><?php echo esc_attr( $now_year ) - esc_attr( $post_year ); ?> vuotta vanha</b> ja saattaa siitä syystä sisältää vanhahtanutta tekstiä tai kankeaa kielenkäyttöä. Mielipiteeni on saattanut ajan saatossa muuttua ja elokuva saattaa vaatia uudelleenkatselun uusilla aivoilla. Olin arvion kirjoittamishetkellä <?php $post_year = get_the_time( 'Y' ); $age = $post_year - 1988; echo esc_attr( $age ); ?>-vuotias.</p>
           </div>
         <?php endif; ?>
 
