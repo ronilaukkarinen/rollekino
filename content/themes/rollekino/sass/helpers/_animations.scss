@@ -19,6 +19,13 @@ $transition-duration: .22s;
   }
 }
 
+.col-movie-listing-single:hover,
+.has-link:hover,
+.has-link:focus {
+  position: relative;
+  z-index: 22;
+}
+
 .has-link:focus .movie-poster-wrapper,
 .has-link:hover .movie-poster-wrapper,
 .has-link.movie-poster-wrapper:hover,

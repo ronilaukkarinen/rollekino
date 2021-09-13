@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-12 13:57:40
+ * @Last Modified time: 2021-09-13 20:43:24
  *
  * @package air-light
  */
@@ -114,6 +114,7 @@ function block_editor_title_input_styles() {
   if ( ! in_array( get_post_type(), $post_types, true ) ) {
     return;
   }
+
   $styles = '
   /* Remove gap between post title wrapper and first block */
   .edit-post-visual-editor__post-title-wrapper + .is-root-container > .wp-block:first-child {

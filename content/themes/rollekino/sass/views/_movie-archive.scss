@@ -608,3 +608,46 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+// Tag for has-review
+.movie-meta-data li.movie-meta-data-watched.has-review-tag {
+  display: inline-flex;
+  gap: 5px;
+  position: relative;
+  white-space: nowrap;
+
+  span.has-review-tag {
+    @include cubic-bezier($property: all, $duration: .22s);
+    background: #111;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+    padding: 1px 4px;
+    position: absolute;
+    right: -30px;
+    width: 23px;
+
+    svg {
+      height: 14px;
+      width: 14px;
+    }
+
+    > span {
+      @include cubic-bezier($property: all, $duration: .22s);
+      opacity: 0;
+      width: 0;
+    }
+  }
+}
+
+.movie-meta-data.has-link:hover li.movie-meta-data-watched.has-review-tag {
+  span.has-review-tag {
+    left: 0;
+    width: 132px;
+
+    > span {
+      opacity: 1;
+      width: 103.19px;
+    }
+  }
+}

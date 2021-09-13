@@ -32,7 +32,15 @@ $imdb_year = get_post_meta( $post_id, '_imdb_year', true );
     <div class="movie-meta-data-content">
       <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
       <ul class="movie-meta-data-list">
-        <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+        <li class="movie-meta-data-watched<?php if ( ! empty( get_the_content( $post_id ) ) ) echo ' has-review-tag'; ?>">
+          Katsottu <?php echo get_the_date(); ?>
+          <?php if ( ! empty( get_the_content( $post_id ) ) ) : ?>
+            <span class="has-review-tag">
+              <?php include get_theme_file_path( '/svg/check.svg' ); ?>
+              <span>tekstiarvio löytyy</span>
+            </span>
+          <?php endif; ?>
+        </li>
         <li><?php rating_stars(); ?></li>
       </ul>
     </div>

@@ -50,6 +50,7 @@ namespace Air_Light;
           $best_query->the_post();
 
           // Meta data
+          $post_id = get_the_ID();
           $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
           $poster_id = get_post_meta( get_the_ID(), 'poster', true );
           $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
@@ -77,7 +78,15 @@ namespace Air_Light;
               <div class="movie-meta-data-content">
                 <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
                 <ul class="movie-meta-data-list">
-                  <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                  <li class="movie-meta-data-watched<?php if ( ! empty( get_the_content( $post_id ) ) ) echo ' has-review-tag'; ?>">
+                    Katsottu <?php echo get_the_date(); ?>
+                    <?php if ( ! empty( get_the_content( $post_id ) ) ) : ?>
+                      <span class="has-review-tag">
+                        <?php include get_theme_file_path( '/svg/check.svg' ); ?>
+                        <span>tekstiarvio löytyy</span>
+                      </span>
+                    <?php endif; ?>
+                  </li>
                   <li><?php rating_stars(); ?></li>
                 </ul>
               </div>
@@ -131,6 +140,7 @@ namespace Air_Light;
           $best_query->the_post();
 
           // Meta data
+          $post_id = get_the_ID();
           $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
           $poster_id = get_post_meta( get_the_ID(), 'poster', true );
           $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
@@ -158,7 +168,15 @@ namespace Air_Light;
               <div class="movie-meta-data-content">
                 <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
                 <ul class="movie-meta-data-list">
-                  <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                  <li class="movie-meta-data-watched<?php if ( ! empty( get_the_content( $post_id ) ) ) echo ' has-review-tag'; ?>">
+                    Katsottu <?php echo get_the_date(); ?>
+                    <?php if ( ! empty( get_the_content( $post_id ) ) ) : ?>
+                      <span class="has-review-tag">
+                        <?php include get_theme_file_path( '/svg/check.svg' ); ?>
+                        <span>tekstiarvio löytyy</span>
+                      </span>
+                    <?php endif; ?>
+                  </li>
                   <li><?php rating_stars(); ?></li>
                 </ul>
               </div>
@@ -208,6 +226,7 @@ namespace Air_Light;
           $best_query->the_post();
 
           // Meta data
+          $post_id = get_the_ID();
           $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
           $poster_id = get_post_meta( get_the_ID(), 'poster', true );
           $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
@@ -235,7 +254,15 @@ namespace Air_Light;
               <div class="movie-meta-data-content">
                 <h3 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h3>
                 <ul class="movie-meta-data-list">
-                  <li class="movie-meta-data-watched">Katsottu <?php echo get_the_date(); ?></li>
+                  <li class="movie-meta-data-watched<?php if ( ! empty( get_the_content( $post_id ) ) ) echo ' has-review-tag'; ?>">
+                    Katsottu <?php echo get_the_date(); ?>
+                    <?php if ( ! empty( get_the_content( $post_id ) ) ) : ?>
+                      <span class="has-review-tag">
+                        <?php include get_theme_file_path( '/svg/check.svg' ); ?>
+                        <span>tekstiarvio löytyy</span>
+                      </span>
+                    <?php endif; ?>
+                  </li>
                   <li><?php rating_stars(); ?></li>
                 </ul>
               </div>

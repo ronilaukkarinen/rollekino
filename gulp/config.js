@@ -111,7 +111,7 @@ module.exports = {
   phpcs: {
     src: [themeDir + '**/*.php', '!' + themeDir + 'node_modules/**/*'],
     opts: {
-      bin: '/usr/local/bin/phpcs',
+      bin: 'C:\\wsl-tools\\phpcs.bat',
       standard: themeDir + 'phpcs.xml',
       warningSeverity: 0
     }
