@@ -98,3 +98,4 @@ $backdrop_url = wp_get_attachment_url( get_post_thumbnail_id() );
 </section>
 
 <?php endif;
+wp_reset_postdata();

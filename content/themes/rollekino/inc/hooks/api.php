@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-04 16:33:47
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-04 23:22:42
+ * @Last Modified time: 2021-09-13 23:25:00
  *
  * @package rollekino
  */
@@ -41,6 +41,7 @@ function get_movie_additional_fields( $movie ) {
  * Order movies by release date or title
  */
 function order_movie_query( $query_vars, $request ) {
+  wp_reset_postdata();
   $orderby = $request->get_param( 'orderby' );
 
   if ( ! isset( $orderby ) ) {
