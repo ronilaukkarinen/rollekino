@@ -65,8 +65,8 @@ if ( ! empty( $query->posts ) ) : ?>
         <?php else : ?>
 
           <form id="search-form" role="search" method="get" class="search-form<?php if ( ! empty( $_GET['s'] ) ) : echo esc_html( ' filled' ); endif; // phpcs:ignore ?>" action="<?php echo esc_url( get_home_url() ); ?>">
-				    <label for="search-field" class="search-form-label">Hae elokuvaa</label>
-					  <input id="search-field" type="search" class="search-field search-form-field<?php if ( ! empty( $_GET['s'] ) ) : echo esc_html( ' filled' ); endif; // phpcs:ignore ?>" value="<?php if ( ! empty( $_GET['s'] ) ) : echo esc_html( $_GET['s'] ); endif; // phpcs:ignore ?>" name="s" autocomplete="off">
+				    <label for="search-field" class="search-form-label screen-reader-text">Hae elokuvaa</label>
+					  <input placeholder="Hae elokuvaa" id="search-field" type="search" class="search-field search-form-field<?php if ( ! empty( $_GET['s'] ) ) : echo esc_html( ' filled' ); endif; // phpcs:ignore ?>" value="<?php if ( ! empty( $_GET['s'] ) ) : echo esc_html( $_GET['s'] ); endif; // phpcs:ignore ?>" name="s" autocomplete="off">
 				    <button type="submit" class="search-submit" aria-label="Hae"><?php include get_theme_file_path( '/svg/search.svg' ); ?></button>
 			    </form>
 

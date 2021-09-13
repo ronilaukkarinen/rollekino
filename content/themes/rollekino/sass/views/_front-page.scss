@@ -71,6 +71,16 @@ body::before {
       outline: 0;
     }
 
+    &::placeholder {
+      color: var(--color-white);
+      opacity: .7;
+    }
+
+    &:focus::placeholder {
+      color: var(--color-white);
+      opacity: .2;
+    }
+
     @media (max-width: 500px) {
       width: 100%;
     }

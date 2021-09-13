@@ -2,8 +2,8 @@
   <div class="search-wrapper">
 
       <form id="search-form" role="search" method="get" class="search-form" action="/?">
-				<label for="search-field" class="search-form-label">Hae elokuvaa</label>
-				<input id="search-field" type="search" class="search-field search-input search-form-field" ref="search" v-model="searchQuery" v-on:input="search()" value="" name="s" autocomplete="off">
+				<label for="search-field" class="search-form-label screen-reader-text">Hae elokuvaa</label>
+				<input placeholder="Hae elokuvaa" id="search-field" type="search" class="search-field search-input search-form-field" ref="search" v-model="searchQuery" v-on:input="search()" value="" name="s" autocomplete="off">
 				<button type="submit" class="search-submit" aria-label="Hae">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27"><g stroke="#fff" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><circle cx="11.813" cy="11.813" r="11.25"></circle><path d="M26.438 26.438l-6.671-6.671"></path></g></svg>
         </button>
