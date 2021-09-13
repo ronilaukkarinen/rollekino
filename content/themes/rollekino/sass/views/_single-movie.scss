@@ -227,6 +227,12 @@
   .shade {
     /* stylelint-disable-next-line */
     background: linear-gradient(0deg, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 1) 30%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .25) 100%);
+
+    @media (max-width: 650px) {
+      /* stylelint-disable-next-line */
+      background: linear-gradient(0deg, rgba(var(--bg-r), var(--bg-g), var(--bg-b), 1) 30%, rgba(var(--bg-r), var(--bg-g), var(--bg-b), .75) 100%);
+      opacity: 1;
+    }
   }
 
   .container,
