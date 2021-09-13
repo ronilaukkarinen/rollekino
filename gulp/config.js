@@ -63,6 +63,7 @@ module.exports = {
     gutenberg: themeDir + 'sass/base/gutenberg.scss',
     src: themeDir + 'sass/*.scss',
     watch: themeDir + 'sass/**/*.{sass,scss}',
+    watchprod: themeDir + 'css/dev/*.css',
     development: themeDir + 'css/dev/',
     production: themeDir + 'css/prod/',
     stylelint: {
@@ -110,7 +111,7 @@ module.exports = {
   phpcs: {
     src: [themeDir + '**/*.php', '!' + themeDir + 'node_modules/**/*'],
     opts: {
-      bin: 'C:\\wsl-tools\\phpcs.bat',
+      bin: '/usr/local/bin/phpcs',
       standard: themeDir + 'phpcs.xml',
       warningSeverity: 0
     }

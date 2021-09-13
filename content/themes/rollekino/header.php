@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:17:32
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-11 23:36:21
+ * @Last Modified time: 2021-09-13 17:55:58
  *
  * @package rollekino
  */
@@ -41,7 +41,7 @@ if ( is_search() ) {
   </script>
 </head>
 
-<body data-barba="wrapper" <?php body_class( $body_class ); ?>>
+<body <?php body_class( $body_class ); ?>>
   <a class="skip-link screen-reader-text" href="#content"><?php echo esc_html( get_default_localization( 'Skip to content' ) ); ?></a>
 
   <?php wp_body_open(); ?>

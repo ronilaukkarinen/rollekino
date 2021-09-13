@@ -137,12 +137,31 @@
 
 .block-hero-movies .movie-meta-data {
   @media (max-width: 640px) {
-    display: block;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    button {
+      align-items: center;
+      align-self: center;
+      width: 100%;
+    }
+
+    button span {
+      align-self: center;
+      justify-self: center;
+      margin: 0 auto;
+      width: 100%;
+    }
 
     .movie-meta-data-box {
-      justify-content: flex-start;
-      justify-self: flex-start;
+      justify-content: center;
+      justify-self: center;
       margin: 4rem 0 0;
+      max-width: unset;
+      text-align: left;
     }
   }
 }

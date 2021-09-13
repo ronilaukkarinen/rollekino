@@ -237,6 +237,7 @@
     @media (max-width: 600px) {
       height: 100%;
 
+      /* stylelint-disable-next-line */
       .video {
         display: none;
       }
