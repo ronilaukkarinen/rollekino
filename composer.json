@@ -17,22 +17,32 @@
     }
   ],
   "keywords": [
-    "bedrock", "roots", "wordpress", "stack", "composer", "vagrant", "wp"
+    "bedrock",
+    "roots",
+    "wordpress",
+    "stack",
+    "composer",
+    "vagrant",
+    "wp"
   ],
   "support": {
     "issues": "https://github.com/digitoimistodude/dudestack/issues"
   },
-   "config": {
+  "config": {
     "preferred-install": "dist",
     "generate-salts": true,
     "secure-http": true
   },
   "autoload": {
-    "psr-4": {"Roots\\Bedrock\\": "scripts/Roots/Bedrock"}
+    "psr-4": {
+      "Roots\\Bedrock\\": "scripts/Roots/Bedrock"
+    }
   },
   "scripts": {
-    "post-root-package-install": ["Roots\\Bedrock\\Installer::addSalts"]
-   },
+    "post-root-package-install": [
+      "Roots\\Bedrock\\Installer::addSalts"
+    ]
+  },
   "repositories": [
     {
       "type": "composer",
@@ -59,9 +69,13 @@
         "type": "wordpress-plugin",
         "dist": {
           "type": "zip",
-          "url": "https://www.relevanssi.com/update/get_version.php?api_key=11879452&version=2.15.3"
+          "url": "https://www.relevanssi.com/update/get_version.php?api_key=xxxx&version=2.15.3"
         }
       }
+    },
+    {
+      "type": "composer",
+      "url": "https://xxxxxx@rhubarbgroup.repo.packagist.com/xxxxx/"
     }
   ],
   "require": {
@@ -94,15 +108,26 @@
   },
   "extra": {
     "dropin-paths": {
-      "content/languages/": ["vendor:koodimonni-language"],
-      "content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
-      "content/languages/themes/": ["vendor:koodimonni-theme-language"]
+      "content/languages/": [
+        "vendor:koodimonni-language"
+      ],
+      "content/languages/plugins/": [
+        "vendor:koodimonni-plugin-language"
+      ],
+      "content/languages/themes/": [
+        "vendor:koodimonni-theme-language"
+      ]
     },
     "installer-paths": {
-      "content/mu-plugins/{$name}/": ["type:wordpress-muplugin"
+      "content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
       ],
-      "content/plugins/{$name}/": ["type:wordpress-plugin"],
-      "content/themes/{$name}/": ["type:wordpress-theme"]
+      "content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "wp"
   }
