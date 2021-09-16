@@ -61,33 +61,36 @@ MediaBox('.mediabox', {
 });
 
 // Find players from DOM and load if found
-const players = document.querySelectorAll(".youtube-player");
+// But only on desktop
+if ( window.innerWidth > 600 ) {
+  const players = document.querySelectorAll(".youtube-player");
 
-players.forEach((player) => {
-  new ytPlayer(player, {
-    height: player.dataset.height ? player.dataset.height : 480,
-    width: player.dataset.width ? player.dataset.width : 854,
-    autoplay: player.dataset.autoplay ? player.dataset.autoplay : false,
-    videoId: player.dataset.videoId ? player.dataset.videoId : false,
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      autohide: 1,
-      mute: 1,
-      loop: 1,
-      controls: 0,
-      showinfo: 0,
-      rel: 0,
-      disablekb: 1,
-      enablejsapi: 1,
-      cc_load_policy: 0,
-      iv_load_policy: 3,
-      start: 15,
-      end: 120,
-      playlist: player.dataset.videoId,
-    },
+  players.forEach((player) => {
+    new ytPlayer(player, {
+      height: player.dataset.height ? player.dataset.height : 480,
+      width: player.dataset.width ? player.dataset.width : 854,
+      autoplay: player.dataset.autoplay ? player.dataset.autoplay : false,
+      videoId: player.dataset.videoId ? player.dataset.videoId : false,
+      playerVars: {
+        autoplay: 1,
+        modestbranding: 1,
+        autohide: 1,
+        mute: 1,
+        loop: 1,
+        controls: 0,
+        showinfo: 0,
+        rel: 0,
+        disablekb: 1,
+        enablejsapi: 1,
+        cc_load_policy: 0,
+        iv_load_policy: 3,
+        start: 15,
+        end: 120,
+        playlist: player.dataset.videoId,
+      },
+    });
   });
-});
+}
 
 // jQuery start
 (function ($) {
