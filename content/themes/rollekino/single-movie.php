@@ -129,7 +129,7 @@ if ( 60 <= $metascore_rating ) {
 
                 <?php
                   $terms = get_the_terms( get_the_ID(), 'actor' ); ?>
-                  <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+                  <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) && count( $terms ) > 0 ) : ?>
                     <li class="casting">
                       <span class="screen-reader-text">Pääosissa</span>
                       <?php foreach ( $terms as $term ) : ?>
@@ -237,7 +237,8 @@ if ( 60 <= $metascore_rating ) {
 
           <?php
           wp_reset_postdata();
-          $terms = get_the_terms( get_the_ID(), 'actor' ); ?>
+          $terms = get_the_terms( get_the_ID(), 'actor' );
+          if ( ! empty( $terms ) && ! is_wp_error( $terms ) && count( $terms ) > 0 ) : ?>
           <li>
             <span class="side-information-title">Pääosissa<span class="screen-reader-text">:</span>
 
@@ -261,6 +262,7 @@ if ( 60 <= $metascore_rating ) {
               </ul>
             <?php endif; ?>
           </li>
+          <?php endif; ?>
 
         </ul>
       </aside>
