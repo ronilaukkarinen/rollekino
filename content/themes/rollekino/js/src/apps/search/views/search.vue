@@ -131,10 +131,10 @@ export default {
 
         this.resultsLoaded();
 
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
     },
     resultsLoaded() {
