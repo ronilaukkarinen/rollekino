@@ -29,7 +29,7 @@
   }
 }
 
-body.error404 .backdrop {
+body.error404 .site-main > .backdrop {
   height: 100vh;
   max-height: unset;
 
@@ -59,4 +59,8 @@ body.error404 .backdrop {
   @media (min-width: $container-mobile) {
     min-height: 900px;
   }
+}
+
+.block-error-404 + .block-search-modal .backdrop {
+  z-index: 0;
 }

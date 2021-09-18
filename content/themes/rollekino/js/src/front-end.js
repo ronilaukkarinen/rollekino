@@ -182,20 +182,22 @@ document.addEventListener('DOMContentLoaded', function () {
     openModalButton.classList.toggle('toggled');
     searchField.focus();
 
-    if ( openModalButton['aria-expanded'].value == 'true"') {
+    if ( openModalButton.ariaExpanded == 'true"') {
       openModalButton.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('is-search-on');
       document.body.classList.remove('hide-containers');
+      searchField.value = '';
     } else {
       openModalButton.setAttribute('aria-expanded', 'true');
     }
 
-    if ( searchModal['aria-hidden'].value == 'true"') {
+    if ( searchModal.ariaHidden == 'true"') {
       searchModal.setAttribute('aria-hidden', 'false');
     } else {
       searchModal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('is-search-on');
       document.body.classList.remove('hide-containers');
+      searchField.value = '';
     }
   }
 
@@ -204,20 +206,22 @@ document.addEventListener('DOMContentLoaded', function () {
     openModalButtonMobile.classList.toggle('toggled');
     searchField.focus();
 
-    if ( openModalButtonMobile['aria-expanded'].value == 'true"') {
+    if ( openModalButtonMobile.ariaExpanded == 'true"') {
       openModalButtonMobile.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('is-search-on');
       document.body.classList.remove('hide-containers');
+      searchField.value = '';
     } else {
       openModalButtonMobile.setAttribute('aria-expanded', 'true');
     }
 
-    if ( searchModal['aria-hidden'].value == 'true"') {
+    if ( searchModal.ariaHidden == 'true"') {
       searchModal.setAttribute('aria-hidden', 'false');
     } else {
       searchModal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('is-search-on');
       document.body.classList.remove('hide-containers');
+      searchField.value = '';
     }
   }
 
@@ -225,8 +229,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if ( event.key === 'Escape' ) {
       searchModal.classList.remove('is-visible');
       openModalButton.classList.remove('toggled');
+      searchField.value = '';
 
-      if ( openModalButton['aria-expanded'].value == 'true"') {
+      if ( openModalButton.ariaExpanded == 'true"') {
         openModalButton.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('is-search-on');
         document.body.classList.remove('hide-containers');
@@ -234,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
         openModalButton.setAttribute('aria-expanded', 'true');
       }
 
-      if ( searchModal['aria-hidden'].value == 'true"') {
+      if ( searchModal.ariaHidden == 'true"') {
         searchModal.setAttribute('aria-hidden', 'false');
       } else {
         searchModal.setAttribute('aria-hidden', 'true');
