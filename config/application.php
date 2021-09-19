@@ -113,6 +113,12 @@ Config::define( 'SCRIPT_DEBUG', false );
 ini_set( 'display_errors', '0' );
 
 /**
+ * Performance
+ */
+Config::define( 'WP_POST_REVISIONS', false );
+Config::define( 'AUTOSAVE_INTERVAL', 86400 );
+
+/**
  *  Redis object cache settings for
  *  https://objectcache.pro/docs/configuration-options/
  */
