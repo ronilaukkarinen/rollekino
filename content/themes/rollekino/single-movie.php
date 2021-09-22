@@ -302,6 +302,28 @@ if ( 60 <= $metascore_rating ) {
           <?php the_content(); ?>
         <?php endif; ?>
 
+        <ul class="side-information side-information-main-content">
+          <li><span class="side-information-title">Katsottu ja arvioitu</span><span class="screen-reader-text">:</span> <?php echo get_the_date(); ?></li>
+
+          <?php
+            wp_reset_postdata();
+            $terms = get_the_terms( get_the_ID(), 'genre' ); ?>
+          <li><span class="side-information-title">Genret</span><span class="screen-reader-text">:</span>
+            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+              <ul class="genres">
+                <?php foreach ( $terms as $term ) : ?>
+                  <li>
+                    <a class="genre-pill" href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>">
+                      <?php echo esc_html( $term->name ); ?></span>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+
+        </ul>
+
         <?php
         // Get IMDb ID for JustWatch API
         $imdb_id_match = preg_match_all( '/tt\\d{7,8}/', $imdb_url, $ids );
@@ -334,28 +356,6 @@ if ( 60 <= $metascore_rating ) {
             <span>Saitko leffavinkin? Tarjoa kirjoittajalle kahvit kiitokseksi!</span>
           </a>
         </p>
-
-        <ul class="side-information side-information-main-content">
-          <li><span class="side-information-title">Katsottu ja arvioitu</span><span class="screen-reader-text">:</span> <?php echo get_the_date(); ?></li>
-
-          <?php
-            wp_reset_postdata();
-            $terms = get_the_terms( get_the_ID(), 'genre' ); ?>
-          <li><span class="side-information-title">Genret</span><span class="screen-reader-text">:</span>
-            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-              <ul class="genres">
-                <?php foreach ( $terms as $term ) : ?>
-                  <li>
-                    <a class="genre-pill" href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>">
-                      <?php echo esc_html( $term->name ); ?></span>
-                    </a>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            <?php endif; ?>
-          </li>
-
-        </ul>
 
         <?php
           if ( get_edit_post_link() ) {
