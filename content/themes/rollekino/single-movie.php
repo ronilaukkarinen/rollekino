@@ -302,6 +302,33 @@ if ( 60 <= $metascore_rating ) {
           <?php the_content(); ?>
         <?php endif; ?>
 
+        <?php
+        // Get IMDb ID for JustWatch API
+        $imdb_id_match = preg_match_all( '/tt\\d{7,8}/', $imdb_url, $ids );
+        $imdb_id = $ids[0][0];
+        ?>
+
+        <h3 class="justwatch-title side-information-title">Mistä tämän voi katsoa?</h3>
+
+        <div
+          data-jw-widget
+          data-api-key="<?php echo esc_html( getenv( 'JUSTWATCH_API_KEY' ) ); ?>"
+          data-id="<?php echo esc_html( $imdb_id ); ?>"
+          data-object-type="movie"
+          data-id-type="imdb"
+          data-theme="dark"
+          data-no-offers-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
+          data-title-not-found-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
+          >
+        </div>
+
+        <div>
+          <a style="color: #fff;" class="no-external-link-indicator" data-original="https://www.justwatch.com" href="https://www.justwatch.com/fi">
+            Linkit tarjoaa <span style="margin-left: 8px;"><?php include get_theme_file_path( '/svg/justwatch.svg' ); ?></span>
+          </a>
+        </div>
+        <script script async src="https://widget.justwatch.com/justwatch_widget.js"></script>
+
         <p>
           <a class="button button-small button-bmc no-external-link-indicator" href="https://www.buymeacoffee.com/Fd140aV">
             <span>Saitko leffavinkin? Tarjoa kirjoittajalle kahvit kiitokseksi!</span>
