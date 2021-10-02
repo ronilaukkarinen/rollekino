@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-10-02 16:45:16
+ * @Last Modified time: 2021-10-02 17:13:35
  *
  * @package rollekino
  */
@@ -37,6 +37,10 @@ function save_post_function_publish( $post_id ) {
     $imdb_rating = get_post_meta( $post_id, '_imdb_rating', true );
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
+
+    if ( ! metadata_exists( 'movie', $post_id, '_imdb_rating' ) ) {
+      update_post_meta( $post_id, '_imdb_rating', $imdb_rating );
+    }
 
     // Construct poster URL
     $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
