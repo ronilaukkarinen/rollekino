@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-25 18:23:12
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-07 19:32:54
+ * @Last Modified time: 2021-10-02 14:38:03
  *
  * @package rollekino
  */
@@ -40,13 +40,14 @@ class Actor extends Taxonomy {
     $args = [
       'labels'            => $labels,
       'public'            => false,
-      'show_in_nav_menus' => true,
-      'show_admin_column' => true,
-      'hierarchical'      => true,
+      'show_in_nav_menus' => false,
+      'show_admin_column' => false,
+      'hierarchical'      => false,
       'show_tagcloud'     => false,
-      'show_ui'           => true,
+      'show_ui'           => false,
       'query_var'         => false,
       'show_in_rest'      => true,
+      'meta_box_cb'       => false,
       'rewrite'           => [
         // 'slug' => 'nayttelijat',
       ],
