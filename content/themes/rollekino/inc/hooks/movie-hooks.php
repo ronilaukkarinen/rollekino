@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-11 16:57:16
+ * @Last Modified time: 2021-10-02 16:40:57
  *
  * @package rollekino
  */
@@ -38,11 +38,6 @@ function save_post_function_publish( $post_id ) {
     $imdb_release_date = get_post_meta( $post_id, '_imdb_release_date', true );
     $metascore_rating = get_post_meta( $post_id, '_metascore_rating', true );
 
-    // Set featured image
-    if ( file_exists( $media_file_backdrop_path ) ) {
-      set_post_thumbnail( $post_id, $media_file_backdrop_id );
-    }
-
     // Construct poster URL
     $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
     $media_file_poster_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
@@ -71,6 +66,11 @@ function save_post_function_publish( $post_id ) {
     $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
     $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
 
+    // Set featured image
+    if ( file_exists( $media_file_backdrop_path ) ) {
+      set_post_thumbnail( $post_id, $media_file_backdrop_id );
+    }
+
     // If not existing, do something
     if ( empty( $media_file_backdrop_id ) ) {
 
@@ -98,7 +98,7 @@ function save_post_function_publish( $post_id ) {
         'ID' => $post_id,
       ),
       $wp_error = false,
-      $fire_after_hooks = false
+      $fire_after_hooks = true
     );
 
     // Re-hook functions
@@ -456,6 +456,9 @@ function save_post_function( $data, $id ) {
 
       // Update the post's title.
       $data['post_title'] = $imdb_title;
+
+      // Update the post's slug.
+      $data['post_name'] = sanitize_title( $imdb_title );
 
       return $data;
     }

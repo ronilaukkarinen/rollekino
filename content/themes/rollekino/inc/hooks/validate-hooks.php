@@ -38,16 +38,6 @@ function remove_script_and_style_types() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\remove_script_and_style_types' );
 
 /**
- * Validate HTML: Remove unnecessary WordPress injected .recentcomments
- * @link https://validator.w3.org/nu/#textarea
- */
-function remove_recent_comments_style() {
-  global $wp_widget_factory;
-  remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
-}
-add_action( 'widgets_init', __NAMESPACE__ . '\remove_recent_comments_style' );
-
-/**
  * Validate HTML: Disable the WordPress emojis
  * @link https://validator.w3.org/nu/#textarea
  */
