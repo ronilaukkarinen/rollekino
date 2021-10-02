@@ -759,3 +759,36 @@
     @include grid(1, $gutter_x: 4rem, $gutter_y: 4rem);
   }
 }
+
+.custom-jw-widget {
+  display: inline-block;
+
+  .jw-offer {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .jw-package-icon {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    height: auto;
+    width: 50px;
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    width: 50px;
+  }
+
+  .jw-offer-label {
+    border: 1px solid transparent;
+    border-radius: 1.1em;
+    /* stylelint-disable-next-line */
+    color: #d8d8d8;
+    /* stylelint-disable-next-line */
+    font-size: 12px;
+    height: auto;
+    width: 4.5em;
+  }
+}

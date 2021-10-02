@@ -1,0 +1,40 @@
+{
+    "key": "group_615864c43692a",
+    "title": "Kustomoitu katsomislinkki",
+    "fields": [
+        {
+            "key": "field_615864d615d62",
+            "label": "Jos on tiedossa, ettei elokuvaa löydy mistään, laita linkki tähän",
+            "name": "custom_watchlink",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/areena.yle.fi\/1-50611809"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "movie"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1633182963
+}

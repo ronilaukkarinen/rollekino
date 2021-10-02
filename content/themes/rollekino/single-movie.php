@@ -37,6 +37,8 @@ $imdb_runtime_minutes = $imdb_runtime_total_minutes % 60;
 $runtime_human_readable = $idmb_runtime_hours . ' tuntia, ' . $imdb_runtime_minutes . ' minuuttia';
 $trailer_youtube_key = get_post_meta( get_the_ID(), '_trailer_youtube_key', true );
 $metascore_url = 'https://www.metacritic.com/movie/' . sanitize_title( get_the_title() );
+$custom_watchlink = get_post_meta( get_the_ID(), 'custom_watchlink', true );
+$custom_watchlink_type = get_post_meta( get_the_ID(), 'custom_watchlink_type', true );
 
 if ( 60 <= $metascore_rating ) {
   $metascore_class = 'positive';
@@ -332,24 +334,37 @@ if ( 60 <= $metascore_rating ) {
 
         <h3 class="justwatch-title side-information-title">Mistä tämän voi katsoa?</h3>
 
-        <div
-          data-jw-widget
-          data-api-key="<?php echo esc_html( getenv( 'JUSTWATCH_API_KEY' ) ); ?>"
-          data-id="<?php echo esc_html( $imdb_id ); ?>"
-          data-object-type="movie"
-          data-id-type="imdb"
-          data-theme="dark"
-          data-no-offers-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
-          data-title-not-found-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
-          >
-        </div>
+        <?php if ( ! empty( $custom_watchlink ) ) : ?>
+          <div class="custom-jw-widget">
+            <div class="jw-offer">
+              <a href="<?php echo esc_url( $custom_watchlink ); ?>" class="no-external-link-indicator">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/images/' . $custom_watchlink_type . '.png' ); ?>" class="jw-package-icon" alt="JW icon">
+                <div class="jw-offer-label">
+                  Ilmainen
+                </div>
+              </a>
+            </div>
+          </div>
 
-        <div>
+        <?php else : ?>
+          <div
+            data-jw-widget
+            data-api-key="<?php echo esc_html( getenv( 'JUSTWATCH_API_KEY' ) ); ?>"
+            data-id="<?php echo esc_html( $imdb_id ); ?>"
+            data-object-type="movie"
+            data-id-type="imdb"
+            data-theme="dark"
+            data-no-offers-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
+            data-title-not-found-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
+          >
+          </div>
+          <div>
           <a style="color: #fff;" class="no-external-link-indicator" data-original="https://www.justwatch.com" href="https://www.justwatch.com/fi">
             Linkit tarjoaa <span style="margin-left: 8px;"><?php include get_theme_file_path( '/svg/justwatch.svg' ); ?></span>
           </a>
         </div>
         <script script async src="https://widget.justwatch.com/justwatch_widget.js"></script>
+        <?php endif; ?>
 
         <p>
           <a class="button button-small button-bmc no-external-link-indicator" href="https://www.buymeacoffee.com/Fd140aV">
