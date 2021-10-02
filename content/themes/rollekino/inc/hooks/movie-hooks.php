@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-10-02 16:40:57
+ * @Last Modified time: 2021-10-02 16:45:16
  *
  * @package rollekino
  */
@@ -452,16 +452,69 @@ function save_post_function( $data, $id ) {
       }
     } // Cast and crew ends
 
-      // Backdrop & Poster uploads were here
+    // Backdrop & Poster uploads are here
+    // Construct poster URL
+    $tmdb_poster_url = $config['images']['base_url'] . $config['images']['poster_sizes'][3] . $result['movie_results'][0]['poster_path'];
+    $media_file_poster_path = wp_upload_dir()['path'] . $result['movie_results'][0]['poster_path'];
+    $media_file_poster_url = wp_upload_dir()['url'] . $result['movie_results'][0]['poster_path'];
+    $media_file_poster_id = attachment_url_to_postid( $media_file_poster_url );
 
-      // Update the post's title.
-      $data['post_title'] = $imdb_title;
+    // If not existing, do something
+    if ( empty( $media_file_poster_id ) ) {
 
-      // Update the post's slug.
-      $data['post_name'] = sanitize_title( $imdb_title );
+      if ( ! get_field( 'poster', $post_id ) ) {
+        // First delete the file that is not linked to media library
+        unlink( $media_file_poster_path );
 
-      return $data;
+        // Then upload it
+        $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
+        $media_sideload_image_poster = media_sideload_image( $tmdb_poster_url, $post_id, $media_poster_description, 'id' );
+
+        // Set uploaded image to taxonomy image field
+        update_field( 'poster', $media_sideload_image_poster, $post_id );
+      }
     }
+
+    // Construct backdrop URL
+    $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
+    $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
+    $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
+    $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+
+    // Set featured image
+    if ( file_exists( $media_file_backdrop_path ) ) {
+      set_post_thumbnail( $post_id, $media_file_backdrop_id );
+    }
+
+    // If not existing, do something
+    if ( empty( $media_file_backdrop_id ) ) {
+
+      // If for some obscure reason file is found from uploads dir but not on media library
+      if ( ! has_post_thumbnail( $post_id ) ) {
+
+        // First delete the file that is not linked to media library
+        unlink( $media_file_backdrop_path );
+
+        // Then reupload it if not already there
+        $media_backdrop_description = 'Tausta elokuvalle ' . $imdb_title;
+
+        if ( ! file_exists( $media_file_backdrop_path ) ) {
+          $media_sideload_image_backdrop = media_sideload_image( $tmdb_backdrop_url, $post_id, $media_backdrop_description, 'id' );
+        }
+
+        // Set uploaded image as acf field image
+        set_post_thumbnail( $post_id, $media_sideload_image_backdrop );
+      }
+    }
+
+    // Update the post's title.
+    $data['post_title'] = $imdb_title;
+
+    // Update the post's slug.
+    $data['post_name'] = sanitize_title( $imdb_title );
+
+    return $data;
+  }
 
   } else {
     return $data;
