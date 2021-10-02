@@ -467,6 +467,7 @@
 
 .block-movie-review {
   > .container {
+    overflow: visible;
     padding-top: 4rem;
 
     @media (max-width: 600px) {
