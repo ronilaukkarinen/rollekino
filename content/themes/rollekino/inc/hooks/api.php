@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-04 16:33:47
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-13 23:25:00
+ * @Last Modified time: 2021-10-03 11:42:39
  *
  * @package rollekino
  */
@@ -65,7 +65,7 @@ function order_movie_query( $query_vars, $request ) {
   }
 
   if ( 'meta_value_num' === $orderby ) {
-    $query_vars['orderby'] = 'meta_value_num';
+    $query_vars['orderby'] = [ 'meta_value_num' => 'DESC', 'date' => 'DESC' ];
     $query_vars['order']   = 'DESC';
     $query_vars['meta_key'] = 'rating';
   }
@@ -73,8 +73,14 @@ function order_movie_query( $query_vars, $request ) {
   return $query_vars;
 } // end order_movie_query
 
+function wdw_query_orderby_postmeta_date( $orderby ) {
+  $new_orderby = str_replace( 'wp_postmeta.meta_value', "STR_TO_DATE(wp_postmeta.meta_value, '%d-%m-%Y')", $orderby );
+  return $new_orderby;
+}
+
 // Add sort by meta_value_num to WP REST API
 add_filter( 'rest_endpoints', function ( $routes ) {
+
   // Modifying multiple types here, you won't need the loop if you're just doing posts
   foreach ( [ 'movie' ] as $type ) {
     if ( ! ( $route =& $routes[ '/wp/v2/' . $type ] ) ) { // phpcs:ignore
@@ -95,4 +101,3 @@ add_filter( 'rest_endpoints', function ( $routes ) {
 
   return $routes;
 });
-
