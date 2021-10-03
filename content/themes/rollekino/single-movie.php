@@ -354,6 +354,8 @@ if ( 60 <= $metascore_rating ) {
             data-object-type="movie"
             data-id-type="imdb"
             data-theme="dark"
+            data-language="fi"
+            data-locale="fi_FI"
             data-no-offers-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
             data-title-not-found-message="ㅤElokuvaa {{title}} ei ole tällä hetkellä saatavilla streamauspalveluissa Suomen puolella."
           >
