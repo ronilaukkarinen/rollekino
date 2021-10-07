@@ -34,7 +34,7 @@
       width: 100vw;
     }
 
-    @media (max-height: 1200px) {
+    @media (max-height: 1200px) and (max-width: 1600px) {
       width: 135vw;
     }
 
@@ -42,6 +42,11 @@
       height: 300vw;
       min-height: 177.77vh;
       min-width: 377.77vh;
+    }
+
+    @media (min-width: 1900px) {
+      height: 120vh;
+      top: -10vh;
     }
   }
 
