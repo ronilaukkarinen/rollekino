@@ -404,11 +404,12 @@
   height: calc(100% + 40px);
   justify-content: center;
   left: 0;
+  margin-left: -5px;
   opacity: 1;
   position: absolute;
   top: var(--height-of-top-bar);
   transition: opacity .4s ease-in-out;
-  width: 100vw;
+  width: 100%;
   z-index: 99;
 
   @media (max-width: 500px) {
