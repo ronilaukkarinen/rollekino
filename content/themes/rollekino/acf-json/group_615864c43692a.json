@@ -17,6 +17,30 @@
             },
             "default_value": "",
             "placeholder": "https:\/\/areena.yle.fi\/1-50611809"
+        },
+        {
+            "key": "field_61586531e78f7",
+            "label": "Tyyppi",
+            "name": "custom_watchlink_type",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "yleareena": "Yle Areena"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -36,5 +60,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1633182963
+    "modified": 1633183055
 }
