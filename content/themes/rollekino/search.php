@@ -75,7 +75,7 @@ if ( ! empty( $query->posts ) ) : ?>
               <div class="container">
                 <div class="results">
                 <?php foreach ( $results as $slug => $post_type ) : ?>
-                  <?php if ( $slug === 'movie' ) : ?>
+                  <?php if ( 'movie' === $slug ) : ?>
                   <div class="result-group <?php echo esc_attr( $slug ) ?>">
 
                     <h2>
