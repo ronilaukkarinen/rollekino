@@ -75,10 +75,14 @@ if ( ! empty( $query->posts ) ) : ?>
               <div class="container">
                 <div class="results">
                 <?php foreach ( $results as $slug => $post_type ) : ?>
-
+                  <?php if ( $slug === 'movie' ) : ?>
                   <div class="result-group <?php echo esc_attr( $slug ) ?>">
 
-                    <h2><?php echo esc_html( $post_type['object']->labels->name ); ?> <span><?php echo esc_html( $post_type['count'] ); ?></span></h2>
+                    <h2>
+                      <?php if ( 'writer' === $slug ) echo 'Käsikirjoittajat'; ?>
+                      <?php if ( 'director' === $slug ) echo 'Ohjaajat'; ?>
+                      <?php if ( 'actor' === $slug ) echo 'Näyttelijät'; ?>
+                      <?php echo esc_html( $post_type['object']->labels->name ); ?> <span><?php echo esc_html( $post_type['count'] ); ?></span></h2>
 
                     <ul>
                     <?php foreach ( $post_type['posts'] as $post ) : ?>
@@ -118,18 +122,6 @@ if ( ! empty( $query->posts ) ) : ?>
                               </div>
                             </div>
                           </div>
-                          <?php else : ?>
-                            <div class="result-post">
-                              <h3>
-                                <a href="<?php echo esc_url( $post['permalink'] ); ?>">
-                                  <?php echo esc_html( $post['title'] ); ?>
-                                </a>
-                              </h3>
-
-                              <p class="excerpt">
-                                <?php echo wp_kses_post( $post['excerpt'] ); ?>
-                              </p>
-                            </div>
                           <?php endif; ?>
 
                         </div>
@@ -138,6 +130,7 @@ if ( ! empty( $query->posts ) ) : ?>
                     </ul>
 
                   </div>
+                  <?php endif; ?>
 
                 <?php endforeach; ?>
                 </div>
