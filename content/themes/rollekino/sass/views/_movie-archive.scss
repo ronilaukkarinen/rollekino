@@ -408,7 +408,7 @@
   position: absolute;
   top: var(--height-of-top-bar);
   transition: opacity .4s ease-in-out;
-  width: calc(100% + 40px);
+  width: 100vw;
   z-index: 99;
 
   @media (max-width: 500px) {

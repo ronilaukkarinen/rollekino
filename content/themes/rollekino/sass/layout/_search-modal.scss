@@ -14,6 +14,7 @@
   }
 
   .container {
+    overflow-x: hidden;
     position: relative;
     width: 100%;
     z-index: 10;
@@ -29,13 +30,10 @@
 
   @media (max-width: $width-max-mobile) {
     height: 100vh;
-    max-height: 100vh;
+    max-height: unset;
 
-    .container,
-    .backdrop,
-    .backdrop::before {
-      height: 100vh;
-      max-height: 100vh;
+    .container {
+      max-height: unset;
     }
   }
 }
