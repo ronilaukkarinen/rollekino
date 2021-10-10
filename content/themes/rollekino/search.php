@@ -151,7 +151,7 @@ if ( ! empty( $query->posts ) ) : ?>
         <?php endif; ?>
       </div>
 
-      <?php while ( $query->have_posts() ) :
+      <?php wp_reset_postdata(); while ( $query->have_posts() ) :
         $query->the_post();
 
         // Meta data
