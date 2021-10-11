@@ -3,7 +3,7 @@
 * @Author: Roni Laukkarinen
 * @Date: 2021-08-24 15:45:19
 * @Last Modified by:   Roni Laukkarinen
-* @Last Modified time: 2021-09-11 14:44:20
+* @Last Modified time: 2021-10-10 17:43:57
 *
 * @package flux
 */
@@ -25,6 +25,7 @@ setlocale( LC_ALL, array( 'fi_FI.UTF-8', 'fi_FI@euro', 'fi_FI', 'Finnish' ) );
 setlocale( LC_TIME, array( 'fi_FI.UTF-8', 'fi_FI@euro', 'fi_FI', 'Finnish' ) );
 
 // Meta data
+$ordernumber = get_field( 'ordernumber' );
 $post_id = $movie->ID;
 $backdrop_url = esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) );
 $poster_id = get_post_meta( $post_id, 'poster', true );
@@ -117,6 +118,7 @@ if ( 60 <= $metascore_rating ) {
               </ul>
 
               <h2 class="movie-meta-data-title">
+                <?php if ( ! empty( $ordernumber ) ) echo '<span class="order-number">' . esc_html( $ordernumber ) . '</span>'; ?>
                 <?php echo esc_html( $movie->post_title ); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span>
               </h2>
               <ul class="movie-meta-data-list">

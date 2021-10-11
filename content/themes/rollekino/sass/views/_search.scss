@@ -79,7 +79,7 @@ body.is-search-on .block-hero-movies .container .result-container,
     }
   }
 
-  .result-group.movie:only-of-type > ul {
+  .result-group > ul {
     --cols: 4;
     --width: calc(100% / var(--cols));
     --width-col: calc(var(--width) - var(--gap));
@@ -107,7 +107,7 @@ body.is-search-on .block-hero-movies .container .result-container,
   }
 
   .result-group.movie > ul > li {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 
     .movie-meta-data {
       transform: none;
@@ -132,7 +132,8 @@ body.is-search-on .block-hero-movies .container .result-container,
 
 .results {
   display: flex;
-  gap: var(--gap);
+  flex-wrap: wrap;
+  gap: 4rem;
   width: 100%;
 
   > * {

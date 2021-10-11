@@ -8,11 +8,6 @@
 namespace Air_Light;
 
 /**
- * Enable search view
- */
-// add_filter( 'air_helper_disable_views_search', '__return_false' );
-
-/**
  * Breadcrumb
  */
 // require get_theme_file_path( 'inc/hooks/breadcrumb.php' );
@@ -90,3 +85,25 @@ add_action( 'rest_api_init', __NAMESPACE__ . '\search_endpoint_init' );
  * Validate HTML
  */
 require get_theme_file_path( 'inc/hooks/validate-hooks.php' );
+
+/**
+ * Set max output results for search page
+ * @link https://wordpress.stackexchange.com/questions/357650/adjust-the-results-quantity-for-search-results-page-pagination
+ */
+add_filter( 'request', __NAMESPACE__ . '\search_results_pro_page' );
+function search_results_pro_page( $queryvars ) {
+
+    // Prevent access to back-end
+    if ( is_admin() ) {
+        return;
+    }
+
+    // Set only on search
+    if ( isset( $_REQUEST['s'] ) ) { // phpcs:ignore
+        // Adjust number of results shown
+        $queryvars['posts_per_page'] = -1;
+    }
+
+    // Return amount search results
+    return $queryvars;
+}

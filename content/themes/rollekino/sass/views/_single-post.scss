@@ -13,8 +13,52 @@
   }
 }
 
+.site-main .block-single .block.block-hero-movies.block-picked-movie,
 .block-picked-movie {
   max-width: $width-max-article;
+
+  .movie-poster-wrapper {
+    align-items: flex-end;
+    display: flex;
+  }
+
+  @media (min-width: 600px) {
+    .order-number {
+      /* stylelint-disable-next-line */
+      color: rgba(255, 255, 255, .1);
+      display: block;
+      font-size: 120px;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .order-number::after {
+      content: '.';
+      display: inline-block;
+      position: relative;
+    }
+
+    .movie-meta-data .movie-meta-data-title {
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .movie-poster {
+      min-width: 120px;
+    }
+
+    /* stylelint-disable-next-line */
+    .container .movie-meta-data-content .buttons .mediabox {
+      font-size: 14px;
+      margin: 1rem 0 0;
+      padding: 6px;
+    }
+  }
 }
 
 // Movie Gutenberg block

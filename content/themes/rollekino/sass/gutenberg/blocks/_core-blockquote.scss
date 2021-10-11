@@ -14,9 +14,18 @@ blockquote + p > cite {
   padding: 3.5rem 6rem;
   width: calc(100% - 12rem);
 
+  /* stylelint-disable-next-line */
+  &::before {
+    display: none;
+  }
+
   > p {
     color: var(--color-blockquote);
     line-height: var(--line-height-paragraphs-blog);
+  }
+
+  > p:first-child {
+    margin-top: 0;
   }
 
   @media (max-width: $width-max-article + 40px) {
