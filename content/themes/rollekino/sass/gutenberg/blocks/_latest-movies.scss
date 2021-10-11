@@ -21,7 +21,7 @@
     @include grid(2, $gutter_x: 2rem, $gutter_y: 2rem);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 370px) {
     @include grid(1, $gutter_x: 2rem, $gutter_y: 2rem);
   }
 }
