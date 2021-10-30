@@ -90,13 +90,11 @@ require get_theme_file_path( 'inc/hooks/validate-hooks.php' );
  * Set max output results for search page
  * @link https://wordpress.stackexchange.com/questions/357650/adjust-the-results-quantity-for-search-results-page-pagination
  */
-add_filter( 'request', __NAMESPACE__ . '\search_results_pro_page' );
-function search_results_pro_page( $queryvars ) {
+if ( ! is_admin() ) {
+  add_filter( 'request', __NAMESPACE__ . '\search_results_pro_page' );
+}
 
-    // Prevent access to back-end
-    if ( is_admin() ) {
-        return;
-    }
+function search_results_pro_page( $queryvars ) {
 
     // Set only on search
     if ( isset( $_REQUEST['s'] ) ) { // phpcs:ignore

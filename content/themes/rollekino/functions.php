@@ -127,7 +127,7 @@ add_action( 'after_setup_theme', function() {
       'mode'              => 'auto',
       'align'             => 'full',
       'post_types'        => [
-        'post',
+        // 'page',
       ],
       'supports'          => [
         'align' => false,
