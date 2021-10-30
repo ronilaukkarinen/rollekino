@@ -21,9 +21,9 @@ add_filter( 'air_helper_custom_settings_post_ids', __NAMESPACE__ . '\custom_sett
 add_filter( 'term_link', __NAMESPACE__ . '\rewrite_term_link', 10, 3 );
 add_filter( 'air_helper_disable_views_search', '__return_false' );
 add_filter( 'air_helper_disable_views_archive', '__return_false' );
-add_action( 'save_post', __NAMESPACE__ . '\maybe_clear_transient_cache' );
-add_action( 'admin_bar_menu', __NAMESPACE__ . '\adminbar_add_cache_clear_link', 9999 );
-add_action( 'admin_init', __NAMESPACE__ . '\adminbar_maybe_clear_transient_cache' );
+// add_action( 'save_post', __NAMESPACE__ . '\maybe_clear_transient_cache' );
+// add_action( 'admin_bar_menu', __NAMESPACE__ . '\adminbar_add_cache_clear_link', 9999 );
+// add_action( 'admin_init', __NAMESPACE__ . '\adminbar_maybe_clear_transient_cache' );
 
 /**
  * Scripts and styles associated hooks

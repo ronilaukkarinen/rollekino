@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2021-08-04 16:33:47
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-10-03 11:42:39
+ * @Last Modified time: 2021-10-30 17:50:54
  *
  * @package rollekino
  */
@@ -72,11 +72,6 @@ function order_movie_query( $query_vars, $request ) {
 
   return $query_vars;
 } // end order_movie_query
-
-function wdw_query_orderby_postmeta_date( $orderby ) {
-  $new_orderby = str_replace( 'wp_postmeta.meta_value', "STR_TO_DATE(wp_postmeta.meta_value, '%d-%m-%Y')", $orderby );
-  return $new_orderby;
-}
 
 // Add sort by meta_value_num to WP REST API
 add_filter( 'rest_endpoints', function ( $routes ) {
