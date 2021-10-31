@@ -37,7 +37,7 @@ namespace Air_Light;
         $best_query = new \WP_Query( $best_args );
         if ( ! empty( $best_query->posts ) ) : ?>
 
-          <h2 class="block-title-secondary">Top-10 tänä vuonna julkaistut</h2>
+          <h2 class="block-title-secondary">Top 10 tänä vuonna julkaistut</h2>
           <p class="read-more">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
               Katso kaikki
@@ -127,7 +127,7 @@ namespace Air_Light;
         $best_query = new \WP_Query( $best_args );
         if ( ! empty( $best_query->posts ) ) : ?>
 
-          <h2 class="block-title-secondary">Kaikkien aikojen Top-10</h2>
+          <h2 class="block-title-secondary">Kaikkien aikojen Top 10</h2>
           <p class="read-more">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
               Katso kaikki
@@ -213,7 +213,7 @@ namespace Air_Light;
         $best_query = new \WP_Query( $best_args );
         if ( ! empty( $best_query->posts ) ) : ?>
 
-          <h2 class="block-title-secondary">Top-10 yllättäjät</h2>
+          <h2 class="block-title-secondary">Top 10 yllättäjät</h2>
           <p class="read-more">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
               Katso kaikki
