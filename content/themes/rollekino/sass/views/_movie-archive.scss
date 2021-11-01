@@ -619,10 +619,13 @@
 
   span.has-review-tag {
     @include cubic-bezier($property: all, $duration: .22s);
+    align-items: center;
     background: #111;
     border-radius: 5px;
     color: #fff;
+    display: inline-flex;
     font-size: 13px;
+    justify-content: center;
     padding: 1px 4px;
     position: absolute;
     right: -30px;
@@ -644,7 +647,13 @@
 .movie-meta-data.has-link:hover li.movie-meta-data-watched.has-review-tag {
   span.has-review-tag {
     left: 0;
+    padding-left: 2px;
+    padding-right: 2px;
     width: 132px;
+
+    svg {
+      margin-right: 4px;
+    }
 
     > span {
       opacity: 1;
