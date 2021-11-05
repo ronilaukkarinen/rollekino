@@ -196,15 +196,23 @@ namespace Air_Light;
         $best_movies = [];
         $best_post_type = 'movie';
         $best_args = [
-          'orderby' => 'meta_value_num',
-          'meta_key' => 'rating',
+          // 'orderby' => 'meta_value_num',
+          'orderby' => 'rand',
           'order' => 'DESC',
           'post_type' => $best_post_type,
           'posts_per_page' => 10,
           'meta_query' => array(
+            'relation' => 'AND',
+            array(
+              'key' => 'rating',
+              'value' => '8',
+              'type' => 'numeric',
+              'compare' => '>=',
+            ),
             array(
               'key' => '_imdb_rating',
               'value' => '6.5',
+              'type' => 'numeric',
               'compare' => '<',
             ),
           ),
@@ -213,7 +221,7 @@ namespace Air_Light;
         $best_query = new \WP_Query( $best_args );
         if ( ! empty( $best_query->posts ) ) : ?>
 
-          <h2 class="block-title-secondary">Top 10 yllättäjät</h2>
+          <h2 class="block-title-secondary">Top 10 satunnaista yllättäjää</h2>
           <p class="read-more">
             <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
               Katso kaikki
