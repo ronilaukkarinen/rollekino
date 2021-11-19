@@ -475,6 +475,29 @@
     }
   }
 
+  .author-and-date {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .author {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-15);
+    gap: 1rem;
+
+    .written-by {
+      font-size: var(--font-size-14);
+      opacity: .7;
+      position: relative;
+      top: 2px;
+    }
+
+    @media (min-width: 1300px) {
+      margin-right: 1rem;
+    }
+  }
+
   .side-information.side-information-main-content .genres {
     display: inline-flex;
     flex-wrap: wrap;

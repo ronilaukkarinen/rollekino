@@ -62,12 +62,14 @@ module.exports = {
   styles: {
     gutenberg: themeDir + 'sass/base/gutenberg.scss',
     src: themeDir + 'sass/*.scss',
-    watch: themeDir + 'sass/**/*.{sass,scss}',
-    watchprod: themeDir + 'css/dev/*.css',
     development: themeDir + 'css/dev/',
     production: themeDir + 'css/prod/',
+    watch: {
+      development: themeDir + 'sass/**/*.scss',
+      production: themeDir + 'css/dev/*.css',
+    },
     stylelint: {
-      src: themeDir + 'sass/*/*.scss',
+      src: themeDir + 'sass/**/*.scss',
       opts: {
         fix: false,
         reporters: [{
@@ -76,22 +78,26 @@ module.exports = {
           failAfterError: false,
           debug: false
         }]
-      }
+      },
     },
     opts: {
       development: {
-        bundleExec: true,
+        verbose: true,
+        bundleExec: false,
         outputStyle: 'expanded',
         debugInfo: true,
         errLogToConsole: true,
-        includePaths: [themeDir + 'node_modules/']
+        includePaths: [themeDir + 'node_modules/'],
+        quietDeps: true,
       },
       production: {
-        bundleExec: true,
+        verbose: false,
+        bundleExec: false,
         outputStyle: 'compressed',
-        debugInfo: true,
-        errLogToConsole: true,
-        includePaths: [themeDir + 'node_modules/']
+        debugInfo: false,
+        errLogToConsole: false,
+        includePaths: [themeDir + 'node_modules/'],
+        quietDeps: true,
       }
     }
   },

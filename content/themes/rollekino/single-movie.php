@@ -305,7 +305,14 @@ if ( 60 <= $metascore_rating ) {
         <?php endif; ?>
 
         <ul class="side-information side-information-main-content">
-          <li><span class="side-information-title">Katsottu ja arvioitu</span><span class="screen-reader-text">:</span> <?php echo get_the_date(); ?></li>
+          <li>
+            <span class="side-information-title">Katsottu ja arvioitu</span>
+
+            <span class="author-and-date">
+              <span class="screen-reader-text">:</span> <?php echo get_the_date(); ?>
+              <span class="author"><span class="written-by">Arvion kirjoitti</span> <span class="auth"><a href="https://twitter.com/rolle"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/gravatar.jpg" alt="Roni Laukkarinen" class="gravatar-small" /><span class="name">@rolle</span></a></span></span>
+            </span>
+          </li>
 
           <?php
             wp_reset_postdata();

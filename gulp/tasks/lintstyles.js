@@ -1,8 +1,7 @@
-// Dependencies
 const {
   src
 } = require('gulp');
-const stylelint = require('gulp-stylelint');
+const stylelint = require('@ronilaukkarinen/gulp-stylelint');
 const config = require('../config.js');
 
 // Task

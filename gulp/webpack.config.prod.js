@@ -5,7 +5,9 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin({
+      (compiler) => {
+        const TerserPlugin = require('terser-webpack-plugin');
+        new TerserPlugin({
         terserOptions: {
           // ecma: 6,
           parse: {},
@@ -17,17 +19,14 @@ module.exports = {
           ie8: false,
           keep_fnames: false,
           safari10: false,
-          banner: false,
-          output: {
-            comments: false,
-          },
           format: {
             comments: false,
           },
         },
         extractComments: false,
-      }),
-    ],
+      }).apply(compiler);
+    },
+  ]
   },
   externals: {
     jquery: 'jQuery' // Available and loaded through WordPress.
@@ -39,7 +38,7 @@ module.exports = {
       exclude: /node_modules/,
       use: [{
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: [
             ['airbnb', {
               targets: {
