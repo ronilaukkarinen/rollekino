@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-11-20 22:02:08
+ * @Last Modified time: 2021-11-20 22:09:07
  *
  * @package rollekino
  */
@@ -133,7 +133,7 @@ Linkki: ' . get_the_permalink( $post_id ) . '';
     if ( get_post_status( $post_id ) === 'trash' ) return;
 
     // Send a message
-    if ( $time_differ < 0.10 ) {
+    if ( $time_differ < 0.10 && 'movie' === get_post_type( $post_id ) ) {
       wp_remote_get( $url );
     }
 
