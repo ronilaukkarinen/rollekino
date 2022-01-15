@@ -95,6 +95,17 @@ namespace Air_Light;
 
           <?php endwhile; ?>
         </ol>
+
+        <?php else : ?>
+          <h2 class="block-title-secondary">Top 10 tänä vuonna julkaistut</h2>
+          <p class="read-more">
+            <a href="<?php echo esc_url( get_post_type_archive_link( 'movie' ) ); ?>">
+              Katso kaikki
+              <?php include get_theme_file_path( '/svg/arrow-right.svg' ); ?>
+            </a>
+          </p>
+
+          <p style="color: rgb(255 255 255 / .6); max-width: 70%; font-size: 15px;">Ei vielä katsottu yhtään vuonna <?php echo esc_html( gmdate( 'Y' ) ); ?> julkaistua elokuvaa.</p>
         <?php endif; ?>
 
       </div>
