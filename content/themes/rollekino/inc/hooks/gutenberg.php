@@ -5,7 +5,7 @@
  * @Author: Niku Hietanen
  * @Date: 2020-02-20 13:46:50
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-13 20:43:24
+ * @Last Modified time: 2022-03-27 18:42:53
  *
  * @package air-light
  */
@@ -86,7 +86,7 @@ function register_block_editor_assets() {
 // color: inherit;
 // @source https://github.com/WordPress/gutenberg/issues/18595#issuecomment-599588153
 function remove_gutenberg_inline_styles( $editor_settings, $post ) {
-  unset( $editor_settings['styles'][0] );
+  unset( $editor_settings['styles'][0]['css'] );
   return $editor_settings;
 } // end remove_gutenberg_inline_styles
 
