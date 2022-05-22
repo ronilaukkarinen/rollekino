@@ -3,7 +3,7 @@
  * @Author: Roni Laukkarinen
  * @Date:   2021-02-04 18:15:59
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2022-05-21 23:46:38
+ * @Last Modified time: 2022-05-22 13:58:51
  *
  * @package rollekino
  */
@@ -533,7 +533,7 @@ function add_featured_image( $post_type, $post ) {
   $post_types = get_post_types();
   $post_id = $post->ID;
 
-  if ( 'movie' === get_post_type( $post_id ) )
+  if ( 'post' === get_post_type( $post_id ) )
   return;
 
   // Need to define at least IMDb URL or IMDb ID
