@@ -1,4 +1,5 @@
 /* stylelint-disable */
+.wp-block .side-information-title + iframe,
 .block.block-movie-review .container .content iframe {
   margin-bottom: 01rem;
   margin-left: -16px;
@@ -21,6 +22,7 @@
   }
 }
 
+.wp-block .side-information-title,
 .block.block-movie-review .container .content .side-information-title {
   color: var(--color-white);
   display: block;
