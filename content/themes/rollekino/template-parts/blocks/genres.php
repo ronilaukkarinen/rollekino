@@ -55,7 +55,7 @@ namespace Air_Light;
             if ( ! empty( $genre_backdrops_query->posts ) ) : ?>
               <?php while ( $genre_backdrops_query->have_posts() ) :
                 $genre_backdrops_query->the_post();
-                $backdrop_url = wp_get_attachment_image_url( get_post_thumbnail_id( $post->ID ), 'full' );
+                $backdrop_url = wp_get_attachment_image_url( get_post_thumbnail_id( $post->ID ), 'medium' );
                 $trailer_youtube_key = get_post_meta( $post->ID, '_trailer_youtube_key', true );
               ?>
                 <div class="backdrop-genre" aria-hidden="true" style="background-image: url('<?php echo esc_url( $backdrop_url ); ?>');"></div>
