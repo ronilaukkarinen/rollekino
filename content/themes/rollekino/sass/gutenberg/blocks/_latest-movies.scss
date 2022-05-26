@@ -24,6 +24,14 @@
 
 .movie-poster-wrapper {
   position: relative;
+  transition: all 200ms cubic-bezier(.075, .82, .165, 1);
+  transition-delay: 0;
+
+  .global-link {
+    border-radius: 4px;
+    transition: all 200ms cubic-bezier(.075, .82, .165, 1);
+    transition-delay: 0;
+  }
 }
 
 .movie-poster {
@@ -31,21 +39,22 @@
   background-image: url('https://www.rollemaa.fi/content/themes/minimalistmadness/images/posters.png');
   background-repeat: no-repeat;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
   overflow: hidden;
   position: relative;
+  transition: all 220ms;
   z-index: 2;
 
   img {
     border-radius: 4px;
     height: auto;
+    transition: all 220ms;
     width: 100%;
   }
 }
 
 .frame {
   background-clip: padding-box;
-  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .5) 50%, hsla(0, 0%, 100%, 0));
+  background-image: linear-gradient(90deg, hsl(0deg 0% 100% / 0) 0, hsl(0deg 0% 100% / .5) 50%, hsl(0deg 0% 100% / 0));
   background-repeat: no-repeat;
   background-size: 100% 1px;
   border-radius: 4px;
@@ -59,6 +68,8 @@
   position: absolute;
   text-indent: -999em;
   top: 0;
+  transition: all 220ms;
+  transition-delay: 0;
   vertical-align: baseline;
   width: 100%;
 }
@@ -78,7 +89,7 @@
 
     &.star-half,
     &.star {
-      fill: rgb(245, 197, 24);
+      fill: rgb(245 197 24);
     }
 
     &.star-bg,
