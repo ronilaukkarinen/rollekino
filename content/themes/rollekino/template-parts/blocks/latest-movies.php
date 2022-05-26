@@ -31,7 +31,7 @@ if ( ! empty( $query_latest->posts ) ) : ?>
 
           // Metadata
           $poster_id = get_post_meta( get_the_ID(), 'poster', true );
-          $poster_url = wp_get_attachment_image_url( $poster_id, 'full' );
+          $poster_url = wp_get_attachment_image_url( $poster_id, 'medium' );
           ?>
 
           <?php //if ( ! empty( $poster_id ) ) : ?>
