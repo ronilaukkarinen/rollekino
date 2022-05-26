@@ -67,6 +67,7 @@
   textarea:focus,
   div[tabindex]:focus {
     opacity: 1;
+    outline-color: var(--color-link-text-focus);
   }
 
   .global-link {
@@ -75,6 +76,7 @@
 
   // A bit better focus for large elements
   a.global-link:focus {
+    outline-color: var(--color-link-text-focus);
     outline-offset: 5px;
     outline-style: solid;
     outline-width: 4px;
