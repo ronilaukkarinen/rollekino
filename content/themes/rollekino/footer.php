@@ -7,7 +7,7 @@
  * @Author: Roni Laukkarinen
  * @Date: 2020-05-11 13:33:49
  * @Last Modified by:   Roni Laukkarinen
- * @Last Modified time: 2021-09-11 17:45:26
+ * @Last Modified time: 2022-06-18 12:54:51
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  * @package rollekino
@@ -87,6 +87,8 @@ namespace Air_Light;
         </a>
       </li>
     </ul>
+
+    <p style="color: rgba(204,206,240,.52); opacity:.5; font-size:14px; margin-top: 4rem; margin-bottom: 0;">&copy; Copyright Roni Laukkarinen 2005-<?php echo esc_attr( gmdate( 'Y' ) ); ?> - Kaikki oikeudet pidätetään (data: IMDb, TMDB, JustWatch)</p>
   </div>
 
   <p class="back-to-top"><a href="#page" class="js-trigger top no-text-link no-external-link-indicator" data-mt-duration="300"><span class="screen-reader-text"><?php echo esc_html( get_default_localization( 'Back to top' ) ); ?></span><?php include get_theme_file_path( '/svg/chevron-up.svg' ); ?></a></p>
