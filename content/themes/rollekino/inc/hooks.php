@@ -26,6 +26,11 @@ add_filter( 'air_helper_disable_views_archive', '__return_false' );
 // add_action( 'admin_init', __NAMESPACE__ . '\adminbar_maybe_clear_transient_cache' );
 
 /**
+ * Enable users endpoint view for ActivityPub
+ */
+remove_filter( 'rest_endpoints', __NAMESPACE__ . '\air_helper_disable_rest_endpoints' );
+
+/**
  * Scripts and styles associated hooks
  */
 require get_theme_file_path( 'inc/hooks/scripts-styles.php' );
