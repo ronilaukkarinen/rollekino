@@ -212,35 +212,6 @@ if ( 60 <= $metascore_rating ) {
 
           <?php
           wp_reset_postdata();
-          $terms = get_the_terms( get_the_ID(), 'writer' ); ?>
-          <li style="display: none;">
-            <span class="side-information-title">Käsikirjoittaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?><span class="screen-reader-text">:</span>
-
-            <?php if ( isset( $terms ) && ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
-              <ul class="side-information-meta-crew<?php if ( 1 < count( $terms ) ) : echo ' multiple-directors'; endif; ?>">
-                <?php foreach ( $terms as $term ) :
-                  if ( isset( $term->term_id ) && isset( get_field( 'avatar', 'director_' . $term->term_id )['url'] ) ) {
-                    $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
-                  }
-                  ?>
-                  <li>
-                    <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>
-                    <?php if ( ! empty( $avatar_url ) ) : ?>
-                      <div aria-hidden="true" class="avatar" style="background-image: url('<?php echo esc_url( $avatar_url ); ?>');"></div>
-                    <?php else : ?>
-                      <div aria-hidden="true" class="avatar avatar-empty">
-                        <?php include get_theme_file_path( '/svg/avatar-empty.svg' ); ?>
-                      </div>
-                    <?php endif; ?>
-                    <span class="side-information-meta side-information-meta-crew-name" aria-hidden="true"><?php echo esc_html( $term->name ); ?></span>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            <?php endif; ?>
-          </li>
-
-          <?php
-          wp_reset_postdata();
           $terms = get_the_terms( get_the_ID(), 'actor' );
           if ( ! empty( $terms ) && ! is_wp_error( $terms ) && count( $terms ) > 0 ) : ?>
           <li>
