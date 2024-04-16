@@ -216,10 +216,12 @@ if ( 60 <= $metascore_rating ) {
           <li style="display: none;">
             <span class="side-information-title">Käsikirjoittaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?><span class="screen-reader-text">:</span>
 
-            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+            <?php if ( isset( $terms ) && ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
               <ul class="side-information-meta-crew<?php if ( 1 < count( $terms ) ) : echo ' multiple-directors'; endif; ?>">
                 <?php foreach ( $terms as $term ) :
-                  $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  if ( isset( $term->term_id ) && isset( get_field( 'avatar', 'director_' . $term->term_id )['url'] ) ) {
+                    $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  }
                   ?>
                   <li>
                     <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>
@@ -247,7 +249,9 @@ if ( 60 <= $metascore_rating ) {
             <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
               <ul class="side-information-meta-crew-actors side-information-meta-crew">
                 <?php foreach ( $terms as $term ) :
-                  $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  if ( isset( $term->term_id ) && isset( get_field( 'avatar', 'director_' . $term->term_id )['url'] ) ) {
+                    $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
+                  }
                   ?>
                   <li class="has-small-avatar">
                     <a href="<?php echo esc_url( get_term_link( $term->term_id ) ); ?>" class="global-link" aria-label="<?php echo esc_html( $term->name ); ?>"></a>

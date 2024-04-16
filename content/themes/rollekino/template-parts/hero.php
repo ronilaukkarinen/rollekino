@@ -35,7 +35,7 @@ endif;
 $query = new \WP_Query( $args );
 ?>
 
-<section class="block block-hero block-hero-normal block-hero-movies<?php echo esc_attr( implode( ' ', $block_classes ) ); ?>">
+<section class="block block-hero block-hero-normal block-hero-movies<?php if ( isset( $block_classes ) ) echo esc_attr( implode( ' ', $block_classes ) ); ?>">
   <div class="shade" aria-hidden="true"></div>
 
   <div class="container">
