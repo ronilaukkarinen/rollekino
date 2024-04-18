@@ -21,7 +21,7 @@ function search_endpoint_init() {
 } // end wpfi_rest_api_search_init
 
 // REST API search endpoint callback.
-function search_endpoint_callback( $request ) {
+function search_endpoint_callback() {
   $data = [];
 
   // bail if no search param.
@@ -95,11 +95,11 @@ function search_endpoint_callback( $request ) {
 
         ob_start();
         if ( 'movie' === $key ) {
-          include get_template_part( 'template-parts/movie/movie', 'listing-single', [ 'post_id' => $item->ID ] );
+          get_template_part( 'template-parts/movie/movie', 'listing-single', [ 'post_id' => $item->ID ] );
         } elseif ( 'post' === $key ) {
-          include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
+          get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
         } elseif ( 'page' === $key ) {
-          include get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
+          get_template_part( 'template-parts/loops', 'post', [ 'post_id' => $item->ID ] );
         }
 
         $html = ob_get_clean();
