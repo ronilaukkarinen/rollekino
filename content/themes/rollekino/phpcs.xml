@@ -29,7 +29,6 @@
         <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
-        <exclude name="WordPress.WhiteSpace.PrecisionAlignment" />
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
         <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned" />
         <exclude name="WordPress.Arrays.ArrayIndentation.MultiLineArrayItemNotAligned" />
@@ -104,6 +103,12 @@
         <exclude name="Squiz.PHP.CommentedOutCode.Found" />
         <exclude name="Squiz.Commenting" />
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd" />
+        <exclude name="Generic.Commenting.DocComment.TagValueIndent" />
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+        <exclude name="Universal.WhiteSpace.PrecisionAlignment" />
+        <exclude name="Universal.WhiteSpace.DisallowInlineTabs" />
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
+        <exclude name="PEAR.Commenting.FileComment" />
 
         <!-- Windows 10/WSL Specific -->
         <exclude name="WordPress.Files" />
@@ -126,6 +131,6 @@
     </rule>
 
     <!-- Include sniffs for PHP cross-version compatibility. -->
-    <config name="testVersion" value="7.0-99.0"/>
+    <config name="testVersion" value="8.3"/>
     <rule ref="PHPCompatibility"/>
 </ruleset>
