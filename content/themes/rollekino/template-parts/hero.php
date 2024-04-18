@@ -49,7 +49,7 @@ $query = new \WP_Query( $args );
       <?php else : ?>
         <h1 class="block-title"><?php the_title(); ?></h1>
         <?php if ( get_the_ID() === 150 ) : ?>
-          <p class="block-description block-description-quote">“If you build it, he will come.” &mdash; <a href="<?php echo esc_url( get_the_permalink( 45952 ) ); ?>">Field of dreams (1989)</a></p>
+          <p class="block-description block-description-quote">&ldquo;If you build it, he will come.&rdquo; &mdash; <a href="<?php echo esc_url( get_the_permalink( 45952 ) ); ?>">Field of dreams (1989)</a></p>
         <?php endif; ?>
       <?php endif; ?>
     </div>
