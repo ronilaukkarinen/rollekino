@@ -187,9 +187,9 @@ if ( 60 <= $metascore_rating ) {
           <?php
           $terms = get_the_terms( get_the_ID(), 'director' ); ?>
           <li>
-            <span class="side-information-title">Ohjaaja<?php if ( 1 < count( $terms ) ) : echo 't'; endif; ?><span class="screen-reader-text">:</span>
+            <span class="side-information-title">Ohjaaja<?php if ( isset( $terms ) ) : if ( 1 < count( $terms ) ) : echo 't'; endif; endif; ?><span class="screen-reader-text">:</span>
 
-            <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
+            <?php if ( isset( $terms ) && ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
               <ul class="side-information-meta-crew<?php if ( 1 < count( $terms ) ) : echo ' multiple-directors'; endif; ?>">
                 <?php foreach ( $terms as $term ) :
                   $avatar_url = get_field( 'avatar', 'director_' . $term->term_id )['url'];
