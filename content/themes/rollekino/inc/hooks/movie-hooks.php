@@ -127,11 +127,12 @@ function save_post_function( $data, $id ) {
         return $data;
       }
 
+      $imdb_id = $ids[0][0];
+
       if ( ! isset( $imdb_id ) ) {
         return;
       }
-
-      $imdb_id = $ids[0][0];
+      
       $movie = $omdb->getByImdbId( $imdb_id );
 
       // https://github.com/rooxie/omdb-php
