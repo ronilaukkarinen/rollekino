@@ -132,7 +132,7 @@ function save_post_function( $data, $id ) {
       if ( ! isset( $imdb_id ) ) {
         return;
       }
-      
+
       $movie = $omdb->getByImdbId( $imdb_id );
 
       // https://github.com/rooxie/omdb-php
@@ -340,42 +340,45 @@ function save_post_function( $data, $id ) {
       }
 
       // Get writer names
-      $writer_names = array_column( $writers_array, 'name' );
+      // Check for PHP 8.3, Argument #1 ($array) must be of type array, null given
+      if ( ! empty( $writers_array ) ) {
+        $writer_names = array_column( $writers_array, 'name' );
 
-      // Get writer profile photo path
-      $writer_profile_photo_path = array_splice( array_column( $writers_array, 'profile_path' ), 0, 5 );
+       // Get writer profile photo path
+        $writer_profile_photo_path = array_splice( array_column( $writers_array, 'profile_path' ), 0, 5 );
 
-      // Set writers in taxonomies
-      wp_set_object_terms( $post_id, $writer_names, 'writer' );
+        // Set writers in taxonomies
+        wp_set_object_terms( $post_id, $writer_names, 'writer' );
 
-      // Merge writer names and photo paths together
-      $merged_writer_profile_arrays = array_combine( $writer_names, $writer_profile_photo_path );
+        // Merge writer names and photo paths together
+         $merged_writer_profile_arrays = array_combine( $writer_names, $writer_profile_photo_path );
 
-      // Loop through writer names and get their taxonomy IDs to update their meta data like poster
-      foreach ( $merged_writer_profile_arrays as $merged_writer_name => $merged_writer_profile_path ) {
+        // Loop through writer names and get their taxonomy IDs to update their meta data like poster
+        foreach ( $merged_writer_profile_arrays as $merged_writer_name => $merged_writer_profile_path ) {
 
-        $writer_taxonomy_id = get_term_by( 'name', $merged_writer_name, 'writer' )->term_id;
+          $writer_taxonomy_id = get_term_by( 'name', $merged_writer_name, 'writer' )->term_id;
 
-        // Writer profile photo TMDb URL
-        $tmdb_writer_profile_photo_url = $cast_image_url_base . $merged_writer_profile_path;
+          // Writer profile photo TMDb URL
+          $tmdb_writer_profile_photo_url = $cast_image_url_base . $merged_writer_profile_path;
 
-        // Writer profile photo local path
-        $media_file_writer_profile_photo_path = wp_upload_dir()['path'] . $merged_writer_profile_path;
+          // Writer profile photo local path
+          $media_file_writer_profile_photo_path = wp_upload_dir()['path'] . $merged_writer_profile_path;
 
-        // Writer profile photo local URL
-        $media_file_writer_profile_photo_url = wp_upload_dir()['url'] . $merged_writer_profile_path;
+          // Writer profile photo local URL
+          $media_file_writer_profile_photo_url = wp_upload_dir()['url'] . $merged_writer_profile_path;
 
-        // Upload image if not existing
-        if ( ! file_exists( $media_file_writer_profile_photo_path ) ) {
-          $media_sideload_image_writer_profile_photo = media_sideload_image( $tmdb_writer_profile_photo_url, 0, $merged_writer_name, 'id' );
-        }
+          // Upload image if not existing
+          if ( ! file_exists( $media_file_writer_profile_photo_path ) ) {
+            $media_sideload_image_writer_profile_photo = media_sideload_image( $tmdb_writer_profile_photo_url, 0, $merged_writer_name, 'id' );
+          }
 
-        // Get profile photo ID from media library based on URL
-        if ( file_exists( $media_file_writer_profile_photo_path ) ) {
-          $media_file_writer_profile_photo_id = attachment_url_to_postid( $media_file_writer_profile_photo_url );
+          // Get profile photo ID from media library based on URL
+          if ( file_exists( $media_file_writer_profile_photo_path ) ) {
+            $media_file_writer_profile_photo_id = attachment_url_to_postid( $media_file_writer_profile_photo_url );
 
-          // Set uploaded image to taxonomy image field
-          update_field( 'avatar', $media_file_writer_profile_photo_id, 'writer_' . $writer_taxonomy_id );
+            // Set uploaded image to taxonomy image field
+            update_field( 'avatar', $media_file_writer_profile_photo_id, 'writer_' . $writer_taxonomy_id );
+          }
         }
       }
 
