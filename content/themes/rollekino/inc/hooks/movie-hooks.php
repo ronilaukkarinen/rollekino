@@ -350,8 +350,17 @@ function save_post_function( $data, $id ) {
         // Set writers in taxonomies
         wp_set_object_terms( $post_id, $writer_names, 'writer' );
 
+        // Make sure $writer_profile_photo_path and $writer_names have same amount of elements in array
+        if ( count( $writer_profile_photo_path ) > count( $writer_names ) ) {
+          $writer_profile_photo_path = array_splice( $writer_profile_photo_path, 0, count( $writer_names ) );
+        }
+
+        if ( count( $writer_names ) > count( $writer_profile_photo_path ) ) {
+          $writer_names = array_splice( $writer_names, 0, count( $writer_profile_photo_path ) );
+        }
+
         // Merge writer names and photo paths together
-         $merged_writer_profile_arrays = array_combine( $writer_names, $writer_profile_photo_path );
+        $merged_writer_profile_arrays = array_combine( $writer_names, $writer_profile_photo_path );
 
         // Loop through writer names and get their taxonomy IDs to update their meta data like poster
         foreach ( $merged_writer_profile_arrays as $merged_writer_name => $merged_writer_profile_path ) {
