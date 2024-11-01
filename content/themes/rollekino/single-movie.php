@@ -106,7 +106,8 @@ if ( 60 <= $metascore_rating ) {
 
               <ul class="poster-information">
                 <?php
-                  $terms = get_the_terms( get_the_ID(), 'director' ); ?>
+                  $terms = get_the_terms( get_the_ID(), 'director' );
+                  if ( $terms ) : ?>
                   <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
                     <li class="directed">
                       <span class="screen-reader-text">Ohjannut</span>
@@ -115,10 +116,11 @@ if ( 60 <= $metascore_rating ) {
                         <span class="name"><?php echo esc_html( $term->name ); ?></span>
                       <?php endforeach; ?>
                     </li>
-                <?php endif; ?>
+                <?php endif; endif; ?>
 
                 <?php
-                  $terms = get_the_terms( get_the_ID(), 'writer' ); ?>
+                  $terms = get_the_terms( get_the_ID(), 'writer' );
+                  if ( $terms ) : ?>
                   <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) : ?>
                     <li class="writer">
                       <span class="screen-reader-text">Käsikirjoitus</span>
@@ -127,10 +129,11 @@ if ( 60 <= $metascore_rating ) {
                         <span class="name"><?php echo esc_html( $term->name ); ?></span>
                       <?php endforeach; ?>
                     </li>
-                <?php endif; ?>
+                <?php endif; endif; ?>
 
                 <?php
-                  $terms = get_the_terms( get_the_ID(), 'actor' ); ?>
+                  $terms = get_the_terms( get_the_ID(), 'actor' );
+                  if ( $terms ) : ?>
                   <?php if ( ! empty( $terms ) && ! is_wp_error( $terms ) && count( $terms ) > 0 ) : ?>
                     <li class="casting">
                       <span class="screen-reader-text">Pääosissa</span>
@@ -138,7 +141,7 @@ if ( 60 <= $metascore_rating ) {
                         <span class="name"><?php echo esc_html( $term->name ); ?></span>
                       <?php endforeach; ?>
                     </li>
-                <?php endif; ?>
+                <?php endif; endif; ?>
               </ul>
 
               <h1 class="movie-meta-data-title"><?php the_title(); ?> <span class="release-year"><?php echo esc_html( $imdb_year ); ?></span></h1>
@@ -185,7 +188,8 @@ if ( 60 <= $metascore_rating ) {
           </li>
 
           <?php
-          $terms = get_the_terms( get_the_ID(), 'director' ); ?>
+          $terms = get_the_terms( get_the_ID(), 'director' );
+          if ( $terms ) : ?>
           <li>
             <span class="side-information-title">Ohjaaja<?php if ( isset( $terms ) ) : if ( 1 < count( $terms ) ) : echo 't'; endif; endif; ?><span class="screen-reader-text">:</span>
 
@@ -207,7 +211,8 @@ if ( 60 <= $metascore_rating ) {
                   </li>
                 <?php endforeach; ?>
               </ul>
-            <?php endif; ?>
+            <?php endif;
+          endif; ?>
           </li>
 
           <?php

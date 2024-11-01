@@ -17,6 +17,11 @@ add_filter( 'wp_insert_post_data', __NAMESPACE__ . '\save_post_function', 10, 2 
 add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
 
 function save_post_function_publish( $post_id ) {
+  // If the field 'skip_omdb' is ticked, don't do anything
+  if ( get_field( 'skip_omdb', $post_id ) ) {
+    return;
+  }
+
   if ( 'post' !== get_post_type( $post_id ) || 'page' !== get_post_type( $post_id ) || 'movie' === get_post_type( $post_id ) ) {
 
     global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
@@ -114,6 +119,11 @@ function save_post_function_publish( $post_id ) {
 function save_post_function( $data, $id ) {
   global $imdb_title, $imdb_id, $config, $result, $media_file_poster_path, $media_file_poster_url, $media_file_poster_id, $media_file_backdrop_path, $media_file_backdrop_url, $media_file_backdrop_id;
   $post_id = $id['ID'];
+
+  // If the field 'skip_omdb' is ticked, don't do anything
+  if ( get_field( 'skip_omdb', $post_id ) ) {
+    return;
+  }
 
   if ( 'post' !== get_post_type( $post_id ) || 'page' !== get_post_type( $post_id ) || 'movie' === $data['post_type'] ) {
 
