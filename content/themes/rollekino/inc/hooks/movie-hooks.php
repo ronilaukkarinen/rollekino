@@ -57,8 +57,10 @@ function save_post_function_publish( $post_id ) {
     if ( empty( $media_file_poster_id ) ) {
 
       if ( ! get_field( 'poster', $post_id ) ) {
-        // First delete the file that is not linked to media library
-        unlink( $media_file_poster_path );
+        // First delete the file that is not linked to media library if it exists
+        if ( file_exists( $media_file_poster_path ) ) {
+          unlink( $media_file_poster_path );
+        }
 
         // Then upload it
         $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
@@ -69,11 +71,13 @@ function save_post_function_publish( $post_id ) {
       }
     }
 
-    // Construct backdrop URL
-    $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+    // Construct backdrop URL if we have valid results
+    if ( ! empty( $result['movie_results'][0]['backdrop_path'] ) ) {
+      $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+    }
 
     // Set featured image
     if ( file_exists( $media_file_backdrop_path ) ) {
@@ -86,8 +90,10 @@ function save_post_function_publish( $post_id ) {
       // If for some obscure reason file is found from uploads dir but not on media library
       if ( ! has_post_thumbnail( $post_id ) ) {
 
-        // First delete the file that is not linked to media library
-        unlink( $media_file_backdrop_path );
+        // First delete the file that is not linked to media library if it exists
+        if ( file_exists( $media_file_backdrop_path ) ) {
+          unlink( $media_file_backdrop_path );
+        }
 
         // Then reupload it if not already there
         $media_backdrop_description = 'Tausta elokuvalle ' . $imdb_title;
@@ -494,8 +500,10 @@ function save_post_function( $data, $id ) {
     if ( empty( $media_file_poster_id ) ) {
 
       if ( ! get_field( 'poster', $post_id ) ) {
-        // First delete the file that is not linked to media library
-        unlink( $media_file_poster_path );
+        // First delete the file that is not linked to media library if it exists
+        if ( file_exists( $media_file_poster_path ) ) {
+          unlink( $media_file_poster_path );
+        }
 
         // Then upload it
         $media_poster_description = 'Leffajuliste elokuvalle ' . $imdb_title;
@@ -506,11 +514,13 @@ function save_post_function( $data, $id ) {
       }
     }
 
-    // Construct backdrop URL
-    $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
-    $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+    // Construct backdrop URL if we have valid results
+    if ( ! empty( $result['movie_results'][0]['backdrop_path'] ) ) {
+      $tmdb_backdrop_url = $config['images']['base_url'] . $config['images']['backdrop_sizes'][2] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_path = wp_upload_dir()['path'] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_url = wp_upload_dir()['url'] . $result['movie_results'][0]['backdrop_path'];
+      $media_file_backdrop_id = attachment_url_to_postid( $media_file_backdrop_url );
+    }
 
     // Set featured image
     if ( file_exists( $media_file_backdrop_path ) ) {
@@ -523,8 +533,10 @@ function save_post_function( $data, $id ) {
       // If for some obscure reason file is found from uploads dir but not on media library
       if ( ! has_post_thumbnail( $post_id ) ) {
 
-        // First delete the file that is not linked to media library
-        unlink( $media_file_backdrop_path );
+        // First delete the file that is not linked to media library if it exists
+        if ( file_exists( $media_file_backdrop_path ) ) {
+          unlink( $media_file_backdrop_path );
+        }
 
         // Then reupload it if not already there
         $media_backdrop_description = 'Tausta elokuvalle ' . $imdb_title;
