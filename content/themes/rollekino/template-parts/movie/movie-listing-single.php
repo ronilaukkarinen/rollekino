@@ -9,12 +9,12 @@ namespace Air_Light;
 
 $post_id = ! empty( $args ) && isset( $args['post_id'] ) ? $args['post_id'] : get_the_ID();
 
-// Metadata
-$poster_id = get_post_meta( $post_id, 'poster', true );
-$poster_url = wp_get_attachment_image_url( $poster_id, 'medium' );
-$rating = get_post_meta( $post_id, 'rating', true );
-$imdb_rating = get_post_meta( $post_id, '_imdb_rating', true );
-$imdb_year = get_post_meta( $post_id, '_imdb_year', true );
+// Metadata with safety checks
+$poster_id = get_post_meta( $post_id, 'poster', true ) ?: '';
+$poster_url = ! empty( $poster_id ) ? wp_get_attachment_image_url( $poster_id, 'medium' ) : '';
+$rating = get_post_meta( $post_id, 'rating', true ) ?: '';
+$imdb_rating = get_post_meta( $post_id, '_imdb_rating', true ) ?: '';
+$imdb_year = get_post_meta( $post_id, '_imdb_year', true ) ?: '';
 ?>
 
 <div class="movie-meta-data has-link">

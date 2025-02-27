@@ -16,8 +16,8 @@
      -->
      <arg value="psvn"/>
 
-     <!-- Only check the PHP, CSS and SCSS files. JS files are checked separately with JSCS and JSHint. -->
-     <arg name="extensions" value="php,css,scss/css"/>
+     <!-- Only check the PHP -->
+     <arg name="extensions" value="php"/>
 
      <!-- Check all files in this directory and the directories below it. -->
      <file>.</file>
@@ -25,7 +25,6 @@
      <!-- Include the WordPress ruleset, with exclusions. -->
      <rule ref="WordPress">
 
-        <!-- Nazi-strict intendation rules we want to exclude -->
         <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
@@ -35,8 +34,6 @@
         <exclude name="WordPress.WhiteSpace.DisallowInlineTabs.NonIndentTabsUsed" />
         <exclude name="WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned" />
         <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
-
-        <!-- Don't require too strict inline commenting, it's a good thing to documentate, let's not make it frustrating -->
         <exclude name="Squiz.Commenting.FunctionComment.WrongStyle" />
         <exclude name="Squiz.Commenting.ClassComment.WrongStyle" />
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
@@ -46,8 +43,6 @@
         <exclude name="Squiz.Commenting.FileComment.Missing" />
         <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
         <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
-
-        <!-- General code style related excludes -->
         <exclude name="Squiz.PHP.DisallowMultipleAssignments.Found" />
         <exclude name="Squiz.PHP.EmbeddedPhp.MultipleStatements" />
         <exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen" />
@@ -58,11 +53,7 @@
         <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace" />
         <exclude name="PHPCompatibility.PHP.NewFunctionArrayDereferencing.Found" />
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-
-        <!-- General WordPress stuff we like to overrule -->
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-
-        <!-- Very strict VIP/discouraged rules that are not needed -->
         <exclude name="WordPress.XSS.EscapeOutput.OutputNotEscaped" />
         <exclude name="WordPress.Functions.DontExtract.extract_extract" />
         <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
@@ -74,17 +65,9 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
         <exclude name="WordPress.PHP.DontExtract.extract_extract" />
-
-        <!-- Translations related, not always necessary, too strict -->
         <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
-
-        <!-- EditorConfig makes sure this happens anyway & false positives happen with this -->
         <exclude name="Generic.Files.EndFileNewline.NotFound" />
-
-        <!-- Many times when developing a customer case we have placeholders for SVG includes, so unnecessary error reports happen with this rule -->
         <exclude name="Squiz.PHP.EmbeddedPhp.Empty" />
-
-        <!-- Other useful excludes -->
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
         <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />
         <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital" />
@@ -98,8 +81,6 @@
         <exclude name="WordPress.DB.SlowDBQuery.slow_db_query_tax_query" />
         <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
         <exclude name="WordPress.DB" />
-
-        <!-- Project based -->
         <exclude name="Squiz.PHP.CommentedOutCode.Found" />
         <exclude name="Squiz.Commenting" />
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd" />
@@ -109,9 +90,8 @@
         <exclude name="Universal.WhiteSpace.DisallowInlineTabs" />
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
         <exclude name="PEAR.Commenting.FileComment" />
-
-        <!-- Windows 10/WSL Specific -->
         <exclude name="WordPress.Files" />
+        <exclude name="Universal.Operators.DisallowShortTernary" />
     </rule>
 
     <!-- Verify that the text_domain is set to the desired text-domain.

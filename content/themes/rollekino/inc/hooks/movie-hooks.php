@@ -113,7 +113,6 @@ function save_post_function_publish( $post_id ) {
     // Re-hook functions
     add_action( 'save_post', __NAMESPACE__ . '\save_post_function_publish' );
   }
-
 }
 
 function save_post_function( $data, $id ) {
@@ -280,30 +279,31 @@ function save_post_function( $data, $id ) {
       curl_close( $trailer ); // phpcs:ignore
       $result_trailer = json_decode( $response_trailer, true );
 
+      // Initialize trailers array
+      $trailers_array = [];
+
       // Loop through trailers to get the official trailer
       foreach ( $result_trailer['results'] as $trailers ) {
-
         if ( 'Trailer' === $trailers['type'] && 'YouTube' === $trailers['site'] ) {
           // Store directors to their own array to be used outside the loop
           $trailers_array[] = $trailers;
         }
-
       }
 
-      // Getting array keys amount, the number of trailers
-      $trailers_amount = array_keys( $trailers_array );
+      // Only proceed if we have trailers
+      if ( ! empty( $trailers_array ) ) {
+        // Getting array keys amount, the number of trailers
+        $trailers_amount = array_keys( $trailers_array );
 
-      // Checking if there's more than one trailer
-      if ( count( $trailers_amount ) > 1 ) {
-
-        // There's more than one trailer, selecting the correct one (last one in iteration)
-        $last_trailer_key = $trailers_amount[ count( $trailers_amount ) - 1 ];
-        $selected_trailer_array = $trailers_array[ $last_trailer_key ];
-
-      } else {
-
-        // There's only one trailer, selecting the only one
-        $selected_trailer_array = $trailers_array;
+        // Checking if there's more than one trailer
+        if ( count( $trailers_amount ) > 1 ) {
+          // There's more than one trailer, selecting the correct one (last one in iteration)
+          $last_trailer_key = $trailers_amount[ count( $trailers_amount ) - 1 ];
+          $selected_trailer_array = $trailers_array[ $last_trailer_key ];
+        } else {
+          // There's only one trailer, selecting the only one
+          $selected_trailer_array = $trailers_array;
+        }
       }
 
       // Get the one official trailer
