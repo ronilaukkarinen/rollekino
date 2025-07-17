@@ -137,7 +137,7 @@ function movie_archive_scripts() {
 		return;
   }
 
-  wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ), array(), filemtime( get_theme_file_uri( get_asset_file( 'movies.js' ) ) ), true );
+  wp_register_script( 'movies', get_theme_file_uri( get_asset_file( 'movies.js' ) ), array(), filemtime( get_theme_file_path( get_asset_file( 'movies.js' ) ) ), true );
 
   $movie_filters = [
     'genre' => [
