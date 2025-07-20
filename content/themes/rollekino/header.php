@@ -30,6 +30,7 @@ if ( is_search() ) {
 
   <?php wp_head(); ?>
 
+  <script defer data-domain="rollekino.fi" src="https://analytics.dude.fi/js/script.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VKLKK88JWE"></script>
   <script>
